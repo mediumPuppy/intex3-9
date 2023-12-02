@@ -35,9 +35,9 @@ let DB_PORT = process.env.RDS_PORT || process.env.DB_PORT || 5432
 //     console.error('Connection failed:', error);
 //   });
 
-// app.get('/', (req,res) => {
-//   res.render("landing")
-// });
+app.get('/', (req,res) => {
+  res.render("landing")
+});
 
 app.get('/login', (req,res) => {
   res.render('login')
