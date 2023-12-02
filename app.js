@@ -31,7 +31,7 @@ let knex = knexInit({
 // test db connection with generic query
 knex.raw('SELECT NOW()')
   .then(result => {
-    console.log('Connection successful.' + result.rows[0].now);
+    console.log('Connection successful: ' + result.rows[0].now);
   })
   .catch(error => {
     console.error('Connection failed:', error);
@@ -46,7 +46,23 @@ app.get('/', (req,res) => {
 
 app.get('/login', (req,res) => {
   res.render('login')
-})
+});
+
+// app.post('/login', (req,res) => {
+
+// });
+
+// app.post('/adduser', (req,res) => {
+
+// });
+
+// app.get('/deleteuser', (req,res) => {
+
+// });
+
+// app.get('edituser', (req,res) => {
+
+// });
 
 app.listen(PORT)
 
