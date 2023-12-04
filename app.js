@@ -4,6 +4,8 @@ let knexInit = require('knex');
 let path = require('path');
 require('dotenv').config();
 const { body, validationResult } = require('express-validator');
+let bcrypt = require('bcrypt');
+
 
 
 // declare app
