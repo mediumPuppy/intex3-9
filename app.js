@@ -6,11 +6,11 @@ require('dotenv').config();
 const favicon = require('serve-favicon');
 const { body, validationResult } = require('express-validator');
 let bcrypt = require('bcrypt');
-
-app.use(favicon(__dirname + '/static/favicon.ico'))
-
-// declare app
+// initialize app
 let app = express();
+console.log("Favicon path:", path.join(__dirname, '/static/images/favicon.png'));
+app.use(favicon(path.join(__dirname, '/static/images/favicon.png')));
+
 
 // 'set' and 'use' here
 app.set('view engine', 'ejs');
@@ -37,7 +37,7 @@ let knex = knexInit({
 // test db connection with generic query
 knex.raw('SELECT * FROM users')
   .then(result => {
-    console.log('Connection successful: ' + result.rows[0].username);
+    console.log('Database connection successful: ' + result.rows[0].username);
   })
   .catch(error => {
     console.error('Connection failed:', error);
@@ -140,5 +140,7 @@ app.post('/create',
 
 // });
 
-app.listen(PORT)
+app.listen(PORT, (req, res) => {
+  console.log('Successfully connected to port ' + PORT)
+})
 
