@@ -1,0 +1,78 @@
+/*General total page style */
+
+:root {
+    --sea-green: #6c9286;
+    --sky-blue: #bcdeed;
+    --dark-blue: #1d4355;
+    --dark-grey: #242424;
+    --cream: #FEFCFA;
+    --text: #000000;
+    --gap: 6rem;
+  }
+  
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Open Sans", sans-serif;
+}
+
+@font-face {
+    font-family: 'Lobster-Regular';
+    src: url(/fonts/Lobster-Regular.ttf) format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Lobster-Regular', sans-serif;
+    letter-spacing: 3px;
+}
+
+main {
+    max-width: 50rem;
+    align-self: center;
+    margin: 0 1rem var(--gap);
+}
+
+/*nav styles*/
+ul {
+    margin: 0 auto;
+    padding: 0;
+    height: 60px;
+    list-style-type: none;
+  
+    font-size: 1em;
+    text-align: center;
+    background-color: var(--cream);
+    display: flex;
+    justify-content: left;
+  }
+  
+ul li a {
+    display: block;
+    padding: 1rem 1rem;
+    position: relative;
+    text-decoration: none;
+    color: var(--text);
+    align-items: center;
+    letter-spacing: 1px;
+}
+  
+.separator {
+    display: flex;
+    align-items: center;
+    border-left: 1px var(-text);
+    width: 1px;
+    height: 50px;
+    margin: 0 20px;
+}
+
+ul li a img.provo + a {
+    height: 100px;
+    padding: 0 0;
+    
+
+}
