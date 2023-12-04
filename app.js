@@ -56,8 +56,6 @@ app.get('/login', (req,res) => {
 // });
 
 
-
-
 app.post('/create', 
   [
     body('username').trim().isLength({ min: 3 }).escape(),
