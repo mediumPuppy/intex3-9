@@ -34,28 +34,58 @@ let knex = knexInit({
 });
 
 // test db connection with generic query
-knex.raw('SELECT NOW()')
+knex.raw('SELECT * FROM users')
   .then(result => {
-    console.log('Connection successful: ' + result.rows[0].now);
+    console.log('Connection successful: ' + result.rows[0].username);
   })
   .catch(error => {
     console.error('Connection failed:', error);
-  })  .finally(() => {
-    knex.destroy();
-    // Close the connection
   });
 
 app.get('/', (req,res) => {
   res.render("landing")
 });
 
-app.get('/login', (req,res) => {
-  res.render('login')
+app.get('/login', async (req, res) => {
+  let statusMessage = '';
+
+  // Check for a status query parameter
+  if (req.query.status === 'fail') {
+    statusMessage = 'Login failed. Please try again.';
+  }
+
+  res.render('login', { statusMessage: statusMessage });
 });
 
-// app.post('/login', (req,res) => {
+app.get('/admin', (req, res) => {
+  res.render('admin', { query: req.query })
+});
 
-// });
+// Route to handle the login form submission (POST request)
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const user = await knex('users')
+      .where({ username: username }) // Assuming column name is 'username'
+      .first();
+
+    if (!user) {
+      return res.redirect('/login?status=fail');
+    }
+
+    if (await bcrypt.compare(password, user.passwordhash)) { // Assuming column name is 'passwordHash'
+      // Perform actions after successful login, like setting session data
+      // Redirect to dashboard or another page
+      return res.redirect('/');
+    } else {
+      return res.redirect('/login?status=fail');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
 
 
 app.post('/create', 
@@ -66,11 +96,13 @@ app.post('/create',
     body('lastname').trim().isAlpha().escape(),
   ], 
   async (req, res) => {
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
   try {
+    const { username, password, firstname, lastname  } = req.body;
     const foundUsers = await knex('users').where({ username: username });
     if (foundUsers.length > 0) {
       return res.redirect(`/admin?status=username`);

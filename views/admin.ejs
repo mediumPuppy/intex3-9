@@ -14,78 +14,119 @@
       color: red;
       font-size: 0.8em;
     }
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+      }
+      .success {
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+      }
   </style>
 </head>
 <body>
-  <form action="/create" method="POST" id="createUserForm">
-    <div>
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required minlength="3" maxlength="20" placeholder="Enter username">
-      <span id="usernameError" class="error"></span>
+  <% if (typeof query.status !== 'undefined' && query.status === 'created') { %>
+    <div class="alert success">
+      User successfully created!
     </div>
-    <div>
-      <label for="firstname">First Name:</label>
-      <input type="text" id="firstname" name="firstname" required placeholder="Enter first name">
-    </div>
-    <div>
-      <label for="lastname">Last Name:</label>
-      <input type="text" id="lastname" name="lastname" required placeholder="Enter last name">
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required minlength="5" placeholder="Enter password">
-      <span id="passwordError"></span>
-    </div>
-    <button type="submit">Create User</button>
-  </form>
-
-  <script>
-    // client side validation/preemptive sanitization of inputs
-    document.getElementById('createUserForm').addEventListener('submit', function(event) {
-      var username = document.getElementById('username');
-      var usernameError = document.getElementById('usernameError');
-
-      // Validation for username
-      if (username.value.length < 3) {
-        usernameError.textContent = 'Username must be at least 3 characters long.';
-        event.preventDefault();
-      } else {
-        usernameError.textContent = '';
-      }
-
-      // Validation for First Name
-      var firstname = document.getElementById('firstname');
-      var firstnameError = document.getElementById('firstnameError');
-
-      if (!firstname.value.match(/^[a-zA-Z]+$/)) {
-        firstnameError.textContent = 'First name should only contain letters.';
-        event.preventDefault();
-      } else {
-        firstnameError.textContent = '';
-      }
-
-      // Validation for Last Name
-      var lastname = document.getElementById('lastname');
-      var lastnameError = document.getElementById('lastnameError');
-
-      if (!lastname.value.match(/^[a-zA-Z]+$/)) {
-        lastnameError.textContent = 'Last name should only contain letters.';
-        event.preventDefault();
-      } else {
-        lastnameError.textContent = '';
-      }
-
-      // Validation for Password
-      var password = document.getElementById('password');
-      var passwordError = document.getElementById('passwordError');
-
-      if (password.value.length < 5) {
-        passwordError.textContent = 'Password must be at least 5 characters long.';
-        event.preventDefault();
-      } else {
-        passwordError.textContent = '';
-      }
-    });
-  </script>
+  <% } %>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <!-- Add other navigation links if needed -->
+        </ul>
+      </nav>
+    </header>
+  
+    <main>
+      <section class="login-form">
+        <h1>Administrator</h1>
+        <form action="/create" method="POST" id="createUserForm">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required minlength="3" maxlength="20" placeholder="Enter username">
+            <span id="usernameError" class="error"></span>
+          </div>
+          <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required placeholder="Enter first name">
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required placeholder="Enter last name">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required minlength="5" placeholder="Enter password">
+            <span id="passwordError" class="error"></span>
+          </div>
+          <div class="form-group">
+            <button type="submit">Create User</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  
+    <footer>
+      <p>&copy; 2023 YourWebsiteName</p>
+    </footer>
 </body>
+
+<script>
+  // client side validation/preemptive sanitization of inputs
+  document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('createUserForm');
+    form.addEventListener('submit', function(event) {
+    var username = document.getElementById('username');
+    var usernameError = document.getElementById('usernameError');
+
+    // Validation for username
+    if (username.value.length < 3) {
+      usernameError.textContent = 'Username must be at least 3 characters long.';
+      event.preventDefault();
+    } else {
+      usernameError.textContent = '';
+    }
+
+    // Validation for First Name
+    var firstname = document.getElementById('firstname');
+    var firstnameError = document.getElementById('firstnameError');
+
+    if (!firstname.value.match(/^[a-zA-Z]+$/)) {
+      firstnameError.textContent = 'First name should only contain letters.';
+      event.preventDefault();
+    } else {
+      firstnameError.textContent = '';
+    }
+
+    // Validation for Last Name
+    var lastname = document.getElementById('lastname');
+    var lastnameError = document.getElementById('lastnameError');
+
+    if (!lastname.value.match(/^[a-zA-Z]+$/)) {
+      lastnameError.textContent = 'Last name should only contain letters.';
+      event.preventDefault();
+    } else {
+      lastnameError.textContent = '';
+    }
+
+    // Validation for Password
+    // Your validation logic here
+    var password = document.getElementById('password');
+    var passwordError = document.getElementById('passwordError');
+
+    if (password.value.length < 6) {
+      passwordError.textContent = 'Password must be at least 6 characters long.';
+      event.preventDefault();
+    } else {
+    passwordError.textContent = '';
+    }
+  })
+});
+</script>
 </html>
