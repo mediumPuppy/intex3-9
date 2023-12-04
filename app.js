@@ -80,7 +80,7 @@ app.post('/create',
 
     await knex('users').insert({
       username,
-      passwordHash: hashedPassword,
+      passwordhash: hashedPassword,
       firstname,
       lastname
     });
