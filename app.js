@@ -3,10 +3,11 @@ let express = require('express');
 let knexInit = require('knex');
 let path = require('path');
 require('dotenv').config();
+const favicon = require('serve-favicon');
 const { body, validationResult } = require('express-validator');
 let bcrypt = require('bcrypt');
 
-
+app.use(favicon(__dirname + '/static/favicon.ico'))
 
 // declare app
 let app = express();
@@ -59,6 +60,10 @@ app.get('/login', async (req, res) => {
 
 app.get('/admin', (req, res) => {
   res.render('admin', { query: req.query })
+});
+
+app.get('/survey', (req, res) => {
+  res.render('survey')
 });
 
 // Route to handle the login form submission (POST request)
