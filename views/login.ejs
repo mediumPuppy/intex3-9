@@ -39,7 +39,15 @@
 
   <main>
     <section class="login-form">
+      
       <h1>Login</h1>
+
+      <!-- Display the error message if it exists -->
+      <% if (typeof statusMessage !== 'undefined' && statusMessage) { %>
+        <div class="error alert">
+          <%= statusMessage %>
+        </div>
+      <% } %>
       <form action="/login" method="post">
         <div class="form-group">
           <label for="username">Username:</label>
