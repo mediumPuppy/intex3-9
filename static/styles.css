@@ -36,6 +36,10 @@ h4 {
 }
 
 /*nav styles*/
+nav {
+    background-color: var(--lightcream);
+}
+
 ul {
     margin: 0 auto;
     padding: 0;
@@ -43,7 +47,6 @@ ul {
     list-style-type: none;
     font-size: 1em;
     text-align: center;
-    background-color: var(--lightcream);
     display: flex;
     justify-content: left;
     align-items: center;
@@ -61,6 +64,7 @@ ul li a {
 
 a:hover {
     color: var(--darkgrey);
+    transform: translate(1px, 1px);
 }
   
 .separator {
@@ -84,6 +88,10 @@ a.navlogo img {
     margin-right: 18px;
 }
 
+a.navlogo img:hover {
+    transform: translate(1px, 1px);
+}
+
 a.provo {
     display: flex;
     align-items: center;
@@ -97,10 +105,17 @@ a.provo img {
     margin-left: 18px;
 }
 
+a.provo img:hover {
+    transform: translate(1px, 1px);
+}
+
+.nav-toggle {
+    display: none;
+}
 
 /*hero styles */
 
-.hero {
+.hero img {
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -108,4 +123,30 @@ a.provo img {
     margin: 0;
     background-size: cover;
     background-position: center;
+}
+
+@media screen and (max-width: 850px) {
+
+nav {
+    display: flex;
+}
+
+a.link {
+    width: 40%;
+    margin-left: auto;
+    display: none;
+    table-layout: fixed;
+    transition: all 0.3s ease-in;
+}
+
+.nav-toggle-label:before {
+    color: var(--darkgreen);
+    content: "☰";
+}
+
+.nav-toggle:checked + a.link {
+    display: table;
+    margin-left: 0;
+}
+
 }
