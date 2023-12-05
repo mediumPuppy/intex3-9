@@ -68,6 +68,26 @@ app.get('/login', (req, res) => {
   res.render('login', { statusMessage: statusMessage });
 });
 
+//admin route for seeing all the data
+app.get('/admin/data', async (req, res) => {
+  let respondents = await knex('respondent');
+  
+  res.render('data', {data:respondents})}
+)
+
+//a view to see one of the user's data while an admin
+app.get('/admin/data/:userid', async (req, res) => {
+  try {
+    let individual = await knex('respondent').where('user_id', '=', req.params.userid);
+    res.render('individuals', {data:individual})
+  }
+
+  catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+}
+)
 // admin route for creating users
 app.get('/admin', (req, res) => {
   // const data = await knex('all data') ...  make async 
@@ -120,6 +140,21 @@ app.post('/login', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+app.get('/logout', (req, res) => {
+  // Clear the session data
+  req.session.destroy(err => {
+      if (err) {
+          // Handle the error case
+          console.log(err);
+          res.status(500).send("Could not log out, please try again");
+      } else {
+          // Redirect to the home page or login page
+          res.redirect('/');
+      }
+  });
+});
+
 
 
 app.post('/create', 
