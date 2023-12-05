@@ -68,6 +68,26 @@ app.get('/login', (req, res) => {
   res.render('login', { statusMessage: statusMessage });
 });
 
+//admin route for seeing all the data
+app.get('/admin/data', async (req, res) => {
+  let respondents = await knex('respondent');
+  
+  res.render('data', {data:respondents})}
+)
+
+//a view to see one of the user's data while an admin
+app.get('/admin/data/:userid', async (req, res) => {
+  try {
+    let individual = await knex('respondent').where('user_id', '=', req.params.userid);
+    res.render('individuals', {data:individual})
+  }
+
+  catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+}
+)
 // admin route for creating users
 app.get('/admin', (req, res) => {
   // const data = await knex('all data') ...  make async 

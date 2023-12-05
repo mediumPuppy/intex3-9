@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Page</title>
+</head>
+<body>
+    <a href="/admin/data">Data</a>
+    <table>
+        <thead>
+          <tr>
+            <th>User_ID</th>
+            <th>Timestamp</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Relationship_Status</th>
+            <th>Occupation_Status</th>
+            <th>Social_Media_User</th>
+            <th>Region</th>
+            <th>Daily_Time_Spent</th>
+            <th>Use_Without_Purpose</th>
+            <th>Use_While_Busy</th>
+            <th>Restlessness_From_Withdrawal</th>
+            <th>Easily_Distracted</th>
+            <th>Bothered_by_Worries</th>
+            <th>Difficult_to_Concentrate</th>
+            <th>Compare_with_Successful_People</th>
+            <th>Feelings_Toward_Comparisons</th>
+            <th>Seek_Validation</th>
+            <th>Feelings_of_Depression</th>
+            <th>Fluctuation_of_Interest_in_Activities</th>
+            <th>Sleep_Issue_Frequency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(item => { %>
+            <tr>
+              <td><%= item.user_id %></td>
+              <td><%= item.timestamp %></td>
+              <td><%= item.age %></td>
+              <td><%= item.gender %></td>
+              <td><%= item.relationship_status %></td>
+              <td><%= item.occupation_status %></td>
+              <td><%= item.social_media_user %></td>
+              <td><%= item.region %></td>
+              <td><%= item.daily_time_spent %></td>
+              <td><%= item.use_without_purpose %></td>
+              <td><%= item.use_while_busy %></td>
+              <td><%= item.restlessness_from_withdrawal %></td>
+              <td><%= item.easily_distracted %></td>
+              <td><%= item.bothered_by_worries %></td>
+              <td><%= item.difficult_to_concentrate %></td>
+              <td><%= item.compare_with_successful_people %></td>
+              <td><%= item.feelings_toward_comparisons %></td>
+              <td><%= item.seek_validation %></td>
+              <td><%= item.feelings_of_depression %></td>
+              <td><%= item.fluctuation_of_interest_in_activities %></td>
+              <td><%= item.sleep_issue_frequency %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      
+</body>
+</html>
