@@ -141,6 +141,21 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.get('/logout', (req, res) => {
+  // Clear the session data
+  req.session.destroy(err => {
+      if (err) {
+          // Handle the error case
+          console.log(err);
+          res.status(500).send("Could not log out, please try again");
+      } else {
+          // Redirect to the home page or login page
+          res.redirect('/');
+      }
+  });
+});
+
+
 
 app.post('/create', 
   [

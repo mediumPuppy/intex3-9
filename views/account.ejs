@@ -26,27 +26,43 @@
     <h1>Account Information</h1>
 
     <% if (data) { %>
-      <form action="/update-account" method="post">
+      <form id="accountForm" action="/update-account" method="post">
         <div class="user-info">
           <h2>User Details</h2>
           <p>
-            <label for="email"><strong>Email:</strong></label>
-            <input type="email" id="email" name="email" value="<%= data.email %>" required>
+            <strong>Email:</strong>
+            <span id="emailText"><%= data.email %></span>
+            <input type="email" id="emailInput" name="email" value="<%= data.email %>" required disabled>
           </p>
           <p>
-            <label for="firstname"><strong>First Name:</strong></label>
-            <input type="text" id="firstname" name="firstname" value="<%= data.firstname %>" required>
+            <strong>First Name:</strong>
+            <span id="firstnameText"><%= data.firstname %></span>
+            <input type="text" id="firstnameInput" name="firstname" value="<%= data.firstname %>" required disabled>
           </p>
           <p>
-            <label for="lastname"><strong>Last Name:</strong></label>
-            <input type="text" id="lastname" name="lastname" value="<%= data.lastname %>" required>
+            <strong>Last Name:</strong>
+            <span id="lastnameText"><%= data.lastname %></span>
+            <input type="text" id="lastnameInput" name="lastname" value="<%= data.lastname %>" required disabled>
           </p>
-          <button type="submit">Update</button>
+          <button type="button" id="editButton">Edit</button>
+          <button type="submit" id="saveButton" disabled>Save</button>
         </div>
       </form>
     <% } else { %>
       <p>User information not available.</p>
     <% } %>
   </div>
+
+  <script>
+    document.getElementById('editButton').addEventListener('click', function() {
+      document.getElementById('emailInput').disabled = false;
+      document.getElementById('firstnameInput').disabled = false;
+      document.getElementById('lastnameInput').disabled = false;
+      document.getElementById('saveButton').disabled = false;
+      document.getElementById('emailText').style.display = 'none';
+      document.getElementById('firstnameText').style.display = 'none';
+      document.getElementById('lastnameText').style.display = 'none';
+    });
+  </script>
 </body>
 </html>
