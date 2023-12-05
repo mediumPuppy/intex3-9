@@ -8,7 +8,7 @@
 <body>
   <h1>Survey Questions</h1>
   <!-- no action yet. insert it. -->
-  <form action="#" method="post">
+  <form action="/submitsurvey" method="post">
       <!-- Age -->
       <label for="age">Age:</label>
       <input type="number" id="age" name="age" min="0" max="99"><br><br>
@@ -62,24 +62,25 @@
 
       <!-- What social media platforms do you commonly use? -->
       <label>What social media platforms do you commonly use?</label><br>
-      <input type="checkbox" id="facebook" name="social_media_platforms" value="1">
       <label for="facebook">Facebook</label><br>
-      <input type="checkbox" id="youtube" name="social_media_platforms" value="2">
-      <label for="youtube">YouTube</label><br>
-      <input type="checkbox" id="discord" name="social_media_platforms" value="3">
-      <label for="discord">Discord</label><br>
-      <input type="checkbox" id="reddit" name="social_media_platforms" value="4">
-      <label for="reddit">Reddit</label><br>
-      <input type="checkbox" id="twitter" name="social_media_platforms" value="5">
+      <input type="checkbox" id="facebook" name="social_media_platforms" value="1">
       <label for="twitter">Twitter</label><br>
-      <input type="checkbox" id="instagram" name="social_media_platforms" value="6">
+      <input type="checkbox" id="twitter" name="social_media_platforms" value="2">
       <label for="instagram">Instagram</label><br>
-      <input type="checkbox" id="tiktok" name="social_media_platforms" value="7">
-      <label for="tiktok">TikTok</label><br>
-      <input type="checkbox" id="pinterest" name="social_media_platforms" value="8">
+      <input type="checkbox" id="instagram" name="social_media_platforms" value="3">
+      <label for="youtube">YouTube</label><br>
+      <input type="checkbox" id="youtube" name="social_media_platforms" value="4">
+      <label for="discord">Discord</label><br>
+      <input type="checkbox" id="discord" name="social_media_platforms" value="5">
+      <label for="reddit">Reddit</label><br>
+      <input type="checkbox" id="reddit" name="social_media_platforms" value="6">
       <label for="pinterest">Pinterest</label><br>
-      <input type="checkbox" id="snapchat" name="social_media_platforms" value="9">
-      <label for="snapchat">Snapchat</label><br><br>
+      <input type="checkbox" id="pinterest" name="social_media_platforms" value="7">
+      <label for="tiktok">TikTok</label><br>
+      <input type="checkbox" id="tiktok" name="social_media_platforms" value="8">
+      <label for="snapchat">Snapchat</label><br>
+      <input type="checkbox" id="snapchat" name="social_media_platforms" value="9"><br><br>
+
 
       <!-- What is the average time you spend on social media every day? -->
       <label for="daily_social_media_time">What is the average time you spend on social media every day?</label>
@@ -92,7 +93,7 @@
           <option value="more-5">More than 5 hours</option>
       </select><br><br>
 
-      <!-- How often do you find yourself using social media without a specific purpose? -->
+      <!-- Q9 How often do you find yourself using social media without a specific purpose? -->
       <label for="use_without_purpose">I often find myself using social media without a specific purpose.</label>
       <select id="use_without_purpose" name="use_without_purpose">
           <option value="" selected disabled>Select an option</option>
@@ -103,7 +104,7 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Social media distraction -->
+      <!-- Social media distraction Q10-->
       <label for="use_while_busy">I often get distracted by social media when I am busy doing something.</label>
       <select id="use_while_busy" name="use_while_busy">
           <option value="" selected disabled>Select an option</option>
@@ -114,7 +115,7 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Restlessness without social media -->
+      <!-- Restlessness without social media Q11-->
       <label for="restlessness_from_withdrawal">I feel restless if I haven’t used social media in a while.</label>
       <select id="restlessness_from_withdrawal" name="restlessness_from_withdrawal">
           <option value="" selected disabled>Select an option</option>
@@ -125,7 +126,7 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Easily distracted -->
+      <!-- Easily distracted Q12-->
       <label for="easily_distracted">I am easily distracted.</label>
       <select id="easily_distracted" name="easily_distracted">
           <option value="" selected disabled>Select an option</option>
@@ -136,7 +137,7 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Bothered by worries -->
+      <!-- Bothered by worries Q13-->
       <label for="bothered_by_worries">I am frequently bothered by worries.</label>
       <select id="bothered_by_worries" name="bothered_by_worries">
           <option value="" selected disabled>Select an option</option>
@@ -147,7 +148,7 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Difficulty concentrating -->
+      <!-- Difficulty concentrating Q14 -->
       <label for="difficult_to_concentrate">I find it difficult to concentrate on things.</label>
       <select id="difficult_to_concentrate" name="difficult_to_concentrate">
           <option value="" selected disabled>Select an option</option>
@@ -158,7 +159,7 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Comparison to successful people -->
+      <!-- Comparison to successful people Q15-->
       <label for="compare_with_successful_people">I often compare myself to other successful people through the use of social media.</label>
       <select id="compare_with_successful_people" name="compare_with_successful_people">
           <option value="" selected disabled>Select an option</option>
@@ -169,7 +170,18 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Seeking validation -->
+      <!-- How do you feel about question above Q16 -->
+      <label for="feel_about_comparisons">How do you feel about the comparisons you make with successful people on social media (as referenced in question 15)?</label>
+      <select id="feel_about_comparisons" name="feel_about_comparisons">
+        <option value="" selected disabled>Select an option</option>
+        <option value="1">Very Negative</option>
+        <option value="2">Somewhat Negative</option>
+        <option value="3">Neutral</option>
+        <option value="4">Somewhat Positive</option>
+        <option value="5">Very Positive</option>
+    </select><br><br>
+
+      <!-- Seeking validation Q17-->
       <label for="seek_validation">I often look to seek validation from features of social media.</label>
       <select id="seek_validation" name="seek_validation">
           <option value="" selected disabled>Select an option</option>
@@ -180,7 +192,7 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Feelings of depression -->
+      <!-- Feelings of depression Q18-->
       <label for="feelings_of_depression">I often feel depressed or down.</label>
       <select id="feelings_of_depression" name="feelings_of_depression">
           <option value="" selected disabled>Select an option</option>
@@ -191,7 +203,7 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Fluctuating interest in activities -->
+      <!-- Fluctuating interest in activities Q19-->
       <label for="fluctuation_of_interest_in_activities">My interest in daily activities fluctuates frequently.</label>
       <select id="fluctuation_of_interest_in_activities" name="fluctuation_of_interest_in_activities">
           <option value="" selected disabled>Select an option</option>
@@ -202,7 +214,7 @@
           <option value="5">Strongly Agree</option>
       </select><br><br>
 
-      <!-- Sleep issues -->
+      <!-- Sleep issues Q20-->
       <label for="sleep_issue_frequency">I often face issues regarding sleep.</label>
       <select id="sleep_issue_frequency" name="sleep_issue_frequency">
           <option value="" selected disabled>Select an option</option>

@@ -231,7 +231,65 @@ app.post('/update-account', async (req, res) => {
 // app.get('edituser', (req,res) => {
 
 // });
+app.post('/', async (req, res) => {
+  try {
+    const {
+      age,
+      gender,
+      relationship_status,
+      occupation_status,
+      organization_affiliation,
+      social_media_user,
+      social_media_platforms,
+      daily_social_media_time,
+      use_without_purpose,
+      use_while_busy,
+      restlessness_from_withdrawal,
+      easily_distracted,
+      bothered_by_worries,
+      difficult_to_concentrate,
+      compare_with_successful_people,
+      feel_about_comparisons,
+      seek_validation,
+      feelings_of_depression,
+      fluctuation_of_interest_in_activities,
+      sleep_issue_frequency,
+    } = req.body;
 
+    // Insert data into the "respondents" table
+    await knex('respondents').insert({
+      age,
+      gender,
+      relationship_status,
+      occupation_status,
+      organization_affiliation,
+      social_media_user,
+      social_media_platforms,
+      daily_social_media_time,
+      use_without_purpose,
+      use_while_busy,
+      restlessness_from_withdrawal,
+      easily_distracted,
+      bothered_by_worries,
+      difficult_to_concentrate,
+      compare_with_successful_people,
+      feel_about_comparisons,
+      seek_validation,
+      feelings_of_depression,
+      fluctuation_of_interest_in_activities,
+      sleep_issue_frequency,
+      region: 'provo', // Set "region" to "provo"
+    });
+
+    console.log('Data inserted successfully');
+    res.send('Form submitted successfully');
+  } catch (error) {
+    console.error('Error inserting data: ' + error.message);
+    res.status(500).send('Error submitting the form');
+  }
+});
+
+// end
 app.listen(PORT, (req, res) => {
   console.log('Successfully connected to port ' + PORT)
 })
