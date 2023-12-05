@@ -100,7 +100,7 @@ a.provo img {
 
 /*hero styles */
 
-.hero {
+.hero img{
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -108,4 +108,5 @@ a.provo img {
     margin: 0;
     background-size: cover;
     background-position: center;
+    margin-top: -100px;
 }
