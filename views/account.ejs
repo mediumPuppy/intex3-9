@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Information</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .user-info {
+      background-color: #f2f2f2;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Account Information</h1>
+
+    <% if (data) { %>
+      <form action="/update-account" method="post">
+        <div class="user-info">
+          <h2>User Details</h2>
+          <p>
+            <label for="email"><strong>Email:</strong></label>
+            <input type="email" id="email" name="email" value="<%= data.email %>" required>
+          </p>
+          <p>
+            <label for="firstname"><strong>First Name:</strong></label>
+            <input type="text" id="firstname" name="firstname" value="<%= data.firstname %>" required>
+          </p>
+          <p>
+            <label for="lastname"><strong>Last Name:</strong></label>
+            <input type="text" id="lastname" name="lastname" value="<%= data.lastname %>" required>
+          </p>
+          <button type="submit">Update</button>
+        </div>
+      </form>
+    <% } else { %>
+      <p>User information not available.</p>
+    <% } %>
+  </div>
+</body>
+</html>

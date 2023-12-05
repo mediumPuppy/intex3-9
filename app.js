@@ -5,10 +5,10 @@ let path = require('path');
 require('dotenv').config();
 const favicon = require('serve-favicon');
 const { body, validationResult } = require('express-validator');
+let session = require('express-session');
 let bcrypt = require('bcrypt');
 // initialize app
 let app = express();
-console.log("Favicon path:", path.join(__dirname, '/static/images/favicon.png'));
 app.use(favicon(path.join(__dirname, '/static/images/favicon.png')));
 
 
@@ -17,9 +17,16 @@ app.set('view engine', 'ejs');
 app.use(express.static('static'));
 app.use(express.urlencoded({ extended: true}));
 
+// Configure session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET, // Replace with your secret key
+  resave: false,
+  saveUninitialized: true,
+}));
+
 // set env variables
 let PORT = process.env.PORT || 3000;
-let DB_PORT = process.env.RDS_PORT || process.env.DB_PORT || 5432;
+let DB_PORT = process.env.DB_PORT || 5432;
 
 // set up db connection
 let knex = knexInit({
@@ -47,10 +54,13 @@ app.get('/', (req,res) => {
   res.render("landing")
 });
 
-app.get('/login', async (req, res) => {
-  let statusMessage = '';
+app.get('/login', (req, res) => {
+  // If user is already logged in, redirect to account page
+  if (req.session.user_id) {
+    return res.redirect('/account');
+  }
 
-  // Check for a status query parameter
+  let statusMessage = '';
   if (req.query.status === 'fail') {
     statusMessage = 'Login failed. Please try again.';
   }
@@ -58,7 +68,9 @@ app.get('/login', async (req, res) => {
   res.render('login', { statusMessage: statusMessage });
 });
 
+// admin route for creating users
 app.get('/admin', (req, res) => {
+  // const data = await knex('all data') ...  make async 
   res.render('admin', { query: req.query })
 });
 
@@ -66,23 +78,40 @@ app.get('/survey', (req, res) => {
   res.render('survey')
 });
 
+app.get('/account', async (req, res) => {
+  if (!req.session.user_id) {
+    return res.redirect('/login'); // Redirect to login if not authenticated
+  }
+
+  try {
+    const user = await knex('users').where({ id: req.session.user_id }).first();
+
+    if (user) {
+      res.render('account', { data: user });
+    } else {
+      res.status(404).send('User not found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server error');
+  }
+});
+
+
 // Route to handle the login form submission (POST request)
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    const user = await knex('users')
-      .where({ username: username }) // Assuming column name is 'username'
-      .first();
+    const user = await knex('users').where({ username: username }).first();
 
     if (!user) {
       return res.redirect('/login?status=fail');
     }
 
-    if (await bcrypt.compare(password, user.passwordhash)) { // Assuming column name is 'passwordHash'
-      // Perform actions after successful login, like setting session data
-      // Redirect to dashboard or another page
-      return res.redirect('/');
+    if (await bcrypt.compare(password, user.passwordhash)) {
+      req.session.user_id = user.id; // Store user_id in session
+      return res.redirect('/account'); // Redirect to account page
     } else {
       return res.redirect('/login?status=fail');
     }
@@ -99,6 +128,7 @@ app.post('/create',
     body('password').isLength({ min: 5 }),
     body('firstname').trim().isAlpha().escape(),
     body('lastname').trim().isAlpha().escape(),
+    //! insert email here 
   ], 
   async (req, res) => {
 
@@ -130,6 +160,33 @@ app.post('/create',
     return res.status(500).send('An error occurred');
   }
 });
+
+app.post('/update-account', async (req, res) => {
+  // Extract data from the request body
+  const { email, firstname, lastname } = req.body;
+  const userId = req.session.user_id; // Assuming you store user id in session after login
+
+  if (!userId) {
+    return res.redirect('/login'); // Redirect to login if not authenticated
+  }
+
+  try {
+    // Update the user in the database
+    await knex('users')
+      .where({ id: userId })
+      .update({
+        email: email,
+        firstname: firstname,
+        lastname: lastname
+      });
+
+    res.redirect('/account'); // Redirect back to account page after update
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Unable to update account information');
+  }
+});
+
 
 
 // app.get('/deleteuser', (req,res) => {
