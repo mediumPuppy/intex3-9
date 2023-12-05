@@ -45,7 +45,7 @@ ul {
     padding: 0;
     height: 80px;
     list-style-type: none;
-    font-size: 1em;
+    font-size: .75em;
     text-align: center;
     display: flex;
     justify-content: left;
@@ -54,15 +54,17 @@ ul {
   
 ul li a {
     display: block;
-    padding: 1rem 1rem;
+    padding: 14px;
     position: relative;
     text-decoration: none;
     color: var(--text);
     align-items: center;
     letter-spacing: 1px;
+    text-transform: uppercase;
+
 }
 
-a:hover {
+a.link:hover {
     color: var(--darkgrey);
     transform: translate(1px, 1px);
 }
@@ -88,10 +90,6 @@ a.navlogo img {
     margin-right: 18px;
 }
 
-a.navlogo img:hover {
-    transform: translate(1px, 1px);
-}
-
 a.provo {
     display: flex;
     align-items: center;
@@ -105,17 +103,17 @@ a.provo img {
     margin-left: 18px;
 }
 
-a.provo img:hover {
-    transform: translate(1px, 1px);
-}
-
 .nav-toggle {
     display: none;
 }
 
-/*hero styles */
+/*header styles*/
 
-.hero img {
+h1 {
+    display: none;
+}
+
+.main-top-display {
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -123,8 +121,123 @@ a.provo img:hover {
     margin: 0;
     background-size: cover;
     background-position: center;
+    height: fit-content;
 }
 
+/*hero styles */
+
+img.main {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding:0;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    height: 50%;
+}
+
+/*who are we button*/
+.about-us {
+    position: relative;
+    display: inline-block;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 30px;
+    border: 5px solid var(--cream);
+    padding: 16px;
+    background-color: var(--lightgreen);
+    cursor: pointer;
+    color: var(--text);
+    letter-spacing: 1px;
+    font-family: 'Lobster-Regular';
+    
+}
+
+.button:hover {
+    transform: translate(-49%, -49%);
+    color: var(--darkgrey)
+}
+
+/*introduction to the webpage*/
+
+.intro {
+    padding: 2rem;
+}
+
+.intro p:first-of-type {
+    margin-top: 0;
+}
+
+.intro p:last-of-type {
+    margin-bottom: 0;
+}
+
+.intro p {
+    line-height: 24px;
+}
+
+
+/* Footer styles */
+footer {
+    background-color: var(--lightcream);
+    color: var(--darkgrey);
+    padding: 10px 0 20px 0;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo img {
+    height: 100px;
+    padding: 0;
+    margin-right: 20px;
+    margin-left: 12px;
+}
+
+.footer-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.footer-nav li {
+    margin-right: 15px;
+}
+
+.footer-nav a {
+    text-decoration: none;
+    color: var(--darkgrey);
+}
+
+.footer-nav a:hover {
+    color: var(--darkergreen);
+}
+
+.footer-info {
+    margin-top: 15px;
+}
+
+.footer-info p {
+    margin: 5px 0;
+}
+
+
+
+/*NOT FINISHED! TRYING TO MAKE DYNAMIC NAV*/
 @media screen and (max-width: 850px) {
 
 nav {
