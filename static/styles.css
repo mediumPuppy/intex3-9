@@ -163,7 +163,9 @@ img.main {
 
 .button:hover {
     transform: translate(-49%, -49%);
-    color: var(--darkgrey)
+    color: var(--darkgrey);
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+        0 4px 8px 3px rgba(60, 64, 67, 0.149);
 }
 
 /*introduction to the webpage*/
@@ -182,8 +184,57 @@ img.main {
 
 .intro p {
     line-height: 24px;
+    font-weight: 200;
 }
 
+/*login main page*/
+.login-main {
+    background-color: var(--primarygreen);
+    height: 20rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.login-main p {
+    position: absolute;
+    margin-top: -120px;
+    padding: 6rem;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+
+
+}
+
+.login-main a {
+    margin-top: 100px;
+    display: inline-block;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    top: 50%;
+    left: 50%;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 30px;
+    border: 5px solid var(--cream);
+    padding: 16px;
+    background-color: var(--lightgreen);
+    cursor: pointer;
+    color: var(--text);
+    letter-spacing: 1px;
+    font-family: 'Lobster-Regular';
+}
+
+.login-main a:hover {
+    transform: translate(1px, 1px);
+    color: var(--darkgrey);
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+        0 4px 8px 3px rgba(60, 64, 67, 0.149);
+}
 
 /* Footer styles */
 footer {
