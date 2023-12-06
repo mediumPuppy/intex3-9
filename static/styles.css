@@ -20,6 +20,14 @@ body {
     font-family: "Open Sans", sans-serif;
     min-height: 100vh;
 }
+.flex-container {
+    display: flex;
+  }
+.right-content {
+    margin-left: auto; /* Moves this content to the right side */
+    max-width: 50vw;
+    max-height: 50vh;
+}
 
 main {
     flex-grow: 1;
@@ -222,8 +230,6 @@ h1 {
     text-align: center;
     font-size: x-large;
     font-weight: bold;
-
-
 }
 
 .login-main a {
@@ -251,6 +257,10 @@ h1 {
     color: var(--darkgrey);
     box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
         0 4px 8px 3px rgba(60, 64, 67, 0.149);
+}
+
+.login-form p {
+    font-size: xx-large;
 }
 
 /* Footer styles */
