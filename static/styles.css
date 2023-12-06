@@ -286,7 +286,64 @@ footer {
     margin: 5px 0;
 }
 
+.footer-info p a {
+    text-decoration: none;
+    color: var(--darkgrey)
+}
 
+.footer-info p a:hover {
+    text-decoration: underline;
+    color: var(--darkergreen)
+}
+
+/*SURVEY PAGE*/
+/* Add your existing CSS styles here */
+
+/* Survey form styles */
+.survey-form {
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+  }
+  
+  .survey-form label,
+  .survey-form input,
+  .survey-form select {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .survey-form input[type="number"],
+  .survey-form input[type="submit"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  
+  .survey-form select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  
+  .survey-form input[type="submit"] {
+    background-color: var(--primarygreen);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .survey-form input[type="submit"]:hover {
+    background-color: var(--darkgreen);
+  }
+  
 
 /*NOT FINISHED! TRYING TO MAKE DYNAMIC NAV*/
 @media screen and (max-width: 850px) {
