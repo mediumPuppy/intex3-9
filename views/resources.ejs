@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources for Help</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+        <meta name="abstract" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+        <meta name="geo.placename" content="Brigham Young University">
+        <meta name="geo.region" content="'US-UT">
+        <link rel="stylesheet" href="/styles.css">
+        <!--favicon not working-->
+        <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
+        <title>SMU & MH - Resources</title>
+      </head>
 <body>
+    <nav>
+        <div class="menu">
+          <ul>
+            <li><a class="provo" href="https://www.provo.org/government"><img src='images/provologo.png'></a></li>
+            <div class="separator"></div>
+            <li><a class="navlogo" href="#"><img src='images/navlogo.png'></a></li>
+            <li><a class="link" href="/about">About</a></li>
+            <li><a class="link" href="/learn">Learn</a></li>
+            <li><a class="link" href="/resources">Resources</a></li>
+            <li><a class="link" href="/survey">Survey</a></li>
+            <% if (user_id) { %>
+              <li><a class="link" href="/account">Account</a></li>
+              <li><a class="link" href="/survey-data">Data</a></li>
+            <% } else { %>
+              <li><a class="link" href="/login">Login</a></li>
+            <% } %>
+          </ul>
+        </div>
+      </nav>
     <p>Look at all of those chickens (resources)</p>
+    <footer>
+      <div class="footer-content">
+          <div class="footer-logo">
+              <img src="images/smumhnav.png" alt="Footer Logo">
+          </div>
+          <div class="footer-nav">
+              <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/learn">Learn</a></li>
+                  <li><a href="/resources">Resources</a></li>
+                  <li><a href="/survey">Survey</a></li>
+                <% if (user_id) { %>
+                  <li><a class="link" href="/account">Account</a></li>
+                  <li><a class="link" href="/survey-data">Data</a></li>
+                <% } else { %>
+                  <li><a class="link" href="/login">Login</a></li>
+                <% } %>
+              </ul>
+          </div>
+      </div>
+      <div class="footer-info">
+          <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
+          <p>&copy; 2023 Your Website. All rights reserved.</p>
+          <p>Designed by BYUIS3.9</p>
+      </div>
+  </footer>
 </body>
 </html>
