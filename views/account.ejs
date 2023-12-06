@@ -22,6 +22,25 @@
   </style>
 </head>
 <body>
+  <nav>
+    <div class="menu">
+      <ul>
+        <li><a class="provo" href="https://www.provo.org/government"><img src='images/provologo.png'></a></li>
+        <div class="separator"></div>
+        <li><a class="navlogo" href="#"><img src='images/navlogo.png'></a></li>
+        <li><a class="link" href="/about">About</a></li>
+        <li><a class="link" href="/learn">Learn</a></li>
+        <li><a class="link" href="/resources">Resources</a></li>
+        <li><a class="link" href="/survey">Survey</a></li>
+        <% if (user_id) { %>
+          <li><a class="link" href="/account">Account</a></li>
+          <li><a class="link" href="/survey-data">Data</a></li>
+        <% } else { %>
+          <li><a class="link" href="/login">Login</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
   <div class="container">
     <h1>Account Information</h1>
 
@@ -52,17 +71,43 @@
       <p>User information not available.</p>
     <% } %>
   </div>
-
-  <script>
-    document.getElementById('editButton').addEventListener('click', function() {
-      document.getElementById('emailInput').disabled = false;
-      document.getElementById('firstnameInput').disabled = false;
-      document.getElementById('lastnameInput').disabled = false;
-      document.getElementById('saveButton').disabled = false;
-      document.getElementById('emailText').style.display = 'none';
-      document.getElementById('firstnameText').style.display = 'none';
-      document.getElementById('lastnameText').style.display = 'none';
-    });
-  </script>
+  <footer>
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="images/smumhnav.png" alt="Footer Logo">
+        </div>
+        <div class="footer-nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Learn</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="/survey">Survey</a></li>
+              <% if (user_id) { %>
+                <li><a class="link" href="/account">Account</a></li>
+                <li><a class="link" href="/survey-data">Data</a></li>
+              <% } else { %>
+                <li><a class="link" href="/login">Login</a></li>
+              <% } %>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-info">
+        <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
+        <p>&copy; 2023 Your Website. All rights reserved.</p>
+        <p>Designed by BYUIS3.9</p>
+    </div>
+</footer>
 </body>
+<script>
+  document.getElementById('editButton').addEventListener('click', function() {
+    document.getElementById('emailInput').disabled = false;
+    document.getElementById('firstnameInput').disabled = false;
+    document.getElementById('lastnameInput').disabled = false;
+    document.getElementById('saveButton').disabled = false;
+    document.getElementById('emailText').style.display = 'none';
+    document.getElementById('firstnameText').style.display = 'none';
+    document.getElementById('lastnameText').style.display = 'none';
+  });
+</script>
 </html>
