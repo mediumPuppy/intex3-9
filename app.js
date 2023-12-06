@@ -83,6 +83,50 @@ app.get('/login', (req, res) => {
   res.render('login', { statusMessage: statusMessage });
 });
 
+// edit user from admin page
+app.get('/edituser/:id', async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const user = await knex('users').where('id', userId).first();
+    if (user) {
+      res.render('edituser', { user }); // render edit user page with user data
+    } else {
+      res.status(404).send('User not found');
+    }
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+});
+
+// actually post the changed data from the user id
+app.post('/edituser/:id', async (req, res) => {
+  const userId = req.params.id;
+  const updatedData = req.body; // Assuming the body contains the updated user data
+
+  try {
+    await knex('users').where('id', userId).update(updatedData);
+    res.redirect('/admin'); // Redirect to a confirmation page or user list
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+});
+
+// admin ability to delete user
+app.get('/deleteuser/:id', async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    await knex('users').where('id', userId).del();
+    res.redirect('/admin'); // Redirect to the list of users, or another appropriate page
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+});
+
+
+
+
 //admin route for seeing all the data
 app.get('/data', async (req, res) => {
   if (req.session.user_id == 'admin') {
@@ -112,9 +156,12 @@ app.get('/data/:userid', async (req, res) => {
   }
 });
 // admin route for creating users
-app.get('/admin', (req, res) => {
-  // const data = await knex('all data') ...  make async 
-  res.render('admin', { query: req.query })
+app.get('/admin', async (req, res) => {
+  const users = await knex('users')
+  res.render('admin', { 
+                        query: req.query,
+                        data: users       
+                      })
 });
 
 // this route will redirect to the resources view
@@ -137,7 +184,7 @@ app.get('/survey', (req, res) => {
 });
 
 app.get('/access', (req, res) => {
-  res.render('access')
+  res.status(403).render('access')
 })
 
 app.get('/account', async (req, res) => {
@@ -205,7 +252,7 @@ app.post('/create',
     body('password').isLength({ min: 5 }),
     body('firstname').trim().isAlpha().escape(),
     body('lastname').trim().isAlpha().escape(),
-    //! insert email here 
+    body('email').trim().isEmail().normalizeEmail()
   ], 
   async (req, res) => {
 
@@ -322,6 +369,8 @@ app.post('/submitsurvey', async (req, res) => {
 
     }).returning('user_id');
 
+
+    //! SET THIS TO DO THE ROLLBACK JOSH MENTIONED. 
     const userId = insertedIds[0].user_id;
 
 
