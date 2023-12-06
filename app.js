@@ -103,7 +103,6 @@ app.get('/edituser/:id', async (req, res) => {
 app.post('/edituser/:id', async (req, res) => {
   const userId = req.params.id;
   const updatedData = req.body; // Assuming the body contains the updated user data
-
   try {
     await knex('users').where('id', userId).update(updatedData);
     res.redirect('/admin'); // Redirect to a confirmation page or user list
@@ -115,7 +114,6 @@ app.post('/edituser/:id', async (req, res) => {
 // admin ability to delete user
 app.get('/deleteuser/:id', async (req, res) => {
   const userId = req.params.id;
-
   try {
     await knex('users').where('id', userId).del();
     res.redirect('/admin'); // Redirect to the list of users, or another appropriate page
@@ -129,19 +127,16 @@ app.get('/deleteuser/:id', async (req, res) => {
 
 //admin route for seeing all the data
 app.get('/data', async (req, res) => {
-  if (req.session.user_id == 'admin') {
+
   let respondents = await knex('respondent');
   
-  res.render('data', {data:respondents})}
-  else {
-    res.redirect('access')
-  }
+  res.render('data', {data:respondents})
 } 
 )
 
 //a view to see one of the user's data while an admin
 app.get('/data/:userid', async (req, res) => {
-  if (req.session.user_id == 'admin') {
+  // if (req.session.user_id == 'admin') {
   try {
     let individual = await knex('respondent').where('user_id', '=', req.params.userid);
     res.render('individuals', {data:individual})
@@ -151,9 +146,9 @@ app.get('/data/:userid', async (req, res) => {
     console.error(error);
     res.status(500).send('Server error');
   }
-  } else {
-    res.redirect('access')
-  }
+  // } else {
+  //   res.redirect('access')
+  // }
 });
 // admin route for creating users
 app.get('/admin', async (req, res) => {
@@ -286,8 +281,7 @@ app.post('/create',
 });
 
 app.post('/update-account', async (req, res) => {
-  // Extract data from the request body
-  const { email, firstname, lastname } = req.body;
+  const { email, firstname, lastname, password } = req.body;
   const userId = req.session.user_id; // Assuming you store user id in session after login
 
   if (!userId) {
@@ -295,21 +289,30 @@ app.post('/update-account', async (req, res) => {
   }
 
   try {
+    // Hash the password before saving it to the database
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
     // Update the user in the database
     await knex('users')
       .where({ id: userId })
       .update({
         email: email,
         firstname: firstname,
-        lastname: lastname
+        lastname: lastname,
+        passwordhash: hashedPassword // Save the hashed password
       });
 
-    res.redirect('/account'); // Redirect back to account page after update
+    // Redirect or send a success response
+    res.redirect('/account');
   } catch (error) {
+    // Handle errors (e.g., database errors)
     console.error(error);
     res.status(500).send('Unable to update account information');
   }
 });
+
+
 
 
 
