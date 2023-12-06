@@ -33,6 +33,75 @@
       background-color: #dff0d8;
       border-color: #d6e9c6;
     }
+    /* Basic styling for the login form */
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'sans-serif';
+}
+
+.login-form {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid #F6EADC;
+  border-radius: 5px;
+  background-color: #F6EADC;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+button {
+  width: 100%;
+  padding: 8px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.error {
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #e74c3c;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.alert {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #f39c12;
+  color: white;
+}
+
 </style>
 <body>
   <nav>
@@ -56,10 +125,12 @@
   </nav>
 
   <main>
-    <section class="login-form">
-      
-      <h1>Login</h1>
+    <di class="flex-container">
+      <img class="right-content" src="images/intexlogin.jpg" alt="Random Picture">
+    </div>
 
+    <section class="login-form">
+      <p>Login</p>
       <!-- Display the error message if it exists -->
       <% if (typeof statusMessage !== 'undefined' && statusMessage) { %>
         <div class="error alert">
