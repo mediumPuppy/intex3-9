@@ -25,7 +25,7 @@
         <li><a class="link" href="/survey">Survey</a></li>
         <% if (user_id) { %>
           <li><a class="link" href="/account">Account</a></li>
-          <li><a class="link" href="/survey-data">Data</a></li>
+          <li><a class="link" href="#">Data</a></li>
         <% } else { %>
           <li><a class="link" href="/login">Login</a></li>
         <% } %>
@@ -122,7 +122,7 @@
         <tbody>
           <% data.forEach(item => { %>
             <tr>
-              <td><a href="/admin/data/<%= item.user_id %>"><%= item.user_id %></a></td>
+              <td><a href="/data/<%= item.user_id %>"><%= item.user_id %></a></td>
               <td><%= item.timestamp %></td>
               <td><%= item.age %></td>
               <td><%= item.gender %></td>
@@ -161,7 +161,7 @@
                     <li><a href="/survey">Survey</a></li>
                   <% if (user_id) { %>
                     <li><a class="link" href="/account">Account</a></li>
-                    <li><a class="link" href="/survey-data">Data</a></li>
+                    <li><a class="link" href="/data">Data</a></li>
                   <% } else { %>
                     <li><a class="link" href="/login">Login</a></li>
                   <% } %>

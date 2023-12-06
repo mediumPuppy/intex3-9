@@ -42,7 +42,7 @@
         <li><a class="link" href="/survey">Survey</a></li>
         <% if (user_id) { %>
           <li><a class="link" href="/account">Account</a></li>
-          <li><a class="link" href="/survey-data">Data</a></li>
+          <li><a class="link" href="/data">Data</a></li>
         <% } else { %>
           <li><a class="link" href="/login">Login</a></li>
         <% } %>
@@ -59,17 +59,14 @@
           <h2>User Details</h2>
           <p>
             <strong>Email:</strong>
-            <span id="emailText"><%= data.email %></span>
             <input type="email" id="emailInput" name="email" value="<%= data.email %>" required disabled>
           </p>
           <p>
             <strong>First Name:</strong>
-            <span id="firstnameText"><%= data.firstname %></span>
             <input type="text" id="firstnameInput" name="firstname" value="<%= data.firstname %>" required disabled>
           </p>
           <p>
             <strong>Last Name:</strong>
-            <span id="lastnameText"><%= data.lastname %></span>
             <input type="text" id="lastnameInput" name="lastname" value="<%= data.lastname %>" required disabled>
           </p>
           <button type="button" id="editButton">Edit</button>
@@ -95,7 +92,7 @@
                 <li><a href="/survey">Survey</a></li>
               <% if (user_id) { %>
                 <li><a class="link" href="/account">Account</a></li>
-                <li><a class="link" href="/survey-data">Data</a></li>
+                <li><a class="link" href="/data">Data</a></li>
               <% } else { %>
                 <li><a class="link" href="/login">Login</a></li>
               <% } %>
