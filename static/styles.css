@@ -121,6 +121,25 @@ a.provo img {
     display: none;
 }
 
+.signout-button {
+    float: right;
+    margin-left: auto;
+    margin-right: 18px;
+    cursor: pointer;
+}
+
+.signout-button a {
+    border: 1px solid var(--darkergreen);
+}
+
+.signout-button a:hover {
+    color: var(--darkgrey);
+    transform: translate(1px, 1px);
+
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+        0 4px 8px 3px rgba(60, 64, 67, 0.149);
+}
+
 /*header styles*/
 
 h1 {
@@ -266,10 +285,11 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 60px;
 }
 
 .footer-logo img {
-    height: 75px;
+    height: 60px;
     padding: 0;
     margin-right: 20px;
     margin-left: 15px;
@@ -295,11 +315,8 @@ footer {
     color: var(--darkergreen);
 }
 
-.footer-info {
-    margin-top: 15px;
-}
-
 .footer-info p {
+    font-size: 10px;
     margin: 5px 0;
 }
 
