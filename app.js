@@ -89,7 +89,10 @@ app.get('/data', async (req, res) => {
   let respondents = await knex('respondent');
   
   res.render('data', {data:respondents})}
-}
+  else {
+    res.redirect('access')
+  }
+} 
 )
 
 //a view to see one of the user's data while an admin
