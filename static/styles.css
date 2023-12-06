@@ -21,7 +21,6 @@ body {
     min-height: 100vh;
 }
 main {
-    padding-top: 80px;
     flex-grow: 1;
     overflow-y: auto; /* For scrollable content */
 }
