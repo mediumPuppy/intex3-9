@@ -28,6 +28,17 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+//make session user var available to all views
+app.use((req, res, next) => {
+  if (req.session.user_id) {
+    res.locals.user_id = req.session.user_id;
+  } else {
+    res.locals.user_id = null;
+  }
+  next();
+});
+
+
 // set env variables
 let PORT = process.env.PORT || 3000;
 let DB_PORT = process.env.DB_PORT || 5432;
