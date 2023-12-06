@@ -90,8 +90,43 @@
               <span id="passwordError" class="error"></span>
       
               <button type="submit">Create User</button>
+              
           </div>
       </form>
+      <main>
+        <!-- Existing content... -->
+      
+        <section class="user-list">
+          <h2>User Management</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% data.forEach(user => { %>
+                <tr>
+                  <td><%= user.id %></td>
+                  <td><%= user.username %></td>
+                  <td><%= user.firstname %></td>
+                  <td><%= user.lastname %></td>
+                  <td><%= user.email %></td>
+                  <td>
+                    <a href="/edituser/<%= user.id %>">🖉</a>
+                    <a href="/deleteuser/<%= user.id %>" onclick="return confirm('Are you sure you want to delete this user?');">🗑️</a>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </section>
+      </main>
+      
       
       </section>
     </main>
