@@ -20,6 +20,7 @@ body {
     font-family: "Open Sans", sans-serif;
     min-height: 100vh;
 }
+
 main {
     flex-grow: 1;
     overflow-y: auto; /* For scrollable content */
@@ -138,16 +139,19 @@ h1 {
 }
 
 /*hero styles */
-
-img.main {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    padding:0;
-    margin: 0;
-    background-size: cover;
+  
+.parallaxlanding {
+    /* The image used */
+    background-image: url("images/herodisplay.png");
+  
+    /* Full height */
+    height: 50vh;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
     background-position: center;
-    height: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /*who are we button*/
@@ -418,8 +422,24 @@ footer {
     vertical-align: middle;
   }
   
+  .parallaxlearn {
+    /* The image used */
+    background-image: url("images/herodisplay.png");
   
+    /* Full height */
+    height: 50vh;
   
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tableau {
+    justify-content: center;
+    align-items: center;
+}
 
 /*NOT FINISHED! TRYING TO MAKE DYNAMIC NAV*/
 @media screen and (max-width: 850px) {
