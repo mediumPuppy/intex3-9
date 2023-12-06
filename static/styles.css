@@ -18,6 +18,11 @@ body {
     display: flex;
     flex-direction: column;
     font-family: "Open Sans", sans-serif;
+    min-height: 100vh;
+}
+main {
+    flex-grow: 1;
+    overflow-y: auto; /* For scrollable content */
 }
 
 @font-face {
