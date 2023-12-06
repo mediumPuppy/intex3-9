@@ -135,7 +135,6 @@ a.provo img {
 .signout-button a:hover {
     color: var(--darkgrey);
     transform: translate(1px, 1px);
-
     box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
         0 4px 8px 3px rgba(60, 64, 67, 0.149);
 }
@@ -223,7 +222,8 @@ h1 {
     font-weight: 200;
 }
 
-/*login main page*/
+/*learn main page idk why I called it login
+I think i was originally going to do the login there and then i changed my mind ahaha*/
 .login-main {
     background-color: var(--primarygreen);
     height: 20rem;
@@ -379,8 +379,9 @@ footer {
     color: var(--text);
     cursor: pointer;
     transition: background-color 0.3s ease;
-    text-transform: uppercase;
     letter-spacing: 1px;
+    font-family: 'Lobster-Regular';
+    font-size: 25px;
   }
   
   .survey-form input[type="submit"]:hover {
