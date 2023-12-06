@@ -437,8 +437,15 @@ footer {
 }
 
 .tableau {
+    display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+}
+
+.tableauPlaceholder {
+    width: 100%;
+    text-align: center;
 }
 
 /*NOT FINISHED! TRYING TO MAKE DYNAMIC NAV*/
