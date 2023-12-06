@@ -28,6 +28,17 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+//make session user var available to all views
+app.use((req, res, next) => {
+  if (req.session.user_id) {
+    res.locals.user_id = req.session.user_id;
+  } else {
+    res.locals.user_id = null;
+  }
+  next();
+});
+
+
 // set env variables
 let PORT = process.env.PORT || 3000;
 let DB_PORT = process.env.DB_PORT || 5432;
@@ -60,7 +71,7 @@ app.get('/', (req,res) => {
 
 app.get('/login', (req, res) => {
   // If user is already logged in, redirect to account page
-  if (req.session.user_id) {
+  if (req.session.user_id == 'admin') {
     return res.redirect('/account');
   }
 
@@ -73,14 +84,20 @@ app.get('/login', (req, res) => {
 });
 
 //admin route for seeing all the data
-app.get('/admin/data', async (req, res) => {
+app.get('/data', async (req, res) => {
+  if (req.session.user_id == 'admin') {
   let respondents = await knex('respondent');
   
   res.render('data', {data:respondents})}
+  else {
+    res.redirect('access')
+  }
+} 
 )
 
 //a view to see one of the user's data while an admin
-app.get('/admin/data/:userid', async (req, res) => {
+app.get('/data/:userid', async (req, res) => {
+  if (req.session.user_id == 'admin') {
   try {
     let individual = await knex('respondent').where('user_id', '=', req.params.userid);
     res.render('individuals', {data:individual})
@@ -90,8 +107,10 @@ app.get('/admin/data/:userid', async (req, res) => {
     console.error(error);
     res.status(500).send('Server error');
   }
-}
-)
+  } else {
+    res.redirect('access')
+  }
+});
 // admin route for creating users
 app.get('/admin', (req, res) => {
   // const data = await knex('all data') ...  make async 
@@ -116,6 +135,10 @@ app.get('/learn', (req, res) => {
 app.get('/survey', (req, res) => {
   res.render('survey')
 });
+
+app.get('/access', (req, res) => {
+  res.render('access')
+})
 
 app.get('/account', async (req, res) => {
   if (!req.session.user_id) {
