@@ -10,6 +10,10 @@ let bcrypt = require('bcrypt');
 // initialize app
 let app = express();
 app.use(favicon(path.join(__dirname, '/static/images/favicon.png')));
+// Serve static files from node_modules
+app.use('/node_modules', express.static('node_modules'));
+
+// ... rest of your server setup
 
 
 // 'set' and 'use' here
@@ -231,16 +235,16 @@ app.post('/update-account', async (req, res) => {
 // app.get('edituser', (req,res) => {
 
 // });
-app.post('/', async (req, res) => {
+app.post('/submitsurvey', async (req, res) => {
   try {
     const {
       age,
       gender,
       relationship_status,
       occupation_status,
-      organization_affiliation,
+      organization_affiliation, // This will be an array
       social_media_user,
-      social_media_platforms,
+      social_media_platforms, // This will also be an array
       daily_social_media_time,
       use_without_purpose,
       use_while_busy,
@@ -249,37 +253,51 @@ app.post('/', async (req, res) => {
       bothered_by_worries,
       difficult_to_concentrate,
       compare_with_successful_people,
-      feel_about_comparisons,
+      feelings_toward_comparisons,
       seek_validation,
       feelings_of_depression,
       fluctuation_of_interest_in_activities,
       sleep_issue_frequency,
     } = req.body;
 
-    // Insert data into the "respondents" table
-    await knex('respondents').insert({
-      age,
-      gender,
-      relationship_status,
-      occupation_status,
-      organization_affiliation,
-      social_media_user,
-      social_media_platforms,
-      daily_social_media_time,
-      use_without_purpose,
-      use_while_busy,
-      restlessness_from_withdrawal,
-      easily_distracted,
-      bothered_by_worries,
-      difficult_to_concentrate,
-      compare_with_successful_people,
-      feel_about_comparisons,
-      seek_validation,
-      feelings_of_depression,
-      fluctuation_of_interest_in_activities,
-      sleep_issue_frequency,
-      region: 'provo', // Set "region" to "provo"
-    });
+    // Insert data into the "respondents" table and get the inserted User_ID
+    const insertedIds = await knex('respondent').insert({
+    age: age,
+    gender: gender,
+    relationship_status: relationship_status,
+    occupation_status: occupation_status,
+    social_media_user: social_media_user,
+    region: 'provo',
+    daily_social_media_time: daily_social_media_time,
+    use_without_purpose: use_without_purpose,
+    use_while_busy: use_while_busy,
+    restlessness_from_withdrawal: restlessness_from_withdrawal,
+    easily_distracted: easily_distracted,
+    bothered_by_worries: bothered_by_worries,
+    difficult_to_concentrate: difficult_to_concentrate,
+    compare_with_successful_people: compare_with_successful_people,
+    feelings_toward_comparisons: feelings_toward_comparisons,
+    seek_validation: seek_validation,
+    feelings_of_depression: feelings_of_depression,
+    fluctuation_of_interest_in_activities: fluctuation_of_interest_in_activities,
+    sleep_issue_frequency: sleep_issue_frequency
+
+    }).returning('user_id');
+
+    const userId = insertedIds[0].user_id;
+
+
+
+    // Assuming organization_affiliation and social_media_platforms are arrays
+    for (const orgId of organization_affiliation) {
+      for (const socialMediaId of social_media_platforms) {
+        await knex('linking').insert({
+          user_id: userId,
+          organization_id: orgId,
+          social_platform_id: socialMediaId
+        });
+      }
+    }
 
     console.log('Data inserted successfully');
     res.send('Form submitted successfully');
