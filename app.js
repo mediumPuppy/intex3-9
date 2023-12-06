@@ -98,6 +98,21 @@ app.get('/admin', (req, res) => {
   res.render('admin', { query: req.query })
 });
 
+// this route will redirect to the resources view
+app.get('/resources', (req, res) => {
+  res.render('resources')
+});
+
+//this route will redirect to the about view
+app.get('/about', (req, res) => {
+  res.render('about')
+});
+
+//this route will redirect to the learn view with the dashboard
+app.get('/learn', (req, res) => {
+  res.render('learn')
+});
+
 app.get('/survey', (req, res) => {
   res.render('survey')
 });
