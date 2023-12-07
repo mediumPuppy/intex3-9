@@ -34,39 +34,72 @@
       border-color: #d6e9c6;
     }
     /* Basic styling for the login form */
-.main {
+  main {
+    padding: 7% 10%;
+    margin: auto auto;
+  }
+
+  .main {
+  display: flex;
+  justify-content: center;
   align-items: center;
   height: 100vh;
-  font-family: 'sans-serif';
+  position: relative;
+}
+
+.background-img {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.login-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25; /* Adjust the opacity as desired */
+}
+
+.content {
   display: flex;
-  justify-content: space-between;
-  padding-top: 200px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .login-form {
   justify-content: center;
   align-items: center;
-  width: 20vw;
-  height: 45vh;
-  padding: 20px;
-  overflow: visible;
-  border: 5px solid #F6EADC;
-  border-radius: 5px;
+  width: fit-content;
+  height: fit-content;
   background-color: #F6EADC;
-  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.2);
+  width: 45%;
 }
 
 h2 {
   text-align: center;
   color: #333;
+  padding-bottom: 15px;
+  font-size: 50px;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  margin-bottom: 5px;
+  height: 50px;
+  justify-content: left;
+}
+
+.submitbutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 40px;
+  padding-top: 40px;
 }
 
 label {
@@ -78,10 +111,10 @@ label {
 input[type="text"],
 input[type="password"],
 button {
-  width: 100%;
   padding: 1vh;
   border-radius: 3px;
   border: 1px solid #ccc;
+
 }
 
 button {
@@ -111,58 +144,55 @@ button:hover {
   color: white;
 }
 
-.left-content {
-    margin-right: auto; /* Moves this content to the right side */
-    max-width: 50vw;
-    max-height: 50vh;
-}
-
-.left-div {
-  float: left;
-  max-width: 50vw;
-  max-height: 50vh
+label {
+  font-size: 20px;
 }
 
 .right-div {
-  float: right;
-  max-width: 50vw;
-  max-height: 50vh;
-  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.2);
-
+  box-shadow: none;
 }
+
+
+
 </style>
 <body>
   <%- include('navbar') %>
 
   <main>
-    <div>
-      <img class="right-div" src="images/SquareLogo.png" alt="Random Picture">
+    
+    <div class="background-img">
+      <img class="login-background" src="images/kids.jpg" alt="Login Background">
     </div>
 
-    <div class="left-div">
-    <section class="login-form">
-      <h2>Login</h2>
-      <!-- Display the error message if it exists -->
-      <% if (typeof statusMessage !== 'undefined' && statusMessage) { %>
-        <div class="error alert">
-          <%= statusMessage %>
-        </div>
-      <% } %>
-      <form action="/login" method="post">
-        <div class="form-group">
-          <label for="username">Username:</label>
-          <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-          <button type="submit">Sign In</button>
-        </div>
-      </form>
-      <!-- <a href="/forgot-password">Forgot Password?</a> -->
-    </section>
+    <div class="content">
+      <div class="left-div">
+      <section class="login-form">
+        <h2>Login</h2>
+        <!-- Display the error message if it exists -->
+        <% if (typeof statusMessage !== 'undefined' && statusMessage) { %>
+          <div class="error alert">
+            <%= statusMessage %>
+          </div>
+        <% } %>
+        <form action="/login" method="post">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <div class="submitbutton">
+            <button type="submit">Sign In</button>
+          </div>
+        </form>
+        <!-- <a href="/forgot-password">Forgot Password?</a> -->
+      </section>
+    </div>
+    <div>
+      <img class="right-div" src="images/SquareLogo.png" alt="SMU&MH Logo">
+    </div>
   </div>
 
   </main>
