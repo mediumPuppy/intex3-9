@@ -175,8 +175,13 @@ app.get('/learn', (req, res) => {
 });
 
 app.get('/survey', (req, res) => {
-  res.render('survey')
+  // Check if the 'submitted' query parameter exists
+  const submitted = req.query.submitted === 'true';
+
+  // Render the 'survey' view and pass the 'submitted' flag
+  res.render('survey', { submitted: submitted });
 });
+
 
 app.get('/access', (req, res) => {
   res.status(403).render('access')
@@ -354,14 +359,17 @@ app.post('/submitsurvey', async (req, res) => {
       sleep_issue_frequency,
     } = req.body;
 
+    // get a timestamp to insert the data. 
+    let time = formatCurrentDateTime()
     // Insert data into the "respondents" table and get the inserted User_ID
     const insertedIds = await knex('respondent').insert({
     age: age,
     gender: gender,
+    timestamp: time,
     relationship_status: relationship_status,
     occupation_status: occupation_status,
     social_media_user: social_media_user,
-    region: 'provo',
+    region: 'Provo',
     daily_social_media_time: daily_social_media_time,
     use_without_purpose: use_without_purpose,
     use_while_busy: use_while_busy,
@@ -396,12 +404,26 @@ app.post('/submitsurvey', async (req, res) => {
     }
 
     console.log('Data inserted successfully');
-    res.send('Form submitted successfully');
+    res.redirect('/survey?submitted=true');
   } catch (error) {
     console.error('Error inserting data: ' + error.message);
     res.status(500).send('Error submitting the form');
   }
 });
+
+function formatCurrentDateTime() {
+  var now = new Date();
+
+  var year = now.getFullYear();
+  var month = ('0' + (now.getMonth() + 1)).slice(-2); // months are zero-indexed
+  var day = ('0' + now.getDate()).slice(-2);
+
+  var hours = ('0' + now.getHours()).slice(-2);
+  var minutes = ('0' + now.getMinutes()).slice(-2);
+  var seconds = ('0' + now.getSeconds()).slice(-2);
+
+  return month + '/' + day + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+}
 
 // end
 app.listen(PORT, (req, res) => {
