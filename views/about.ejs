@@ -76,33 +76,6 @@
         <script async src="//www.instagram.com/embed.js"></script>
       </div>
     </div>
-    
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/smumhnav.png" alt="Footer Logo">
-            </div>
-            <div class="footer-nav">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/learn">Learn</a></li>
-                    <li><a href="/resources">Resources</a></li>
-                    <li><a href="/survey">Survey</a></li>
-                  <% if (user_id) { %>
-                    <li><a class="link" href="/account">Account</a></li>
-                    <li><a class="link" href="/data">Data</a></li>
-                  <% } else { %>
-                    <li><a class="link" href="/login">Login</a></li>
-                  <% } %>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-info">
-            <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
-            <p>&copy; 2023 Your Website. All rights reserved.</p>
-            <p>Designed by BYUIS3.9</p>
-        </div>
-    </footer>
+    <%- include('footer') %>
 </body>
 </html>
