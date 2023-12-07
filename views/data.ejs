@@ -8,20 +8,36 @@
     <meta name="geo.placename" content="Brigham Young University">
     <meta name="geo.region" content="'US-UT">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/admin.css">
     <!--favicon not working-->
     <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
     <title>SMU & MH - Data</title>
       <!-- ... other head elements ... -->
     <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
     <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+    <style>
+      main {
+        overflow-y: auto;
+      }
+      .height {
+        height: 75vh;
+      }
+  </style>
   </head>
 <body>
     <%- include('components/navbar') %>
 
   <main>
     <%- include('components/questionstable') %>
+    <div class="one-item-center-flex">
+      <a href="/data">
+        <div class="flex-wrapper-for-data">
+          <p>All Respondent Data</p>
+        </div>
+      </a>
+    </div>
   </main>
-  <main>
+  <main class="height">
     <!-- AG-Grid for the table -->
     <div id="userDataGrid" class="ag-theme-alpine" style="height: 500px; width: 100%;"></div>
   </main>
@@ -29,6 +45,7 @@
     </body>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
     <script>// Specify the columns for the user data table
+    console.log(window.URLSearchParams)
       var userDataColumnDefs = [
         { headerName: "User_ID", 
           field: "user_id",
@@ -135,7 +152,7 @@
       rowData: userDataRowData,
       defaultColDef: defaultGridOptions,
       pagination: true,
-      paginationPageSize: 20,
+      paginationPageSize: 10,
       domLayout: 'autoHeight',
       suppressNoRowsOverlay: true,
       suppressCellSelection: true,
@@ -145,15 +162,7 @@
         var userId = event.data.user_id; // Replace 'user_id' with the actual field name
         window.location.href = '/data/' + userId;
       },
-      onGridReady: function(params) {
-        setTimeout(function() {
-            var allColumnIds = [];
-            params.columnApi.getAllColumns().forEach(function(column) {
-                allColumnIds.push(column.colId);
-            });
-            params.columnApi.autoSizeColumns(allColumnIds, false);
-        }, 500); // Adjust the delay as needed
-      },
+
       };
       let userGridDiv = document.getElementById('userDataGrid');
       new agGrid.createGrid(userGridDiv, gridOptions);

@@ -31,7 +31,12 @@
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    max-width: 400px;
+}
+.modal-content p {
+    width: 93%;
+    text-align: justify;
+    line-height: 18px;
 }
 
 /* The Close Button */
@@ -48,12 +53,79 @@
     text-decoration: none;
     cursor: pointer;
 }
+.survey-form {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.survey-form input[type='text'],
+.survey-form select,
+.survey-form input[type='number'] {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.checkbox-grid, .social-media-user {
+    margin-bottom: 15px;
+}
+
+.checkbox-row, .radio-row {
+    margin: 10px 0;
+}
+
+.submit {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: #45a049;
+}
+
+#next-page {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+#next-page:hover {
+    background-color: #007B9E;
+}
+#next-page, #back-button {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+#next-page:hover, #back-button:hover {
+    background-color: #007B9E;
+}
+
 
 </style>
 </head>
 <body>
     <%- include('components/navbar') %>
-<div class="survey-intro">
+<div class="survey-intro" id="survey-intro">
     <h2 class="survey-welcome">Welcome to our Survey on Social Media and Mental Health!</h2>
     <p class="survey-info-main">
         Thank you for participating in this important survey conducted by the Social Media Usage & Mental Health Committee. Your input is invaluable as we strive to understand the relationship between social media use and mental well-being in our community.
@@ -74,10 +146,10 @@
         Thank you for taking the time to share your thoughts and experiences with us. Let's work together to create a healthier and more mindful online community! 
     </p>
 
-    <button class="survey-show">Take the Survey</button>
+    <button class="survey-show" id="'survey-show" onclick="show()">Take the Survey</button>
 </div>
 
-<div class="survey-main">
+<div class="survey-main" id="survey-main">
         <main>
 
             <div id="customModal" class="modal">
@@ -86,122 +158,138 @@
                     <p>Survey submitted successfully!</p>
                     <p>Thank you for taking the time to participate in our Social Media and Mental Health survey. Your input is invaluable in understanding the complexities of our digital world and its impact on mental well-being.</p>
                 </div>
+                
             </div>
 
         <section class="survey-container">
         <!-- no action yet. insert it. -->
-        <form action="/submitsurvey" method="post" class="survey-form">
-            <!-- Age -->
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" min="0" max="99">
-
-            <!-- Gender -->
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender">
-                <option value="" selected disabled>Select an option</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-                <option value="Other">Other</option>
-            </select>
-
-            <label for="relationship_status">Relationship Status:</label>
-            <select id="relationship_status" name="relationship_status">
-                <option value="" selected disabled>Select an Option</option>
-                <option value="Single">Single</option>
-                <option value="Married">Married</option>
-                <option value="Divorced">Divorced</option>
-                <option value="In a Relationship">In a Relationship</option>
-            </select>
 
 
-            <!-- Occupation Status -->
-            <label for="occupation_status">Occupation Status:</label>
-            <select id="occupation_status" name="occupation_status">
-                <option value="" selected disabled>Select an option</option>
-                <option value="School Student">School Student</option>
-                <option value="University Student">University Student</option>
-                <option value="Salaried Worker">Salaried Worker</option>
-                <option value="Retired">Retired</option>
-            </select>
+    </form>
 
-            <fieldset class="checkbox-grid">
-                <!-- What type of organizations are you affiliated with? -->
-                <label>What type of organizations are you affiliated with?</label>
-                    <div class="checkbox-row">
-                        <input type="checkbox" id="university" name="organization_affiliation" value="1">
-                        <label for="university">University</label>
+    <form action="/submitsurvey" method="post" class="survey-form" id="survey-form">
 
-                        <input type="checkbox" id="private" name="organization_affiliation" value="2">
-                        <label for="private">Private</label>
-
-                        <input type="checkbox" id="school" name="organization_affiliation" value="4">
-                        <label for="school">School</label>
-
-                        <input type="checkbox" id="company" name="organization_affiliation" value="5">
-                        <label for="company">Company</label>
-
-                        <input type="checkbox" id="government" name="organization_affiliation" value="6">
-                        <label for="government">Government</label>
-
-                        <input type="checkbox" id="na" name="organization_affiliation" value="3">
-                        <label for="na">N/A</label>
-                        </div>
-            </fieldset>
-
-            <!-- Do you use social media? -->
-            <div class="social-media-user">
-                <label for="social_media_user">Do you use social media?</label>
-                <div class="radio-options">
-                <div class="radio-row">
-                    <input type="radio" id="social_media_user_yes" name="social_media_user" value="Y">
-                    <label class="yesno" for="social_media_user_yes">Yes</label>
-                </div>
-                <div class="radio-row">
-                    <input type="radio" id="social_media_user_no" name="social_media_user" value="N">
-                    <label class="yesno" for="social_media_user_no">No</label>
-                </div>
-                </div>
-            </div>
+        <!-- Page 1 -->
+        <div id="page-1">
+            <!-- Questions for Page 1 -->
+            <form action="/submitsurvey" method="post" class="survey-form" id="survey-form">
+                <!-- Age -->
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" min="0" max="99">
+    
+                <!-- Gender -->
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="" selected disabled>Select an option</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+    
+                <label for="relationship_status">Relationship Status:</label>
+                <select id="relationship_status" name="relationship_status">
+                    <option value="" selected disabled>Select an Option</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="In a Relationship">In a Relationship</option>
+                </select>
     
     
-
-            <fieldset class="checkbox-grid">
-                <!-- What social media platforms do you commonly use? -->
-                <label>What social media platforms do you commonly use?</label>
-                    <div class="checkbox-row">
-                        
-                        <input type="checkbox" id="facebook" name="social_media_platforms" value="1">
-                        <label for="facebook">Facebook</label>
-                        
-                        <input type="checkbox" id="twitter" name="social_media_platforms" value="2">
-                        <label for="twitter">Twitter</label>
-
-                        <input type="checkbox" id="instagram" name="social_media_platforms" value="3">
-                        <label for="instagram">Instagram</label>
-                        
-                        <input type="checkbox" id="youtube" name="social_media_platforms" value="4">
-                        <label for="youtube">YouTube</label>
-                        
-                        <input type="checkbox" id="discord" name="social_media_platforms" value="5">
-                        <label for="discord">Discord</label>
-                        
-                        <input type="checkbox" id="reddit" name="social_media_platforms" value="6">
-                        <label for="reddit">Reddit</label>
-                        
-                        <input type="checkbox" id="pinterest" name="social_media_platforms" value="7">
-                        <label for="pinterest">Pinterest</label>
-                        
-                        <input type="checkbox" id="tiktok" name="social_media_platforms" value="8">
-                        <label for="tiktok">TikTok</label>
-                        
-                        <input type="checkbox" id="snapchat" name="social_media_platforms" value="9">
-                        <label for="snapchat">Snapchat</label>
-
-                        <input type="checkbox" id="n/a" name="social_media_platforms" value="10">
-                        <label for="n/a">N/A</label>
+                <!-- Occupation Status -->
+                <label for="occupation_status">Occupation Status:</label>
+                <select id="occupation_status" name="occupation_status">
+                    <option value="" selected disabled>Select an option</option>
+                    <option value="School Student">School Student</option>
+                    <option value="University Student">University Student</option>
+                    <option value="Salaried Worker">Salaried Worker</option>
+                    <option value="Retired">Retired</option>
+                </select>
+    
+                <fieldset class="checkbox-grid">
+                    <!-- What type of organizations are you affiliated with? -->
+                    <label>What type of organizations are you affiliated with?</label>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="university" name="organization_affiliation" value="1">
+                            <label for="university">University</label>
+    
+                            <input type="checkbox" id="private" name="organization_affiliation" value="2">
+                            <label for="private">Private</label>
+    
+                            <input type="checkbox" id="school" name="organization_affiliation" value="4">
+                            <label for="school">School</label>
+    
+                            <input type="checkbox" id="company" name="organization_affiliation" value="5">
+                            <label for="company">Company</label>
+    
+                            <input type="checkbox" id="government" name="organization_affiliation" value="6">
+                            <label for="government">Government</label>
+    
+                            <input type="checkbox" id="na" name="organization_affiliation" value="3">
+                            <label for="na">N/A</label>
+                            </div>
+                </fieldset>
+    
+                <!-- Do you use social media? -->
+                <div class="social-media-user">
+                    <label for="social_media_user">Do you use social media?</label>
+                    <div class="radio-options">
+                    <div class="radio-row">
+                        <input type="radio" id="social_media_user_yes" name="social_media_user" value="Y">
+                        <label class="yesno" for="social_media_user_yes">Yes</label>
                     </div>
-            </fieldset>
-
+                    <div class="radio-row">
+                        <input type="radio" id="social_media_user_no" name="social_media_user" value="N">
+                        <label class="yesno" for="social_media_user_no">No</label>
+                    </div>
+                    </div>
+                </div>
+        
+        
+    
+                <fieldset class="checkbox-grid">
+                    <!-- What social media platforms do you commonly use? -->
+                    <label>What social media platforms do you commonly use?</label>
+                        <div class="checkbox-row">
+                            
+                            <input type="checkbox" id="facebook" name="social_media_platforms" value="1">
+                            <label for="facebook">Facebook</label>
+                            
+                            <input type="checkbox" id="twitter" name="social_media_platforms" value="2">
+                            <label for="twitter">Twitter</label>
+    
+                            <input type="checkbox" id="instagram" name="social_media_platforms" value="3">
+                            <label for="instagram">Instagram</label>
+                            
+                            <input type="checkbox" id="youtube" name="social_media_platforms" value="4">
+                            <label for="youtube">YouTube</label>
+                            
+                            <input type="checkbox" id="discord" name="social_media_platforms" value="5">
+                            <label for="discord">Discord</label>
+                            
+                            <input type="checkbox" id="reddit" name="social_media_platforms" value="6">
+                            <label for="reddit">Reddit</label>
+                            
+                            <input type="checkbox" id="pinterest" name="social_media_platforms" value="7">
+                            <label for="pinterest">Pinterest</label>
+                            
+                            <input type="checkbox" id="tiktok" name="social_media_platforms" value="8">
+                            <label for="tiktok">TikTok</label>
+                            
+                            <input type="checkbox" id="snapchat" name="social_media_platforms" value="9">
+                            <label for="snapchat">Snapchat</label>
+    
+                            <input type="checkbox" id="n/a" name="social_media_platforms" value="10">
+                            <label for="n/a">N/A</label>
+                        </div>
+                </fieldset>
+                <button type="button" id="next-page">Next Page</button>
+                </div>
+            
+                <!-- Page 2 -->
+                <div id="page-2" style="display: none;">
+                    <!-- Questions for Page 2 -->
+                    
             <!-- What is the average time you spend on social media every day? -->
             <label for="daily_social_media_time">What is the average time you spend on social media every day?</label>
             <select id="daily_social_media_time" name="daily_social_media_time">
@@ -345,12 +433,11 @@
                 <option value="4">Agree</option>
                 <option value="5">Strongly Agree</option>
             </select>
-
+            <button type="button" id="back-button">Back</button>
             <input class="submit" type="submit" value="Submit">
-            </form>
             <div id="error-message" style="color: red;"></div>
-
-        </section>
+            </form>
+            
         </main>
     </div>
     
@@ -358,6 +445,11 @@
     <%- include('components/footer') %>
 </body>
 <script>
+   function show() {
+        document.getElementById('survey-main').style.display = 'block';
+        document.getElementById('survey-intro').style.display = 'none';
+        window.scrollTo(0, 0);
+    }
     // Get the modal
     var modal = document.getElementById("customModal");
 
@@ -372,6 +464,7 @@
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
+        window.location.href = "/learn";
     }
 
     // When the user clicks anywhere outside of the modal, close it
@@ -380,16 +473,28 @@
             modal.style.display = "none";
         }
     }
-    document.getElementById("myForm").onsubmit = function() {
-    var checkboxes = document.getElementsByName("options");
-    var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
-    if (!checkedOne) {
-        document.getElementById("error-message").innerText = "Please check at least one option.";
-        return false; // prevent form submission
-    }
-};
+    document.getElementById("survey-form").addEventListener("submit", function(event) {
+        var checkboxes = document.getElementsByName("options");
+        var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
 
+        if (!checkedOne) {
+            document.getElementById("error-message").innerText = "Please select at least one of each option.";
+            event.preventDefault(); // This will prevent the form from submitting
+        }
+
+});
+    document.getElementById("next-page").addEventListener("click", function() {
+        document.getElementById("page-1").style.display = "none";
+        document.getElementById("page-2").style.display = "block";
+        window.scrollTo(0, 0);
+});
+document.getElementById("back-button").addEventListener("click", function() {
+    document.getElementById("page-1").style.display = "block";
+    document.getElementById("page-2").style.display = "none";
+    window.scrollTo(0, 0);
+});
+// Add your form submission and validation script here
 </script>
 
 </html>
