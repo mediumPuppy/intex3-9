@@ -2,66 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Edit User</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit User Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+  <meta name="abstract" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+  <meta name="geo.placename" content="Brigham Young University">
+  <meta name="geo.region" content="'US-UT">
+  <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
+
   <style>
-    /* Basic styling; you can expand upon this */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      width: 300px;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-    button {
-      background-color: #5cb85c;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #4cae4c;
-    }
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .user-info {
+        background-color: #f2f2f2;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
   </style>
+  <link rel="stylesheet" href="/styles.css">
+
 </head>
 <body>
-  <%- include('navbar') %>
-  <div class="container">
-    <h2>Edit User</h2>
-    <form action="/edituser/<%= user.id %>" method="POST">
-      <div class="form-group">
+  <nav>
+    <div class="menu">
+      <ul>
+        <li><a class="provo" href="https://www.provo.org/government"><img src='/images/provologo.png'></a></li>
+        <div class="separator"></div>
+        <li><a class="navlogo" href="/"><img src='/images/navlogo.png'></a></li>
+        <li><a class="link" href="/about">About</a></li>
+        <li><a class="link" href="/learn">Learn</a></li>
+        <li><a class="link" href="/resources">Resources</a></li>
+        <li><a class="link" href="/survey">Survey</a></li>
         
-        <label for="username">Username:</label>
-        <input type="username" id="username" name="username" value="<%= user.username %>" required>
-
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname" value="<%= user.firstname %>" required>
-
-        <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname" value="<%= user.lastname %>" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<%= user.email %>" required>
+        <% if (user_id) { %>
+          <% if (user_id = 2) { %>
+            <li><a class="link" href="/admin">Admin</a></li>
+          <% } %>
+          <li><a class="link" href="/account">Account</a></li>
+          <li class="signout-button"><a href="/logout">Sign Out</a></li>
+        <% } else { %>
+          <li><a class="link" href="/login">Login</a></li>
+        <% } %>
         
-        <!-- Include other fields as necessary -->
-
-        <button type="submit">Update User</button>
-      </div>
-    </form>
+  
+        
+      </ul>
+    </div>
+  </nav>
+  <main>
+    <div class="container">
+      <h1>Account Information</h1>
+      <% if (data) { %>
+      <form id="accountForm" action="/edituser/<% data.id %>"  method="post">
+        <div class="user-info">
+          <h2>User Details</h2>
+          <p>
+            <strong>Email:</strong>
+            <input type="email" id="emailInput" name="email" value="<%= data.email %>" required disabled>
+          </p>
+          <p>
+            <strong>First Name:</strong>
+            <input type="text" id="firstnameInput" name="firstname" value="<%= data.firstname %>" required disabled>
+          </p>
+          <p>
+            <strong>Last Name:</strong>
+            <input type="text" id="lastnameInput" name="lastname" value="<%= data.lastname %>" required disabled>
+          </p>
+          <p>
+            <strong>Update Password</strong>
+            <input type="password" id="password" name="password" disabled >
+          </p>
+          <button type="button" id="editButton">Edit</button>
+          <button type="submit" id="saveButton" disabled>Save</button>
+        </div>
+      </form>
+    <% } else { %>
+      <p>User information not available.</p>
+    <% } %>
   </div>
+</div>
+</main>
+<footer>
+  <div class="footer-content">
+      <div class="footer-logo">
+          <img src="/images/smumhnav.png" alt="Footer Logo">
+      </div>
+      <div class="footer-nav">
+          <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/learn">Learn</a></li>
+              <li><a href="/resources">Resources</a></li>
+              <li><a href="/survey">Survey</a></li>
+            <% if (user_id) { %>
+              <li><a class="link" href="/account">Account</a></li>
+              <li><a class="link" href="/data">Data</a></li>
+            <% } else { %>
+              <li><a class="link" href="/login">Login</a></li>
+            <% } %>
+          </ul>
+      </div>
+  </div>
+  <div class="footer-info">
+      <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
+      <p>&copy; 2023 Your Website. All rights reserved.</p>
+      <p>Designed by BYUIS3.9</p>
+  </div>
+</footer>
+
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Store original values
+    var originalEmail = document.getElementById('emailInput').value;
+    var originalFirstName = document.getElementById('firstnameInput').value;
+    var originalLastName = document.getElementById('lastnameInput').value;
+
+    document.getElementById('editButton').addEventListener('click', function() {
+        // Enable fields for editing
+        document.getElementById('emailInput').disabled = false;
+        document.getElementById('firstnameInput').disabled = false;
+        document.getElementById('lastnameInput').disabled = false;
+        document.getElementById('password').disabled = false;
+        document.getElementById('saveButton').disabled = false;
+    });
+    document.getElementById('saveButton').addEventListener('click', function() {
+      document.getElementById('emailInput').disabled = true;
+      document.getElementById('firstnameInput').disabled = true;
+      document.getElementById('lastnameInput').disabled = true;
+      document.getElementById('saveButton').disabled = true;
+      document.getElementById('password').disabled = true;
+    });
+
+    document.getElementById('saveButton').addEventListener('click', function(event) {
+        // Compare current values with original values
+        var currentEmail = document.getElementById('emailInput').value;
+        var currentFirstName = document.getElementById('firstnameInput').value;
+        var currentLastName = document.getElementById('lastnameInput').value;
+        var password = document.getElementById('password').value;
+
+        if (currentEmail === originalEmail && currentFirstName === originalFirstName && currentLastName === originalLastName) {
+            // No changes made, prevent form submission
+            event.preventDefault();
+            alert('No changes detected.');
+        }
+    });
+});
+</script>
 </html>

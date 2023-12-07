@@ -1,142 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-    @font-face {
-    font-family: 'Lobster-Regular';
-    src: url(/fonts/Lobster-Regular.ttf) format('truetype'); 
-    font-weight: normal;
-    font-style: normal;
-}
-
-    .error {
-      color: red;
-      font-size: 0.8em;
-    }
-    .alert {
-        padding: 15px;
-        margin-bottom: 20px;
-        border: 1px solid transparent;
-        border-radius: 4px;
-      }
-      .success {
-        color: #3c763d;
-        background-color: #dff0d8;
-        border-color: #d6e9c6;
-      }
-
-a {
-  text-decoration: none;
-}
-
-/* Login form styles */
-
-.login-form {
-  margin: 2em auto;
-  max-width: 50vw;
-  height: 70vh;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #f6ebdd;
-}
-
-.login-form h2 {
-  text-align: center;
-  margin-bottom: 1vh;
-}
-
-.form-group {
-  margin-bottom: 15%;
-}
-
-.form-group label {
-  display: block;
-  margin: 1%;
-  font-family: 'Open Sans';
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
-  width: 90%;
-  padding: 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.form-group button {
-  background-color: var(--primarygreen);
-  color: var(--text);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  letter-spacing: 1px;
-  font-family: 'Lobster-Regular';
-  font-size: 25px;
-  display: block;
-  margin: 0 auto;
-  margin-top: 5vh;
-  border: none;
-  padding: 10px;
-}
-
-.form-group button:hover {
-  background-color: var(--lightgreen);
-  color: var(--darkgrey);
-  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
-      0 4px 8px 3px rgba(60, 64, 67, 0.149);
-}
-
-.error {
-  color: red;
-  font-size: 14px;
-}
-
-/* User list/table styles */
-
-.user-list {
-padding: 5em;
-}
-
-.user-list h2 {
-  margin-bottom: 10px;
-}
-
-.user-list p {
-  margin-bottom: 20px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table th,
-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-}
-
-table th {
-  background-color: #bfd9c2;
-  text-align: left;
-}
-
-table tbody tr:nth-child(even) {
-  background-color: #bfd9c2;
-}
-
-table a {
-  margin-right: 5px;
-  text-decoration: none;
-  color: #000;
-}
-
-.center {
-  justify-content: center;
-  align-items: center;
-}
-  </style>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Page</title>
@@ -148,10 +12,12 @@ table a {
   <meta name="geo.placename" content="Brigham Young University">
   <meta name="geo.region" content="'US-UT">
   <link rel="stylesheet" href="/styles.css">
-  <!--favicon not working-->
+  <link rel="stylesheet" href="/admin.css">
+  <!-- ag grid libs -->
+  <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+  <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
   <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
 </head>
-
 <body>
   <% if (typeof query.status !== 'undefined' && query.status === 'created') { %>
     <div class="alert success">
@@ -160,88 +26,114 @@ table a {
   <% } %>
 
   <header>
-    <%- include('navbar') %>
+    <%- include('components/navbar') %>
   </header>
-  
   <main>
-    <section class="login-form">
-      <h2>Administrator</h2>
-      <form action="/create" method="POST" id="createUserForm">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" required minlength="3" maxlength="20" placeholder="Enter username">
-          <span id="usernameError" class="error"></span>
-          
-          <label for="firstname">First Name</label>
-          <input type="text" id="firstname" name="firstname" required placeholder="Enter first name">
-          
-          <label for="lastname">Last Name</label>
-          <input type="text" id="lastname" name="lastname" required placeholder="Enter last name">
-          
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="Enter email">
-          <span id="emailError" class="error"></span>
-          
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required minlength="5" placeholder="Enter password">
-          <span id="passwordError" class="error"></span>
-          
-          <button type="submit">Create User</button>
-        </div>
-      </form>
-    </section>
-
-    <div class="databutton login-main">
-      <a href="/data">Take Me to the Data</a>
-    </div>
-
-    <section class="user-list">
-      <h2>User Management</h2>
-
-      <div>
-        <p>
-        The following User Management Table can be used to create, edit, or delete different users
-        </p>     
+    <div class="admin-main-flex">
+      <div class="admin-child-one">
+        <h2>Create a New User</h2>
+        <form action="/create" method="POST" id="createUserForm" class="create-user-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required minlength="3" maxlength="20" placeholder="Enter username">
+            <span id="usernameError" class="error"></span>
+            
+            <label for="firstname">First Name</label>
+            <input type="text" id="firstname" name="firstname" required placeholder="Enter first name">
+            
+            <label for="lastname">Last Name</label>
+            <input type="text" id="lastname" name="lastname" required placeholder="Enter last name">
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter email">
+            <span id="emailError" class="error"></span>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="5" placeholder="Enter password">
+            <span id="passwordError" class="error"></span>
+            
+            <button type="submit">Create User</button>
+        </form>
+        
       </div>
-
-
-      <table>
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% data.forEach(user => { %>
-            <tr>
-              <td><%= user.id %></td>
-              <td><%= user.username %></td>
-              <td><%= user.firstname %></td>
-              <td><%= user.lastname %></td>
-              <td><%= user.email %></td>
-              <td>
-                <a href="/edituser/<%= user.id %>">🖉</a>
-                <a href="/deleteuser/<%= user.id %>" onclick="return confirm('Are you sure you want to delete this user?');">🗑️</a>
-              </td>
-            </tr>
-          <% }); %>
-        </tbody>
-
-      </table>
-    </section>
-    </main>
-    </section>
+      <div class="admin-child-two">
+        <h2>User Management</h2>
+        <div id="userDataGrid" style="width: 100%; height: 600px;" class="ag-theme-alpine"></div>
+      </div>
+    </div>
+    <div class="forelley">
+      <div class="survey-data-flex">
+        <div class="number-wrapper">
+          <div class="number"><%= allSurvey.length %></div>
+          <div class="text">All Time</div>
+        </div>
+        <div class="number-wrapper">
+          <div class="number"><%= sevenSurvey.length %></div>
+          <div class="text">Last 7 Days</div>
+        </div>
+        <div class="number-wrapper">
+          <div class="number"><%= daySurvey.length %></div>
+          <div class="text">Last 24 Hours</div>
+        </div>
+      </div>
+    </div>
+    <div class="one-item-center-flex">
+      <a href="/data">
+        <div class="flex-wrapper-for-data">
+          <p>View Respondent Data</p>
+        </div>
+      </a>
+    </div>
+    <div class="tableau">
+      <div class='tableauPlaceholder' id='viz1701896203626' style='position: center'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;WH&#47;WHP3JGG5Z&#47;1_rss.png' style='border: 2px, solid, black' /></a></noscript><object class='tableauViz'  style='display:flex;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;WHP3JGG5Z' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;WH&#47;WHP3JGG5Z&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1701896203626');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='1577px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    </div> 
   </main>
-  <%- include('footer') %>
+  <%- include('components/footer') %>
 </body>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
 <script>
+  // Ag-grid setup for user table
+  var defaultGridOptions = {
+    rowHeight: 35,
+    headerHeight: 40,
+    rowSelection: 'single',
+    enableSorting: true,
+    enableFilter: true,
+    suppressMenuHide: true,
+  };
+  var userDataRowData = <%- JSON.stringify(data) %>;
+var gridOptions = {
+    columnDefs: [
+    { headerName: "User ID", field: "id", filter: true },
+    { headerName: "Username", field: "username", filter: true },
+    { headerName: "First Name", field: "firstname", filter: true },
+    { headerName: "Last Name", field: "lastname", filter: true },
+    { headerName: "Email", field: "email", filter: true },
+    { headerName: "Actions", field: "actions", filter: false, cellRenderer: (params) => {
+        return `
+            <a href="/edituser/${params.data.id}">🖉</a>
+            <a href="/deleteuser/${params.data.id}" onclick="return confirm('Are you sure you want to delete this user?');">🗑️</a>
+        `;
+    }}
+  ],
+    rowData: userDataRowData,
+    defaultColDef: defaultGridOptions,
+    pagination: true,
+    paginationPageSize: 20,
+    domLayout: 'autoHeight',
+    suppressNoRowsOverlay: true,
+    suppressCellSelection: true,
+    suppressContextMenu: true,
+    animateRows: true,
+    onRowDoubleClicked: function(event) {
+      var userId = event.data.id; // Adjust field name if necessary
+      window.location.href = '/data/' + userId;
+  }
+};
+
+let userGridDiv = document.getElementById('userDataGrid');
+new agGrid.Grid(userGridDiv, gridOptions);
+
+
   // client side validation/preemptive sanitization of inputs
   document.addEventListener('DOMContentLoaded', function() {
     var form = document.getElementById('createUserForm');
