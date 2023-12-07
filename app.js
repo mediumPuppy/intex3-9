@@ -139,7 +139,7 @@ app.get('/data/:userid', async (req, res) => {
   // if (req.session.user_id == 'admin') {
   try {
     let individual = await knex('respondent').where('user_id', '=', req.params.userid);
-    res.render('individuals', {data:individual})
+    res.render('data', {data:individual})
   }
 
   catch (error) {
