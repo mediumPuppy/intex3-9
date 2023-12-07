@@ -27,12 +27,17 @@
         <li><a class="link" href="/learn">Learn</a></li>
         <li><a class="link" href="/resources">Resources</a></li>
         <li><a class="link" href="/survey">Survey</a></li>
-        <%  if (user_id) { %>
+        
+        <% if (user_id) { %>
+          <% if (user_id = 2) { %>
+            <li><a class="link" href="/admin">Admin</a></li>
+          <% } %>
           <li><a class="link" href="/account">Account</a></li>
-          <li><a class="link" href="#">Data</a></li>
-        <%  } else { %>
+          <li class="signout-button"><a href="/logout">Sign Out</a></li>
+        <% } else { %>
           <li><a class="link" href="/login">Login</a></li>
-        <%  } %>
+        <% } %>
+        
       </ul>
     </div>
   </nav>
