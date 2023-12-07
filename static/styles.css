@@ -536,23 +536,18 @@ footer {
 
 /* The div with the instagram posts */
 .instagram-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0 auto;
-}
-
-.instagram-posts {
-  max-width: 600px;
-  padding: 20px;
-  text-align: center;
-}
-
-.instagram_media {
-  margin: 0 auto;
-}
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .instagram-posts {
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+  }
+  
 /*NOT FINISHED! TRYING TO MAKE DYNAMIC NAV*/
 @media screen and (max-width: 850px) {
 
