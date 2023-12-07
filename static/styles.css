@@ -254,7 +254,6 @@ I think i was originally going to do the login there and then i changed my mind 
   
   .login-main a {
     text-decoration: none;
-    text-transform: uppercase;
     font-size: 30px;
     border: 5px solid var(--cream);
     padding: 16px;
@@ -471,19 +470,17 @@ footer {
 
 /* this is for my button on the admin page. that's really it */
 .databutton {
-    display: inline-block;
-    font-family: "Open Sans", sans-serif;
-    font-weight: 600; /* Set font weight to bold */
-    font-size: 14px; /* Set font size */
-    padding: 8px 16px; /* Add padding to the button */
-    text-decoration: none; /* Remove default underline for links */
-    color: #fff; /* Text color */
-    background-color: #dff0d8; /* Background color */
-    border: 2px solid black; /* Border style */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Set cursor to pointer on hover */
-    transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
-}
+    background-color: var(--primarygreen);
+    height: fit-content;
+    width: fit-content; /* Use viewport height for full-screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    margin: auto;
+  }
 
 /* Hover effect */
 .databutton:hover {
