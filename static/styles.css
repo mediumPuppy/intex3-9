@@ -464,6 +464,28 @@ footer {
     text-align: center;
 }
 
+/* this is for my button on the admin page. that's really it */
+.databutton {
+    display: inline-block;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600; /* Set font weight to bold */
+    font-size: 14px; /* Set font size */
+    padding: 8px 16px; /* Add padding to the button */
+    text-decoration: none; /* Remove default underline for links */
+    color: #fff; /* Text color */
+    background-color: #dff0d8; /* Background color */
+    border: 2px solid black; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Set cursor to pointer on hover */
+    transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
+}
+
+/* Hover effect */
+.databutton:hover {
+    background-color: #abb7a69c; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+  }
+
 /*NOT FINISHED! TRYING TO MAKE DYNAMIC NAV*/
 @media screen and (max-width: 850px) {
 
