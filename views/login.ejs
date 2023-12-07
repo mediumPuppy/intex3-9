@@ -43,7 +43,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   position: relative;
 }
 
@@ -63,27 +63,25 @@
   opacity: 0.25; /* Adjust the opacity as desired */
 }
 
-.content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-}
+
 
 .login-form {
   justify-content: center;
   align-items: center;
   width: fit-content;
   height: fit-content;
-  background-color: #F6EADC;
-  width: 45%;
+  width: 50%;
 }
 
 h2 {
   text-align: center;
+  display: center;
   color: #333;
-  padding-bottom: 15px;
+  padding-bottom: 35px;
+  padding-left: 15px;
+  margin: 0 auto;
   font-size: 50px;
+  padding-top: 20px;
 }
 
 .form-group {
@@ -98,67 +96,84 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 40px;
-  padding-top: 40px;
+  padding-top: 7px;
+  margin: 0 auto;
+  padding-left: 30px;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #333;
-}
 
-input[type="text"],
-input[type="password"],
-button {
-  padding: 1vh;
-  border-radius: 3px;
-  border: 1px solid #ccc;
 
-}
-
-button {
-  background-color: #3498db;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #2980b9;
-}
-
-.error {
-  padding: 10px;
-  border-radius: 3px;
-  background-color: #e74c3c;
-  color: white;
-  margin-bottom: 15px;
-}
-
-.alert {
-  margin-bottom: 15px;
-  padding: 10px;
-  border-radius: 3px;
-  background-color: #f39c12;
-  color: white;
-}
-
-label {
-  font-size: 20px;
+input#username,
+input#password {
+  width: 200px;
 }
 
 .right-div {
   box-shadow: none;
 }
 
+.left-div {
+  background-color: #F6EADC;
+  padding-right: 30px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 70px;
+}
+
+button {
+  background-color: #AED9E0;
+  font-size: 20px;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--text);
+  letter-spacing: 1px;
+  font-family: 'Lobster-Regular';
+  width: 80%;
+  min-width: 100px;
+  margin-top: 20px;
+}
+
+button:hover {
+
+  transform: translate(1px, 1px);
+    color: var(--darkgrey);
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+                0 4px 8px 3px rgba(60, 64, 67, 0.149);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: medium;
+  justify-content: left;
+  text-align: left;
+}
+
+.error.alert {
+  font-size: small;
+  padding: 0 0 5px 30px;
+  margin: 0;
+  display: flex;
+}
 
 
 </style>
 <body>
   <%- include('components/navbar') %>
 
-  <main>
+  <main class="main">
     
     <div class="background-img">
       <img class="login-background" src="images/kids.jpg" alt="Login Background">
@@ -191,6 +206,7 @@ label {
       </section>
     </div>
     <div>
+      <div class="overlay2"></div>
       <img class="right-div" src="images/SquareLogo.png" alt="SMU&MH Logo">
     </div>
   </div>
