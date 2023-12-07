@@ -10,11 +10,9 @@
   <meta name="abstract" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
   <meta name="geo.placename" content="Brigham Young University">
   <meta name="geo.region" content="'US-UT">
-  <link rel="stylesheet" href="/styles.css">
   <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
 
   <style>
-
       body {
         font-family: Arial, sans-serif;
       }
@@ -31,12 +29,41 @@
       }
 
   </style>
+  <link rel="stylesheet" href="/styles.css">
+
 </head>
 <body>
-  <%- include('components/navbar') %>
+  <nav>
+    <div class="menu">
+      <ul>
+        <li><a class="provo" href="https://www.provo.org/government"><img src='/images/provologo.png'></a></li>
+        <div class="separator"></div>
+        <li><a class="navlogo" href="/"><img src='/images/navlogo.png'></a></li>
+        <li><a class="link" href="/about">About</a></li>
+        <li><a class="link" href="/learn">Learn</a></li>
+        <li><a class="link" href="/resources">Resources</a></li>
+        <li><a class="link" href="/survey">Survey</a></li>
+        
+        <% if (user_id) { %>
+          <% if (user_id = 2) { %>
+            <li><a class="link" href="/admin">Admin</a></li>
+          <% } %>
+          <li><a class="link" href="/account">Account</a></li>
+          <li class="signout-button"><a href="/logout">Sign Out</a></li>
+        <% } else { %>
+          <li><a class="link" href="/login">Login</a></li>
+        <% } %>
+        
+  
+        
+      </ul>
+    </div>
+  </nav>
   <main>
+    <div class="container">
+      <h1>Account Information</h1>
       <% if (data) { %>
-      <form id="accountForm" action="/update-account" method="post">
+      <form id="accountForm" action="/edituser/<% data.id %>"  method="post">
         <div class="user-info">
           <h2>User Details</h2>
           <p>
@@ -63,8 +90,35 @@
       <p>User information not available.</p>
     <% } %>
   </div>
+</div>
 </main>
-<%- include('components/footer') %>
+<footer>
+  <div class="footer-content">
+      <div class="footer-logo">
+          <img src="/images/smumhnav.png" alt="Footer Logo">
+      </div>
+      <div class="footer-nav">
+          <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/learn">Learn</a></li>
+              <li><a href="/resources">Resources</a></li>
+              <li><a href="/survey">Survey</a></li>
+            <% if (user_id) { %>
+              <li><a class="link" href="/account">Account</a></li>
+              <li><a class="link" href="/data">Data</a></li>
+            <% } else { %>
+              <li><a class="link" href="/login">Login</a></li>
+            <% } %>
+          </ul>
+      </div>
+  </div>
+  <div class="footer-info">
+      <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
+      <p>&copy; 2023 Your Website. All rights reserved.</p>
+      <p>Designed by BYUIS3.9</p>
+  </div>
+</footer>
 
 </body>
 <script>
@@ -95,6 +149,7 @@
         var currentEmail = document.getElementById('emailInput').value;
         var currentFirstName = document.getElementById('firstnameInput').value;
         var currentLastName = document.getElementById('lastnameInput').value;
+        var password = document.getElementById('password').value;
 
         if (currentEmail === originalEmail && currentFirstName === originalFirstName && currentLastName === originalLastName) {
             // No changes made, prevent form submission
