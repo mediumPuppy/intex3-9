@@ -343,6 +343,8 @@
 
         <input class="submit" type="submit" value="Submit">
         </form>
+        <div id="error-message" style="color: red;"></div>
+
     </section>
     </main>
     <div class="spacing"></div>
@@ -398,6 +400,16 @@
             modal.style.display = "none";
         }
     }
+    document.getElementById("myForm").onsubmit = function() {
+    var checkboxes = document.getElementsByName("options");
+    var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
+
+    if (!checkedOne) {
+        document.getElementById("error-message").innerText = "Please check at least one option.";
+        return false; // prevent form submission
+    }
+};
+
 </script>
 
 </html>
