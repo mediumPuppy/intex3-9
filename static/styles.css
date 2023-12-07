@@ -12,35 +12,12 @@
     --text: #000000;
     --gap: 6rem;
   }
-
+  
 body {
     margin: 0;
     display: flex;
     flex-direction: column;
     font-family: "Open Sans", sans-serif;
-    min-height: 100vh;
-}
-.flex-container {
-    display: flex;
-  }
-.right-content {
-    margin-left: auto; /* Moves this content to the right side */
-    max-width: 50vw;
-    max-height: 50vh;
-}
-
-.left-content {
-    margin-right: auto; /* Moves this content to the right side */
-    max-width: 50vw;
-    max-height: 50vh;
-}
-main {
-    flex-grow: 1;
-    overflow-y: auto; /* For scrollable content */
-    width: 80vw;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 10px;
 }
 
 @font-face {
@@ -61,10 +38,6 @@ h4 {
 /*nav styles*/
 nav {
     background-color: var(--lightcream);
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 100;
 }
 
 ul {
@@ -134,22 +107,6 @@ a.provo img {
     display: none;
 }
 
-.signout-button {
-    float: right;
-    margin-left: auto;
-    margin-right: 18px;
-    cursor: pointer;
-}
-
-.signout-button a {
-    border: 2px solid var(--darkergreen);
-}
-
-.signout-button a:hover {
-    color: var(--darkgrey);
-    transform: translate(1px, 1px);
-}
-
 /*header styles*/
 
 h1 {
@@ -166,64 +123,18 @@ h1 {
     background-position: center;
     height: fit-content;
 }
-video {
-  width:100%;
-}
-/* Hide default controls */
-video::-webkit-media-controls {
-  display:none !important;
-}
-
-video::-webkit-media-controls-enclosure {
-  display:none !important;
-}
-
-video::-webkit-media-controls-panel {
-  display:none !important;
-}
-
-/* For Firefox */
-video::-moz-media-controls {
-  display:none !important;
-}
-
-.main-top {
-  position: relative;
-}
-
-.video-container {
-  position: relative;
-  width: 100%;
-}
-
-.video-container video {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.overlay-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 
 /*hero styles */
-  
-.parallaxlanding {
-    /* The image used */
-    background-image: url("images/herodisplay.png");
-  
-    /* Full height */
-    height: 50vh;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
+
+img.main {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding:0;
+    margin: 0;
     background-size: cover;
+    background-position: center;
+    height: 50%;
 }
 
 /*who are we button*/
@@ -252,15 +163,13 @@ video::-moz-media-controls {
 
 .button:hover {
     transform: translate(-49%, -49%);
-    color: var(--darkgrey);
-    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
-        0 4px 8px 3px rgba(60, 64, 67, 0.149);
+    color: var(--darkgrey)
 }
 
 /*introduction to the webpage*/
 
 .intro {
-    padding: 2rem 12rem 2rem 12rem;
+    padding: 2rem;
 }
 
 .intro p:first-of-type {
@@ -273,48 +182,7 @@ video::-moz-media-controls {
 
 .intro p {
     line-height: 24px;
-    font-weight: 200;
 }
-
-/*learn main page idk why I called it login
-I think i was originally going to do the login there and then i changed my mind ahaha*/
-.login-main {
-    background-color: var(--primarygreen);
-    height: 60vh; /* Use viewport height for full-screen height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  .login-main p {
-    font-size: x-large;
-    font-weight: bold;
-    text-align: center;
-    padding: 0 50vh;
-  }
-  
-  .login-main a {
-    text-decoration: none;
-    font-size: 30px;
-    border: 5px solid var(--cream);
-    padding: 16px;
-    background-color: var(--lightgreen);
-    cursor: pointer;
-    color: var(--text);
-    letter-spacing: 1px;
-    font-family: 'Lobster-Regular';
-    transition: all 0.3s ease;
-  }
-  
-  .login-main a:hover {
-    transform: translate(1px, 1px);
-    color: var(--darkgrey);
-    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
-                0 4px 8px 3px rgba(60, 64, 67, 0.149);
-  }
-  
 
 
 /* Footer styles */
@@ -330,14 +198,13 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
 }
 
 .footer-logo img {
-    height: 60px;
+    height: 100px;
     padding: 0;
     margin-right: 20px;
-    margin-left: 15px;
+    margin-left: 12px;
 }
 
 .footer-nav ul {
@@ -360,198 +227,15 @@ footer {
     color: var(--darkergreen);
 }
 
+.footer-info {
+    margin-top: 15px;
+}
+
 .footer-info p {
-    font-size: 10px;
     margin: 5px 0;
 }
 
-.footer-info p a {
-    text-decoration: none;
-    color: var(--darkgrey)
-}
 
-.footer-info p a:hover {
-    text-decoration: underline;
-    color: var(--darkergreen)
-}
-
-/*SURVEY PAGE*/
-.survey-container {
-    display: flex;
-    justify-content: center;
-    padding-top: 50px; 
-  }
-  
-  .survey-form {
-    width: 500px;
-    padding: 20px;
-    font-family: 'Open Sans', sans-serif;
-    background-color: #f5f5f5; 
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .survey-form label,
-  .survey-form input,
-  .survey-form select {
-    margin-bottom: 10px;
-    display: block;
-  }
-  
-  .survey-form input[type="number"],
-  .survey-form input[type="submit"] {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-  }
-  
-  .survey-form select {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 40px;
-  }
-  
-  .survey-form input[type="submit"] {
-    background-color: var(--primarygreen);
-    color: var(--text);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    letter-spacing: 1px;
-    font-family: 'Lobster-Regular';
-    font-size: 25px;
-  }
-  
-  .survey-form input[type="submit"]:hover {
-    background-color: var(--lightgreen);
-    color: var(--darkgrey);
-    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
-        0 4px 8px 3px rgba(60, 64, 67, 0.149);
-  }
-  
-  fieldset.checkbox-grid {
-    border: none;
-    padding: 0;
-    margin: 0 0 40px 0;
-  }
-  
-  .checkbox-row {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .checkbox-row input[type="checkbox"],
-  .checkbox-row label {
-    flex: 0 0 calc(20% - 5px);
-  }
-  
-  .checkbox-row input[type="checkbox"] {
-    margin: 0 10px 5px 0;
-  }
-
-  .spacing {
-    height: 50px;
-  }
-
-.social-media-user {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-    margin-bottom: 40px;
-  }
-  
-  .radio-options {
-    display: flex;
-  }
-  
-  .radio-row {
-    margin-right: 40px; 
-  }
-  
-  .radio-row label {
-    margin-bottom: 10px;
-  }
-
-  .radio-row input[type="radio"],
-  .radio-row label {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  
-  .parallaxlearn {
-    /* The image used */
-    background-image: url("images/herodisplay.png");
-  
-    /* Full height */
-    height: 50vh;
-  
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.tableau {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.tableauPlaceholder {
-    width: 100%;
-    text-align: center;
-}
-
-/* this is for my button on the admin page. that's really it */
-.databutton {
-  display: inline-block;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 600; 
-  font-size: 14px; 
-  padding: 8px 16px; 
-  text-decoration: none; 
-  color: #fff; 
-  background-color: #dff0d8; 
-  border: 2px solid black; 
-  border-radius: 5px; 
-  cursor: pointer; 
-  transition: background-color 0.3s, color 0.3s; 
-}
-
-/* Hover effect */
-.databutton:hover {
-  background-color: #abb7a69c; 
-  color: #fff;
-}
-
-
-/* The div with the instagram posts */
-.instagram-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0 auto;
-}
-
-.instagram-posts {
-  max-width: 600px;
-  padding: 20px;
-  text-align: center;
-}
-
-.instagram_media {
-  margin: 0 auto;
-}
 
 /*NOT FINISHED! TRYING TO MAKE DYNAMIC NAV*/
 @media screen and (max-width: 850px) {
@@ -578,68 +262,4 @@ a.link {
     margin-left: 0;
 }
 
-}
-
-.parallaxabout {
-    /* The image used */
-    background-image: url("images/aboutbanner.jpg");
-    height: 50vh;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-}
-
-.parallaxabout h2 {
-    font-size: 4em;
-    color: rgb(255, 255, 255); 
-    text-shadow: 0px 0px 30px rgb(0, 0, 0);
-    padding: 0 35vh;
-}
-
-.splitscreen{
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem 12rem 2rem 12rem;
-    padding: 2rem 12rem;
-  }
-
-  .left-div {
-    float: left;
-    padding: rem 2rem 200rem 2rem 2rem;
-    padding-right: 2rem;
-    max-width: 50vw;
-    max-height: 50vh;
-  }
-  
-  .right-div {
-    float: right;
-    max-width: 50vw;
-    max-height: 50vh;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
-  }
-  
-  .full-divider {
-    background-color: var(--primarygreen);
-    height: 10rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-    
-  .full-divider p {
-    padding: 6rem 5rem 6rem 5rem;
-    text-align: center;
-    font-size: large;
-    font-weight: bold;
-}
-
-.full-divider h2 {
-    padding: 6rem 10rem 6rem 10rem;
-    text-align: center;
-    font-size: xx-large;
-    font-weight: bold;
 }

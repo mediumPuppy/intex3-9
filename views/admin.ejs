@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
   <style>
-    @font-face {
-    font-family: 'Lobster-Regular';
-    src: url(/fonts/Lobster-Regular.ttf) format('truetype'); 
-    font-weight: normal;
-    font-style: normal;
-}
-
+    /* Add some basic styling */
+    input, button {
+      margin-bottom: 10px;
+      display: block;
+    }
     .error {
       color: red;
       font-size: 0.8em;
@@ -24,250 +25,56 @@
         background-color: #dff0d8;
         border-color: #d6e9c6;
       }
-
-a {
-  text-decoration: none;
-}
-
-/* Login form styles */
-
-.login-form {
-  margin: 2em auto;
-  max-width: 50vw;
-  height: 70vh;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #f6ebdd;
-}
-
-.login-form h2 {
-  text-align: center;
-  margin-bottom: 1vh;
-}
-
-.form-group {
-  margin-bottom: 15%;
-}
-
-.form-group label {
-  display: block;
-  margin: 1%;
-  font-family: 'Open Sans';
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
-  width: 90%;
-  padding: 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.form-group button {
-  background-color: var(--primarygreen);
-  color: var(--text);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  letter-spacing: 1px;
-  font-family: 'Lobster-Regular';
-  font-size: 25px;
-  display: block;
-  margin: 0 auto;
-  margin-top: 5vh;
-  border: none;
-  padding: 10px;
-}
-
-.form-group button:hover {
-  background-color: var(--lightgreen);
-  color: var(--darkgrey);
-  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
-      0 4px 8px 3px rgba(60, 64, 67, 0.149);
-}
-
-.error {
-  color: red;
-  font-size: 14px;
-}
-
-/* User list/table styles */
-
-.user-list {
-padding: 5em;
-}
-
-.user-list h2 {
-  margin-bottom: 10px;
-}
-
-.user-list p {
-  margin-bottom: 20px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table th,
-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-}
-
-table th {
-  background-color: #bfd9c2;
-  text-align: left;
-}
-
-table tbody tr:nth-child(even) {
-  background-color: #bfd9c2;
-}
-
-table a {
-  margin-right: 5px;
-  text-decoration: none;
-  color: #000;
-}
-
-.center {
-  justify-content: center;
-  align-items: center;
-}
   </style>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Page</title>
-  <link rel="stylesheet" href="/styles.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
-  <meta name="abstract" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
-  <meta name="geo.placename" content="Brigham Young University">
-  <meta name="geo.region" content="'US-UT">
-  <link rel="stylesheet" href="/styles.css">
-  <!--favicon not working-->
-  <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
 </head>
-
 <body>
   <% if (typeof query.status !== 'undefined' && query.status === 'created') { %>
     <div class="alert success">
       User successfully created!
     </div>
   <% } %>
-
-  <header>
-    <%- include('navbar') %>
-  </header>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <!-- Add other navigation links if needed -->
+        </ul>
+      </nav>
+    </header>
   
-  <main>
-    <section class="login-form">
-      <h2>Administrator</h2>
-      <form action="/create" method="POST" id="createUserForm">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" required minlength="3" maxlength="20" placeholder="Enter username">
-          <span id="usernameError" class="error"></span>
-          
-          <label for="firstname">First Name</label>
-          <input type="text" id="firstname" name="firstname" required placeholder="Enter first name">
-          
-          <label for="lastname">Last Name</label>
-          <input type="text" id="lastname" name="lastname" required placeholder="Enter last name">
-          
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="Enter email">
-          <span id="emailError" class="error"></span>
-          
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required minlength="5" placeholder="Enter password">
-          <span id="passwordError" class="error"></span>
-          
-          <button type="submit">Create User</button>
-        </div>
-      </form>
-    </section>
-
-    <div class="databutton login-main">
-      <a href="/data">Take Me to the Data</a>
-    </div>
-
-    <section class="user-list">
-      <h2>User Management</h2>
-
-      <div>
-        <p>
-        The following User Management Table can be used to create, edit, or delete different users
-        </p>     
-      </div>
-
-
-      <table>
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Actions</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% data.forEach(user => { %>
-            <tr>
-              <td><%= user.id %></td>
-              <td><%= user.username %></td>
-              <td><%= user.firstname %></td>
-              <td><%= user.lastname %></td>
-              <td><%= user.email %></td>
-              <td>
-                <a href="/edituser/<%= user.id %>">🖉</a>
-                <a href="/deleteuser/<%= user.id %>" onclick="return confirm('Are you sure you want to delete this user?');">🗑️</a>
-              </td>
-            </tr>
-          <% }); %>
-        </tbody>
-
-      </table>
-    </section>
+    <main>
+      <section class="login-form">
+        <h1>Administrator</h1>
+        <form action="/create" method="POST" id="createUserForm">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required minlength="3" maxlength="20" placeholder="Enter username">
+            <span id="usernameError" class="error"></span>
+          </div>
+          <div class="form-group">
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required placeholder="Enter first name">
+          </div>
+          <div class="form-group">
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required placeholder="Enter last name">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required minlength="5" placeholder="Enter password">
+            <span id="passwordError" class="error"></span>
+          </div>
+          <div class="form-group">
+            <button type="submit">Create User</button>
+          </div>
+        </form>
+      </section>
     </main>
-    
-    
-    </section>
-  </main>
   
     <footer>
-      <div class="footer-content">
-          <div class="footer-logo">
-              <img src="images/smumhnav.png" alt="Footer Logo">
-          </div>
-          <div class="footer-nav">
-              <ul>
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/about">About</a></li>
-                  <li><a href="/learn">Learn</a></li>
-                  <li><a href="/resources">Resources</a></li>
-                  <li><a href="/survey">Survey</a></li>
-                <% if (user_id) { %>
-                  <li><a class="link" href="/account">Account</a></li>
-                  <li><a class="link" href="/data">Data</a></li>
-                <% } else { %>
-                  <li><a class="link" href="/login">Login</a></li>
-                <% } %>
-              </ul>
-          </div>
-      </div>
-      <div class="footer-info">
-          <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
-          <p>&copy; 2023 Your Website. All rights reserved.</p>
-          <p>Designed by BYUIS3.9</p>
-      </div>
-  </footer>
+      <p>&copy; 2023 YourWebsiteName</p>
+    </footer>
 </body>
 
 <script>
@@ -309,6 +116,7 @@ table a {
     }
 
     // Validation for Password
+    // Your validation logic here
     var password = document.getElementById('password');
     var passwordError = document.getElementById('passwordError');
 
@@ -318,20 +126,7 @@ table a {
     } else {
     passwordError.textContent = '';
     }
-    var email = document.getElementById('email').value;
-    var emailError = document.getElementById('emailError');
-    
-    // Regular expression for basic email validation
-    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    
-    if (!emailRegex.test(email)) {
-        emailError.textContent = 'Please enter a valid email address.';
-        event.preventDefault(); // Prevent form submission
-    } else {
-        emailError.textContent = ''; // Clear any error message
-    }
   })
-   
 });
 </script>
 </html>
