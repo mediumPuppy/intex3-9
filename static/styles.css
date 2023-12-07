@@ -297,7 +297,6 @@ I think i was originally going to do the login there and then i changed my mind 
   
   .login-main a {
     text-decoration: none;
-    text-transform: uppercase;
     font-size: 30px;
     border: 5px solid var(--cream);
     padding: 16px;
@@ -514,19 +513,17 @@ footer {
 
 /* this is for my button on the admin page. that's really it */
 .databutton {
-    display: inline-block;
-    font-family: "Open Sans", sans-serif;
-    font-weight: 600; 
-    font-size: 14px; 
-    padding: 8px 16px; 
-    text-decoration: none; 
-    color: #fff; 
-    background-color: #dff0d8; 
-    border: 2px solid black; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    transition: background-color 0.3s, color 0.3s; 
-}
+    background-color: var(--primarygreen);
+    height: fit-content;
+    width: fit-content; /* Use viewport height for full-screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    margin: auto;
+  }
 
 /* Hover effect */
 .databutton:hover {
