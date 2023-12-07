@@ -391,6 +391,70 @@ footer {
 }
 
 /*SURVEY PAGE*/
+.survey-main {
+  display: none;
+}
+
+.survey-intro {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3% 70px;
+  border-radius: 8px;
+}
+
+.survey-welcome {
+  font-size: 55px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.survey-info-main,
+.survey-info-end {
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 10%;
+  margin-top: 5%;
+  font-size: 18px;
+}
+
+.survey-info-end {
+  padding-top: 5%;
+}
+
+.survey-info {
+  margin: 0;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.survey-title {
+  font-size: 24px;
+  margin: 12px 0 4px 0;
+}
+
+.survey-show {
+  display: block;
+  margin: 40px auto;
+  border: none;
+  text-decoration: none;
+  font-size: 30px;
+  padding: 16px;
+  background-color: var(--lightgreen);
+  cursor: pointer;
+  color: var(--text);
+  letter-spacing: 1px;
+  font-family: 'Lobster-Regular';
+  transition: all 0.3s ease;
+}
+
+.survey-show:hover {
+  transform: translate(1px, 1px));
+  color: var(--darkgrey);
+  box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+      0 4px 8px 3px rgba(60, 64, 67, 0.149);
+}
+
+
 .survey-container {
     display: flex;
     justify-content: center;
@@ -550,11 +614,37 @@ footer {
 
 
 /* The div with the instagram posts */
+.instagram-div-home {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  flex-grow: 1;
+}
+
+.content,
+.instagram-posts-home {
+  width: 50%; 
+  box-sizing: border-box; 
+  text-align: center;
+}
+
+.content {
+  font-size: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 12%;
+
+}
+
+
 .instagram-div {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 5%;
   }
   
   .instagram-posts {
@@ -618,7 +708,7 @@ a.link {
   .left-div {
     float: left;
     padding: rem 2rem 200rem 2rem 2rem;
-    padding-right: 2rem;
+    padding-right: 4rem;
     max-width: 50vw;
     max-height: 50vh;
   }
@@ -628,6 +718,7 @@ a.link {
     max-width: 50vw;
     max-height: 50vh;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 60px;
   }
   
   .full-divider {
