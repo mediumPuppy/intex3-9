@@ -473,22 +473,22 @@ footer {
 .databutton {
     display: inline-block;
     font-family: "Open Sans", sans-serif;
-    font-weight: 600; /* Set font weight to bold */
-    font-size: 14px; /* Set font size */
-    padding: 8px 16px; /* Add padding to the button */
-    text-decoration: none; /* Remove default underline for links */
-    color: #fff; /* Text color */
-    background-color: #dff0d8; /* Background color */
-    border: 2px solid black; /* Border style */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Set cursor to pointer on hover */
-    transition: background-color 0.3s, color 0.3s; /* Add transition for smoother hover effect */
+    font-weight: 600; 
+    font-size: 14px; 
+    padding: 8px 16px; 
+    text-decoration: none; 
+    color: #fff; 
+    background-color: #dff0d8; 
+    border: 2px solid black; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s; 
 }
 
 /* Hover effect */
 .databutton:hover {
-    background-color: #abb7a69c; /* Change background color on hover */
-    color: #fff; /* Change text color on hover */
+    background-color: #abb7a69c; 
+    color: #fff;
   }
 
 /*NOT FINISHED! TRYING TO MAKE DYNAMIC NAV*/
