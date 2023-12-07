@@ -35,15 +35,22 @@
     }
     /* Basic styling for the login form */
 .main {
-  display: flex;
-  justify-content: center;
   align-items: center;
   height: 100vh;
   font-family: 'sans-serif';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
 }
 
 .login-form {
-  width: 300px;
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  height: 45vh;
   padding: 20px;
   border: 5px solid #F6EADC;
   border-radius: 5px;
@@ -70,7 +77,7 @@ input[type="text"],
 input[type="password"],
 button {
   width: 100%;
-  padding: 8px;
+  padding: 1vh;
   border-radius: 3px;
   border: 1px solid #ccc;
 }
@@ -102,6 +109,23 @@ button:hover {
   color: white;
 }
 
+.left-content {
+    margin-right: auto; /* Moves this content to the right side */
+    max-width: 50vw;
+    max-height: 50vh;
+}
+
+.left-div {
+  float: left;
+  max-width: 20vw;
+  max-height: 45vh
+}
+
+.right-div {
+  float: right;
+  max-width: 50vw;
+  max-height: 50vh;
+}
 </style>
 <body>
   <nav>
@@ -125,10 +149,11 @@ button:hover {
   </nav>
 
   <main>
-    <di class="flex-container">
-      <img class="right-content" src="images/intexlogin.jpg" alt="Random Picture">
+    <div>
+      <img class="right-div" src="images/intexlogin.jpg" alt="Random Picture">
     </div>
 
+    <div class="left-div">
     <section class="login-form">
       <p>Login</p>
       <!-- Display the error message if it exists -->
@@ -152,6 +177,8 @@ button:hover {
       </form>
       <!-- <a href="/forgot-password">Forgot Password?</a> -->
     </section>
+  </div>
+
   </main>
 
   <footer>
