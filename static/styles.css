@@ -29,6 +29,11 @@ body {
     max-height: 50vh;
 }
 
+.left-content {
+    margin-right: auto; /* Moves this content to the right side */
+    max-width: 50vw;
+    max-height: 50vh;
+}
 main {
     flex-grow: 1;
     overflow-y: auto; /* For scrollable content */
@@ -282,6 +287,7 @@ I think i was originally going to do the login there and then i changed my mind 
     font-size: xx-large;
 }
 
+
 /* Footer styles */
 footer {
     background-color: var(--lightcream);
@@ -501,4 +507,67 @@ a.link {
     margin-left: 0;
 }
 
+}
+
+.parallaxabout {
+    /* The image used */
+    background-image: url("images/aboutbanner.jpg");
+    height: 50vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.parallaxabout h2 {
+    font-size: 4em;
+    color: rgb(255, 255, 255); 
+    text-shadow: 0px 0px 30px rgb(0, 0, 0);
+}
+
+.splitscreen{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 12rem 2rem 12rem;
+    padding: 2rem 12rem;
+  }
+
+  .left-div {
+    float: left;
+    padding: rem 2rem 200rem 2rem 2rem;
+    padding-right: 2rem;
+    max-width: 50vw;
+    max-height: 50vh;
+  }
+  
+  .right-div {
+    float: right;
+    max-width: 50vw;
+    max-height: 50vh;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .full-divider {
+    background-color: var(--primarygreen);
+    height: 10rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+    
+  .full-divider p {
+    padding: 6rem 5rem 6rem 5rem;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+}
+
+.full-divider h2 {
+    padding: 6rem 10rem 6rem 10rem;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
 }
