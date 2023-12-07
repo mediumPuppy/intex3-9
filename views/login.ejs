@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+    <meta name="abstract" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+    <meta name="geo.placename" content="Brigham Young University">
+    <meta name="geo.region" content="'US-UT">
+    <link rel="stylesheet" href="/styles.css">
+    <!--favicon not working-->
+    <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
+    <title>SMU & MH - Login</title>
+  </head>
 <style>
   /* Add some basic styling */
   input, button {
@@ -26,22 +33,111 @@
       background-color: #dff0d8;
       border-color: #d6e9c6;
     }
+    /* Basic styling for the login form */
+.main {
+  align-items: center;
+  height: 100vh;
+  font-family: 'sans-serif';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-form {
+  justify-content: center;
+  align-items: center;
+  width: 20vw;
+  height: 45vh;
+  padding: 20px;
+  border: 5px solid #F6EADC;
+  border-radius: 5px;
+  background-color: #F6EADC;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+button {
+  width: 100%;
+  padding: 1vh;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.error {
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #e74c3c;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.alert {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #f39c12;
+  color: white;
+}
+
+.left-content {
+    margin-right: auto; /* Moves this content to the right side */
+    max-width: 50vw;
+    max-height: 50vh;
+}
+
+.left-div {
+  float: left;
+  max-width: 20vw;
+  max-height: 45vh
+}
+
+.right-div {
+  float: right;
+  max-width: 50vw;
+  max-height: 50vh;
+}
 </style>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <!-- Add other navigation links if needed -->
-      </ul>
-    </nav>
-  </header>
+  <%- include('navbar') %>
 
   <main>
-    <section class="login-form">
-      
-      <h1>Login</h1>
+    <div>
+      <img class="right-div" src="images/intexlogin.jpg" alt="Random Picture">
+    </div>
 
+    <div class="left-div">
+    <section class="login-form">
+      <h2>Login</h2>
       <!-- Display the error message if it exists -->
       <% if (typeof statusMessage !== 'undefined' && statusMessage) { %>
         <div class="error alert">
@@ -63,10 +159,37 @@
       </form>
       <!-- <a href="/forgot-password">Forgot Password?</a> -->
     </section>
+  </div>
+
   </main>
 
   <footer>
-    <p>&copy; 2023 YourWebsiteName</p>
-  </footer>
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="images/smumhnav.png" alt="Footer Logo">
+        </div>
+        <div class="footer-nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/learn">Learn</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/survey">Survey</a></li>
+              <% if (user_id) { %>
+                <li><a class="link" href="/account">Account</a></li>
+                <li><a class="link" href="/data">Data</a></li>
+              <% } else { %>
+                <li><a class="link" href="/login">Login</a></li>
+              <% } %>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-info">
+        <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
+        <p>&copy; 2023 Your Website. All rights reserved.</p>
+        <p>Designed by BYUIS3.9</p>
+    </div>
+</footer>
+
 </body>
 </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+        <meta name="abstract" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+        <meta name="geo.placename" content="Brigham Young University">
+        <meta name="geo.region" content="'US-UT">
+        <link rel="stylesheet" href="/styles.css">
+        <!--favicon not working-->
+        <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
+        <title>SMU & MH - Learn</title>
+      </head>
+<body>
+  <%- include('navbar') %>
+   
+    <div class="parallaxlearn"></div>
+    
+    <div class="tableau">
+      <div class='tableauPlaceholder' id='viz1701896203626' style='position: center'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;WH&#47;WHP3JGG5Z&#47;1_rss.png' style='border: 2px, solid, black' /></a></noscript><object class='tableauViz'  style='display:flex;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;WHP3JGG5Z' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;WH&#47;WHP3JGG5Z&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1701896203626');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='1577px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    </div> 
+
+    <footer>
+      <div class="footer-content">
+          <div class="footer-logo">
+              <img src="images/smumhnav.png" alt="Footer Logo">
+          </div>
+          <div class="footer-nav">
+              <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/learn">Learn</a></li>
+                  <li><a href="/resources">Resources</a></li>
+                  <li><a href="/survey">Survey</a></li>
+                <% if (user_id) { %>
+                  <li><a class="link" href="/account">Account</a></li>
+                  <li><a class="link" href="/data">Data</a></li>
+                <% } else { %>
+                  <li><a class="link" href="/login">Login</a></li>
+                <% } %>
+              </ul>
+          </div>
+      </div>
+      <div class="footer-info">
+          <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
+          <p>&copy; 2023 Your Website. All rights reserved.</p>
+          <p>Designed by BYUIS3.9</p>
+      </div>
+  </footer>
+</body>
+</html>
