@@ -160,25 +160,7 @@ table a {
   <% } %>
 
   <header>
-    <nav>
-      <div class="menu">
-        <ul>
-          <li><a class="provo" href="https://www.provo.org/government"><img src='images/provologo.png'></a></li>
-          <div class="separator"></div>
-          <li><a class="navlogo" href="/"><img src='images/navlogo.png'></a></li>
-          <li><a class="link" href="/about">About</a></li>
-          <li><a class="link" href="/learn">Learn</a></li>
-          <li><a class="link" href="/resources">Resources</a></li>
-          <li><a class="link" href="/survey">Survey</a></li>
-          <% if (user_id) { %>
-            <li><a class="link" href="/account">Account</a></li>
-            <li><a class="link" href="/data">Data</a></li>
-          <% } else { %>
-            <li><a class="link" href="/login">Login</a></li>
-          <% } %>
-        </ul>
-      </div>
-    </nav>
+    <%- include('navbar') %>
   </header>
   
   <main>

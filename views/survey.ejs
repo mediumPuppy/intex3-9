@@ -52,25 +52,7 @@
         </style>
       </head>
 <body>
-    <nav>
-        <div class="menu">
-          <ul>
-            <li><a class="provo" href="https://www.provo.org/government"><img src='images/provologo.png'></a></li>
-            <div class="separator"></div>
-            <li><a class="navlogo" href="/"><img src='images/navlogo.png'></a></li>
-            <li><a class="link" href="/about">About</a></li>
-            <li><a class="link" href="/learn">Learn</a></li>
-            <li><a class="link" href="/resources">Resources</a></li>
-            <li><a class="link" href="/survey">Survey</a></li>
-            <% if (user_id) { %>
-              <li><a class="link" href="/account">Account</a></li>
-              <li><a class="link" href="/data">Data</a></li>
-            <% } else { %>
-              <li><a class="link" href="/login">Login</a></li>
-            <% } %>
-          </ul>
-        </div>
-    </nav>
+    <%- include('navbar') %>
 
     <h1>Survey Questions</h1>
     
@@ -343,6 +325,8 @@
 
         <input class="submit" type="submit" value="Submit">
         </form>
+        <div id="error-message" style="color: red;"></div>
+
     </section>
     </main>
     <div class="spacing"></div>
@@ -398,6 +382,16 @@
             modal.style.display = "none";
         }
     }
+    document.getElementById("myForm").onsubmit = function() {
+    var checkboxes = document.getElementsByName("options");
+    var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
+
+    if (!checkedOne) {
+        document.getElementById("error-message").innerText = "Please check at least one option.";
+        return false; // prevent form submission
+    }
+};
+
 </script>
 
 </html>
