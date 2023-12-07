@@ -143,8 +143,6 @@ a.provo img {
 .signout-button a:hover {
     color: var(--darkgrey);
     transform: translate(1px, 1px);
-    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
-        0 4px 8px 3px rgba(60, 64, 67, 0.149);
 }
 
 /*header styles*/
@@ -234,7 +232,7 @@ h1 {
 I think i was originally going to do the login there and then i changed my mind ahaha*/
 .login-main {
     background-color: var(--primarygreen);
-    height: 50vh; /* Use viewport height for full-screen height */
+    height: 60vh; /* Use viewport height for full-screen height */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -246,6 +244,7 @@ I think i was originally going to do the login there and then i changed my mind 
     font-size: x-large;
     font-weight: bold;
     text-align: center;
+    padding: 0 50vh;
   }
   
   .login-main a {
@@ -259,7 +258,7 @@ I think i was originally going to do the login there and then i changed my mind 
     color: var(--text);
     letter-spacing: 1px;
     font-family: 'Lobster-Regular';
-    transition: all 0.3s ease; /* Added smooth transition */
+    transition: all 0.3s ease;
   }
   
   .login-main a:hover {
