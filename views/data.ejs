@@ -16,220 +16,147 @@
     <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
   </head>
 <body>
-  <nav>
-    <%- include('navbar') %>
+    <%- include('components/navbar') %>
 
   <main>
-    <!-- AG-Grid for the first table -->
-    <table>
-      <tr>
-          <th>Question</th>
-          <th>Description</th>
-      </tr>
-      <tr>
-          <td>Q9</td>
-          <td>How often do you use social media without purpose?</td>
-      </tr>
-      <tr>
-          <td>Q10</td>
-          <td>How often are you distracted by social media while busy?</td>
-      </tr>
-      <tr>
-          <td>Q11</td>
-          <td>Do you feel restless when you don't use social media?</td>
-      </tr>
-      <tr>
-          <td>Q12</td>
-          <td>Are you easily distracted?</td>
-      </tr>
-      <tr>
-          <td>Q13</td>
-          <td>Are you bothered by your worries?</td>
-      </tr>
-      <tr>
-          <td>Q14</td>
-          <td>Is it difficult for you to concentrate?</td>
-      </tr>
-      <tr>
-          <td>Q15</td>
-          <td>How often do you compare yourself to successful people on social media?</td>
-      </tr>
-      <tr>
-          <td>Q16</td>
-          <td>How do you feel about the comparisons from Q15?</td>
-      </tr>
-      <tr>
-          <td>Q17</td>
-          <td>How often do you seek validation from social media?</td>
-      </tr>
-      <tr>
-          <td>Q18</td>
-          <td>How often do you feel depressed or down?</td>
-      </tr>
-      <tr>
-          <td>Q19</td>
-          <td>How frequently does your interest in daily activities fluctuate?</td>
-      </tr>
-      <tr>
-          <td>Q20</td>
-          <td>How often do you have issues regarding sleep?</td>
-      </tr>
-    </table>
+    <%- include('components/questionstable') %>
   </main>
   <main>
     <!-- AG-Grid for the table -->
     <div id="userDataGrid" class="ag-theme-alpine" style="height: 500px; width: 100%;"></div>
   </main>
-  <%- include('footer') %>
+  <%- include('components/footer') %>
     </body>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
-
-    <script>
-      // Specify the columns for the user data table
+    <script>// Specify the columns for the user data table
       var userDataColumnDefs = [
-          { headerName: "User_ID", 
-            field: "user_id",
-            filter: true 
-          },
-          { headerName: "Timestamp", 
-            field: "timestamp",
-            filter: true 
-          },
-          { headerName: "Age", 
-            field: "age",
-            filter: true 
-          },
-          { headerName: "Gender", 
-            field: "gender",
-            filter: true 
-          },
-          { headerName: "Relationship Status", 
-            field: "relationship_status",
-            filter: true 
-          },
-          { headerName: "Occupation Status", 
-            field: "occupation_status",
-            filter: true 
-          },
-          { headerName: "Social Media User", 
-            field: "social_media_user",
-            filter: true 
-          },
-          { headerName: "Region", 
-            field: "region",
-            filter: true 
-          },
-          { headerName: "Daily Time Spent", 
-            field: "daily_social_media_time",
-            filter: true 
-          },
-          { headerName: "Q9", 
-            field: "use_without_purpose",
-            filter: true 
-          },
-          { headerName: "Q10", 
-            field: "use_while_busy",
-            filter: true 
-          },
-          { headerName: "Q11", 
-            field: "restlessness_from_withdrawal",
-            filter: true 
-          },
-          { headerName: "Q12", 
-            field: "easily_distracted",
-            filter: true 
-          },
-          { headerName: "Q13", 
-            field: "bothered_by_worries",
-            filter: true 
-          },
-          { headerName: "Q14", 
-            field: "difficult_to_concentrate",
-            filter: true 
-          },
-          { headerName: "Q15", 
-            field: "compare_with_successful_people",
-            filter: true 
-          },
-          { headerName: "Q16", 
-            field: "feelings_toward_comparisons",
-            filter: true 
-          },
-          { headerName: "Q17", 
-            field: "seek_validation",
-            filter: true 
-          },
-          { headerName: "Q18", 
-            field: "feelings_of_depression",
-            filter: true 
-          },
-          { headerName: "Q19", 
-            field: "fluctuation_of_interest_in_activities",
-            filter: true 
-          },
-          { headerName: "Q20", 
-            field: "sleep_issue_frequency",
-            filter: true 
-          }
+        { headerName: "User_ID", 
+          field: "user_id",
+          filter: true 
+        },
+        { headerName: "Timestamp", 
+          field: "timestamp",
+          filter: true 
+        },
+        { headerName: "Age", 
+          field: "age",
+          filter: true 
+        },
+        { headerName: "Gender", 
+          field: "gender",
+          filter: true 
+        },
+        { headerName: "Relationship Status", 
+          field: "relationship_status",
+          filter: true 
+        },
+        { headerName: "Occupation Status", 
+          field: "occupation_status",
+          filter: true 
+        },
+        { headerName: "Social Media User", 
+          field: "social_media_user",
+          filter: true 
+        },
+        { headerName: "Region", 
+          field: "region",
+          filter: true 
+        },
+        { headerName: "Daily Time Spent", 
+          field: "daily_social_media_time",
+          filter: true 
+        },
+        { headerName: "Q9", 
+          field: "use_without_purpose",
+          filter: true 
+        },
+        { headerName: "Q10", 
+          field: "use_while_busy",
+          filter: true 
+        },
+        { headerName: "Q11", 
+          field: "restlessness_from_withdrawal",
+          filter: true 
+        },
+        { headerName: "Q12", 
+          field: "easily_distracted",
+          filter: true 
+        },
+        { headerName: "Q13", 
+          field: "bothered_by_worries",
+          filter: true 
+        },
+        { headerName: "Q14", 
+          field: "difficult_to_concentrate",
+          filter: true 
+        },
+        { headerName: "Q15", 
+          field: "compare_with_successful_people",
+          filter: true 
+        },
+        { headerName: "Q16", 
+          field: "feelings_toward_comparisons",
+          filter: true 
+        },
+        { headerName: "Q17", 
+          field: "seek_validation",
+          filter: true 
+        },
+        { headerName: "Q18", 
+          field: "feelings_of_depression",
+          filter: true 
+        },
+        { headerName: "Q19", 
+          field: "fluctuation_of_interest_in_activities",
+          filter: true 
+        },
+        { headerName: "Q20", 
+          field: "sleep_issue_frequency",
+          filter: true 
+        }
       ];
-  
+      
       var defaultGridOptions = {
-        rowHeight: 35,
-        headerHeight: 40,
-        rowSelection: 'single',
-        enableSorting: true,
-        enableFilter: true,
-        suppressMenuHide: true,
-
+      rowHeight: 35,
+      headerHeight: 40,
+      rowSelection: 'single',
+      enableSorting: true,
+      enableFilter: true,
+      suppressMenuHide: true,
+      
       };
+
       // pull in user data from the database
       var userDataRowData = <%- JSON.stringify(data) %>;
-  
-  
-      var gridOptions = {
-        columnDefs: userDataColumnDefs,
-        rowData: userDataRowData,
-        defaultColDef: defaultGridOptions,
-        pagination: true,
-        paginationPageSize: 20,
-        domLayout: 'autoHeight',
-        suppressNoRowsOverlay: true,
-        suppressCellSelection: true,
-        suppressContextMenu: true,
-        animateRows: true,
-        onRowDoubleClicked: function(event) {
-          var userId = event.data.user_id; // Replace 'user_id' with the actual field name
-          window.location.href = '/data/' + userId;
-        },
-        onGridReady: function(params) {
-          setTimeout(function() {
-              var allColumnIds = [];
-              params.columnApi.getAllColumns().forEach(function(column) {
-                  allColumnIds.push(column.colId);
-              });
-              params.columnApi.autoSizeColumns(allColumnIds, false);
-          }, 500); // Adjust the delay as needed
-        },
-        };
-      // Data for the user data table (should come from your server)
       
-  
+      
+      var gridOptions = {
+      columnDefs: userDataColumnDefs,
+      rowData: userDataRowData,
+      defaultColDef: defaultGridOptions,
+      pagination: true,
+      paginationPageSize: 20,
+      domLayout: 'autoHeight',
+      suppressNoRowsOverlay: true,
+      suppressCellSelection: true,
+      suppressContextMenu: true,
+      animateRows: true,
+      onRowDoubleClicked: function(event) {
+        var userId = event.data.user_id; // Replace 'user_id' with the actual field name
+        window.location.href = '/data/' + userId;
+      },
+      onGridReady: function(params) {
+        setTimeout(function() {
+            var allColumnIds = [];
+            params.columnApi.getAllColumns().forEach(function(column) {
+                allColumnIds.push(column.colId);
+            });
+            params.columnApi.autoSizeColumns(allColumnIds, false);
+        }, 500); // Adjust the delay as needed
+      },
+      };
       let userGridDiv = document.getElementById('userDataGrid');
       new agGrid.createGrid(userGridDiv, gridOptions);
-    
-      // Initialize AG-Grid for the user data table
-      // new agGrid.createGrid(document.getElementById('userDataGrid'), {
-      //   columnDefs: userDataColumnDefs,
-      //   rowData: userDataRowData,
-  
-      // });
-      // agGrid.createGrid(document.getElementById('userDataGrid'), {
-      //   columnDefs: [{headerName:"TEST", field:"id"}],
-      //   rowData: [{id:"one"}]
-      // });
-  
-  
     </script>
-    
 </body>
 </html>

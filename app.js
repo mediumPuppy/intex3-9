@@ -11,7 +11,7 @@ let bcrypt = require('bcrypt');
 let app = express();
 app.use(favicon(path.join(__dirname, '/static/images/favicon.png')));
 // Serve static files from node_modules
-app.use('/node_modules', express.static('node_modules'));
+// app.use('/node_modules', express.static('node_modules'));
 
 // ... rest of your server setup
 
@@ -71,7 +71,7 @@ app.get('/', (req,res) => {
 
 app.get('/login', (req, res) => {
   // If user is already logged in, redirect to account page
-  if (req.session.user_id == 'admin') {
+  if (req.session.user_id) {
     return res.redirect('/account');
   }
 
@@ -88,9 +88,9 @@ app.get('/edituser/:id', async (req, res) => {
   const userId = req.params.id;
 
   try {
-    const user = await knex('users').where('id', userId).first();
-    if (user) {
-      res.render('edituser', { user }); // render edit user page with user data
+    const data = await knex('users').where('id', userId).first();
+    if (data) {
+      res.render('edituser', { data }); // render edit user page with user data
     } else {
       res.status(404).send('User not found');
     }
@@ -153,9 +153,28 @@ app.get('/data/:userid', async (req, res) => {
 // admin route for creating users
 app.get('/admin', async (req, res) => {
   const users = await knex('users')
+  const survey = await knex('respondent')
+
+  //retrieve from last 7 days
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  const last7Days = await knex('respondent')
+  .where('timestamp', '<=', sevenDaysAgo.toISOString());
+  //last 24 hours of respondents
+  const twentyFourHoursAgo = new Date();
+  twentyFourHoursAgo.setHours(twentyFourHoursAgo.getHours() - 24);
+  const last24Hours = await knex('respondent')
+  .where('timestamp', '<=', twentyFourHoursAgo.toISOString());
+
+  
+  
+
   res.render('admin', { 
                         query: req.query,
-                        data: users       
+                        data: users,
+                        allSurvey: survey,
+                        sevenSurvey: last7Days,
+                        daySurvey: last24Hours
                       })
 });
 
@@ -322,18 +341,7 @@ app.post('/update-account', async (req, res) => {
     res.status(500).send('Unable to update account information');
   }
 });
-
-
-
-
-
-// app.get('/deleteuser', (req,res) => {
-
-// });
-
-// app.get('edituser', (req,res) => {
-
-// });
+// survey submissions route
 app.post('/submitsurvey', async (req, res) => {
   try {
     const {

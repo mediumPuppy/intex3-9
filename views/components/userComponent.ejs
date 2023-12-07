@@ -1,0 +1,28 @@
+<% if (data) { %>
+  <form id="accountForm" action="/update-account" method="post">
+    <div class="user-info">
+      <h2>User Details</h2>
+      <p>
+        <strong>Email:</strong>
+        <input type="email" id="emailInput" name="email" value="<%= data.email %>" required disabled>
+      </p>
+      <p>
+        <strong>First Name:</strong>
+        <input type="text" id="firstnameInput" name="firstname" value="<%= data.firstname %>" required disabled>
+      </p>
+      <p>
+        <strong>Last Name:</strong>
+        <input type="text" id="lastnameInput" name="lastname" value="<%= data.lastname %>" required disabled>
+      </p>
+      <p>
+        <strong>Update Password</strong>
+        <input type="password" id="password" name="password" disabled >
+      </p>
+      <button type="button" id="editButton">Edit</button>
+      <button type="submit" id="saveButton" disabled>Save</button>
+    </div>
+  </form>
+<% } else { %>
+  <p>User information not available.</p>
+<% } %>
+</div>
