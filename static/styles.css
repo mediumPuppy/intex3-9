@@ -711,7 +711,7 @@ a.link {
 
 .parallaxabout {
     /* The image used */
-    background-image: url("images/aboutbanner.jpg");
+    background-image: url("images/mainstreet.jpg");
     height: 50vh;
     background-attachment: fixed;
     background-position: center;
