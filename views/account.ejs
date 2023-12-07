@@ -71,7 +71,7 @@
           </p>
           <p>
             <strong>Update Password</strong>
-            <input type="password" id="password" name="password" >
+            <input type="password" id="password" name="password" disabled >
           </p>
           <button type="button" id="editButton">Edit</button>
           <button type="submit" id="saveButton" disabled>Save</button>
@@ -111,14 +111,40 @@
 </footer>
 </body>
 <script>
-  document.getElementById('editButton').addEventListener('click', function() {
-    document.getElementById('emailInput').disabled = false;
-    document.getElementById('firstnameInput').disabled = false;
-    document.getElementById('lastnameInput').disabled = false;
-    document.getElementById('saveButton').disabled = false;
-    document.getElementById('emailText').style.display = 'none';
-    document.getElementById('firstnameText').style.display = 'none';
-    document.getElementById('lastnameText').style.display = 'none';
-  });
+  document.addEventListener('DOMContentLoaded', function() {
+    // Store original values
+    var originalEmail = document.getElementById('emailInput').value;
+    var originalFirstName = document.getElementById('firstnameInput').value;
+    var originalLastName = document.getElementById('lastnameInput').value;
+
+    document.getElementById('editButton').addEventListener('click', function() {
+        // Enable fields for editing
+        document.getElementById('emailInput').disabled = false;
+        document.getElementById('firstnameInput').disabled = false;
+        document.getElementById('lastnameInput').disabled = false;
+        document.getElementById('password').disabled = false;
+        document.getElementById('saveButton').disabled = false;
+    });
+    document.getElementById('saveButton').addEventListener('click', function() {
+      document.getElementById('emailInput').disabled = true;
+      document.getElementById('firstnameInput').disabled = true;
+      document.getElementById('lastnameInput').disabled = true;
+      document.getElementById('saveButton').disabled = true;
+      document.getElementById('password').disabled = true;
+    });
+
+    document.getElementById('saveButton').addEventListener('click', function(event) {
+        // Compare current values with original values
+        var currentEmail = document.getElementById('emailInput').value;
+        var currentFirstName = document.getElementById('firstnameInput').value;
+        var currentLastName = document.getElementById('lastnameInput').value;
+
+        if (currentEmail === originalEmail && currentFirstName === originalFirstName && currentLastName === originalLastName) {
+            // No changes made, prevent form submission
+            event.preventDefault();
+            alert('No changes detected.');
+        }
+    });
+});
 </script>
 </html>

@@ -289,19 +289,25 @@ app.post('/update-account', async (req, res) => {
   }
 
   try {
+
+    const updateFields = {
+      email: email,
+      firstname: firstname,
+      lastname: lastname, // Save the hashed password
+    }
     // Hash the password before saving it to the database
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    if (password) {
+      // Hash the new password
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      // Update the password field
+      updateFields.passwordhash = hashedPassword;
+    }
 
     // Update the user in the database
     await knex('users')
       .where({ id: userId })
-      .update({
-        email: email,
-        firstname: firstname,
-        lastname: lastname,
-        passwordhash: hashedPassword // Save the hashed password
-      });
+      .update(updateFields);
 
     // Redirect or send a success response
     res.redirect('/account');
