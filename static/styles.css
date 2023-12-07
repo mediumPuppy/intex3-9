@@ -513,23 +513,45 @@ footer {
 
 /* this is for my button on the admin page. that's really it */
 .databutton {
-    background-color: var(--primarygreen);
-    height: fit-content;
-    width: fit-content; /* Use viewport height for full-screen height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    border-radius: 10px;
-    margin: auto;
-  }
+  display: inline-block;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600; 
+  font-size: 14px; 
+  padding: 8px 16px; 
+  text-decoration: none; 
+  color: #fff; 
+  background-color: #dff0d8; 
+  border: 2px solid black; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: background-color 0.3s, color 0.3s; 
+}
 
 /* Hover effect */
 .databutton:hover {
-    background-color: #abb7a69c; 
-    color: #fff;
-  }
+  background-color: #abb7a69c; 
+  color: #fff;
+}
+
+
+/* The div with the instagram posts */
+.instagram-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+.instagram-posts {
+  max-width: 600px;
+  padding: 20px;
+  text-align: center;
+}
+
+.instagram_media {
+  margin: 0 auto;
+}
 
 /*NOT FINISHED! TRYING TO MAKE DYNAMIC NAV*/
 @media screen and (max-width: 850px) {
