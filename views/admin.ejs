@@ -18,16 +18,50 @@
   <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
   <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
 </head>
+<style>
+  .parallaxabout {
+          /* The image used */
+          background-image: url("images/admin.jpg");
+        
+          /* Full height */
+          height: 50vh;
+        
+          /* Create the parallax scrolling effect */
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+      }
+
+      .parallaxabout h2 {
+          font-size: 15vh;
+          color: rgb(255, 255, 255); 
+          text-shadow: 0px 0px 30px rgb(0, 0, 0);
+          text-align: center;
+          margin: 0;
+          align-items: center;
+        }
+</style>
 <body>
+  <header>
+    <%- include('components/navbar') %>
+  </header>
+  <div class="parallaxabout">
+    <h2>Admin</h2>
+  </div>
+
   <% if (typeof query.status !== 'undefined' && query.status === 'created') { %>
     <div class="alert success">
       User successfully created!
     </div>
   <% } %>
 
-  <header>
-    <%- include('components/navbar') %>
-  </header>
+  
   <main>
     <div class="admin-main-flex">
       <div class="admin-child-one">
