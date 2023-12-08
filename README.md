@@ -31,7 +31,7 @@ This project, aimed for the Fall 2023 INTEX Case, focuses on exploring the relat
 The dashboard, embedded on the website, allows users to interact with data filtered by age, gender, occupation status, etc. It showcases the high-level relationship between social media usage and mental health.
 
 ## Source Code
-- **Repository**: The source code is available at: https://github.com/mediumPuppy/intex3-9 (Link to GitHub repository)
+- **Repository**: The source code is available at: https://github.com/mediumPuppy/intex3-9 
 
 ## Python Exploratory Analysis
 The exploratory analysis using Python is documented in the provided file (link: https://colab.research.google.com/drive/1W1-0ov9zHx8ASnhp8oFxmhrn66dWGCNb?usp=sharing). This file details the statistical insights that informed our project.
@@ -39,8 +39,8 @@ The exploratory analysis using Python is documented in the provided file (link: 
 ## Presentation Information
 - **PowerPoint Slides**: The presentation slides can be found at:
 - [(https://www.canva.com/design/DAF2WDGR6c8/fu8Ue0vSIQNc-otEpHVemw/edit?utm_content=DAF2WDGR6c8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
-- [https://www.canva.com/design/DAF2E0KfdSI/7r1QxWF1OyeDjsDSz3yv5w/edit?utm_content=DAF2E0KfdSI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton] (Link or file path)
-- - **Videos**: The presentation slides can be found at: [https://byu.box.com/s/g45uk0h52jaemeankujlkxv6d824qtfc] (Link or file path)
+- [https://www.canva.com/design/DAF2E0KfdSI/7r1QxWF1OyeDjsDSz3yv5w/edit?utm_content=DAF2E0KfdSI&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton] 
+- - **Videos**:  [https://byu.box.com/s/g45uk0h52jaemeankujlkxv6d824qtfc] 
 - 
 
 
