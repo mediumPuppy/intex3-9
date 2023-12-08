@@ -239,7 +239,7 @@ video::-moz-media-controls {
   
 .parallaxlanding {
     /* The image used */
-    background-image: url("images/herodisplay.png");
+    background-image: url("https://testbucket-eb-intex.s3.us-east-1.amazonaws.com/herodisplay.png");
   
     /* Full height */
     height: 50vh;
@@ -577,7 +577,7 @@ footer {
   
   .parallaxlearn {
     /* The image used */
-    background-image: url("images/herodisplay.png");
+    background-image: url("https://testbucket-eb-intex.s3.us-east-1.amazonaws.com/herodisplay.png");
   
     /* Full height */
     height: 50vh;
@@ -711,7 +711,7 @@ a.link {
 
 .parallaxabout {
     /* The image used */
-    background-image: url("images/aboutbanner.jpg");
+    background-image: url("https://testbucket-eb-intex.s3.us-east-1.amazonaws.com/aboutbanner.jpg");
     height: 50vh;
     background-attachment: fixed;
     background-position: center;
