@@ -126,6 +126,13 @@
 <body>
     <%- include('components/navbar') %>
 <div class="survey-intro" id="survey-intro">
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Survey submitted successfully!</p>
+            <p>Thank you for taking the time to participate in our Social Media and Mental Health survey. Your input is invaluable in understanding the complexities of our digital world and its impact on mental well-being.</p>
+        </div>
+    </div>
     <h2 class="survey-welcome">Welcome to our Survey on Social Media and Mental Health!</h2>
     <p class="survey-info-main">
         Thank you for participating in this important survey conducted by the Social Media Usage & Mental Health Committee. Your input is invaluable as we strive to understand the relationship between social media use and mental well-being in our community.
@@ -151,23 +158,8 @@
 
 <div class="survey-main" id="survey-main">
         <main>
-
-            <div id="customModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Survey submitted successfully!</p>
-                    <p>Thank you for taking the time to participate in our Social Media and Mental Health survey. Your input is invaluable in understanding the complexities of our digital world and its impact on mental well-being.</p>
-                </div>
-                
-            </div>
-
-        <section class="survey-container">
-        <!-- no action yet. insert it. -->
-
-
-    </form>
-
-    <form action="/submitsurvey" method="post" class="survey-form" id="survey-form">
+           
+            <section class="survey-container">
 
         <!-- Page 1 -->
         <div id="page-1">
@@ -287,7 +279,7 @@
                 </div>
             
                 <!-- Page 2 -->
-                <div id="page-2" style="display: none;">
+            <div id="page-2" class="survey-form" style="display: none;">
                     <!-- Questions for Page 2 -->
                     
             <!-- What is the average time you spend on social media every day? -->
@@ -369,8 +361,8 @@
             </select>
 
             <!-- Comparison to successful people Q15-->
-            <label for="compare_with_successful_people">I often compare myself to other successful people through the use of social media.</label>
-            <select id="compare_with_successful_people" name="compare_with_successful_people">
+            <label for="feelings_toward_comparisons">I often compare myself to other successful people through the use of social media.</label>
+            <select id="feelings_toward_comparisons" name="feelings_toward_comparisons">
                 <option value="" selected disabled>Select an option</option>
                 <option value="1">Strongly Disagree</option>
                 <option value="2">Disagree</option>
@@ -437,6 +429,7 @@
             <input class="submit" type="submit" value="Submit">
             <div id="error-message" style="color: red;"></div>
             </form>
+        </section>
             
         </main>
     </div>
@@ -452,13 +445,14 @@
     }
     // Get the modal
     var modal = document.getElementById("customModal");
-
+    var surveyIntro = document.getElementById("survey-intro")
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
     <% if (submitted) { %>
         // If 'submitted' is true, show the modal
         modal.style.display = "block";
+
     <% } %>
 
     // When the user clicks on <span> (x), close the modal
@@ -473,17 +467,66 @@
             modal.style.display = "none";
         }
     }
+// check all inputs
+document.getElementById("survey-form").addEventListener("submit", function(event) {
+    var allInputsValid = true;
+    var errorMessage = "";
 
-    document.getElementById("survey-form").addEventListener("submit", function(event) {
-        var checkboxes = document.getElementsByName("options");
-        var checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
-
-        if (!checkedOne) {
-            document.getElementById("error-message").innerText = "Please select at least one of each option.";
-            event.preventDefault(); // This will prevent the form from submitting
+    // Check text and number inputs
+    var textInputs = this.querySelectorAll('input[type="text"], input[type="number"]');
+    for (var i = 0; i < textInputs.length; i++) {
+        if (!textInputs[i].value) {
+            allInputsValid = false;
+            errorMessage = "Please fill out all text and number fields.";
+            break;
         }
+    }
 
+    // Check selects
+    if (allInputsValid) {
+        var selects = this.querySelectorAll('select');
+        for (var i = 0; i < selects.length; i++) {
+            if (selects[i].options[selects[i].selectedIndex].disabled) {
+                allInputsValid = false;
+                errorMessage = "Please make a selection for all dropdowns.";
+                break;
+            }
+        }
+    }
+
+    // Check checkbox groups
+    if (allInputsValid) {
+        var checkboxNames = ["organization_affiliation", "social_media_platforms"];
+        checkboxNames.forEach(function(name) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"][name="' + name + '"]');
+            if (!Array.from(checkboxes).some(checkbox => checkbox.checked)) {
+                allInputsValid = false;
+                errorMessage = "Please select at least one option for each checkbox group.";
+                return;
+            }
+        });
+    }
+
+    // Check radio button groups
+    if (allInputsValid) {
+        var radioNames = ["social_media_user"];
+        radioNames.forEach(function(name) {
+            var radios = document.querySelectorAll('input[type="radio"][name="' + name + '"]');
+            if (!Array.from(radios).some(radio => radio.checked)) {
+                allInputsValid = false;
+                errorMessage = "Please select an option for all radio button questions.";
+                return;
+            }
+        });
+    }
+
+    // If any input is invalid, prevent form submission and show error message
+    if (!allInputsValid) {
+        document.getElementById("error-message").innerText = errorMessage;
+        event.preventDefault();
+    }
 });
+
     document.getElementById("next-page").addEventListener("click", function() {
         document.getElementById("page-1").style.display = "none";
         document.getElementById("page-2").style.display = "block";

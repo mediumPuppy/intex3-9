@@ -414,7 +414,7 @@ app.post('/submitsurvey', async (req, res) => {
     easily_distracted: easily_distracted,
     bothered_by_worries: bothered_by_worries,
     difficult_to_concentrate: difficult_to_concentrate,
-    compare_with_successful_people: compare_with_successful_people,
+    feelings_toward_comparisons: feelings_toward_comparisons,
     feelings_toward_comparisons: feelings_toward_comparisons,
     seek_validation: seek_validation,
     feelings_of_depression: feelings_of_depression,

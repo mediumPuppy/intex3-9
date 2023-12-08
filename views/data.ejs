@@ -16,16 +16,24 @@
     <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
     <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
     <style>
+.ag-header-cell .ag-header-icon .ag-icon {
+    display: block !important;
+}
+
+
       main {
         overflow-y: auto;
+        width: 95%;
       }
       .height {
         height: 75vh;
+        display: flex;
       }
+
 
       .parallaxdata {
           /* The image used */
-          background-image: url("images/data.jpg");
+          background-image: url("https://testbucket-eb-intex.s3.us-east-1.amazonaws.com/data.jpg");
         
           /* Full height */
           height: 50vh;
@@ -50,6 +58,25 @@
           margin: 0;
           align-items: center;
         }
+      table {
+        width: 900px;
+        border-collapse: collapse;
+        margin-right: 2px;
+      }
+
+    th, td {
+        border: 1px solid black;
+        text-align: left;
+        padding-left: 2px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #F8F8F8; /* Light grey color */
+    }
+
+    tr:nth-child(odd) {
+        background-color: #ffffff; /* White color */
+    }
   </style>
   </head>
 <body>
@@ -58,7 +85,6 @@
       <h2>Data</h2>
     </div>
   <main>
-    <%- include('components/questionstable') %>
     <div class="one-item-center-flex">
       <a href="/data">
         <div class="flex-wrapper-for-data">
@@ -69,6 +95,8 @@
   </main>
   <main class="height">
     <!-- AG-Grid for the table -->
+    <%- include('components/questionstable') %>
+
     <div id="userDataGrid" class="ag-theme-alpine" style="height: 500px; width: 100%;"></div>
   </main>
   <%- include('components/footer') %>
