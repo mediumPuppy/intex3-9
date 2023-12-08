@@ -38,6 +38,8 @@ The exploratory analysis using Python is documented in the provided file (link: 
 
 ## Presentation Information
 - **PowerPoint Slides**: The presentation slides can be found at: [(https://www.canva.com/design/DAF2WDGR6c8/fu8Ue0vSIQNc-otEpHVemw/edit?utm_content=DAF2WDGR6c8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)] (Link or file path)
+- - **Videos**: The presentation slides can be found at: [https://byu.box.com/s/g45uk0h52jaemeankujlkxv6d824qtfc] (Link or file path)
+- 
 
 
 ## Additional Notes
