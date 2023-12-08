@@ -37,8 +37,8 @@ The dashboard, embedded on the website, allows users to interact with data filte
 The exploratory analysis using Python is documented in the provided file (link: https://colab.research.google.com/drive/1W1-0ov9zHx8ASnhp8oFxmhrn66dWGCNb?usp=sharing). This file details the statistical insights that informed our project.
 
 ## Presentation Information
-- **PowerPoint Slides**: The presentation slides can be found at: __________ (Link or file path)
-- **Video Demonstration**: A video demonstration of the project is available at: __________ (Link to the video)
+- **PowerPoint Slides**: The presentation slides can be found at: [(https://www.canva.com/design/DAF2WDGR6c8/fu8Ue0vSIQNc-otEpHVemw/edit?utm_content=DAF2WDGR6c8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)] (Link or file path)
+
 
 ## Additional Notes
 - For queries or additional information, please contact: @mediumPuppy (https://github.com/mediumPuppy/)
