@@ -90,9 +90,6 @@ main {
   background-color: #000000;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
-.one-item-center-flex:hover a{
-  /* color: var(--darkgrey); */
-}
 
 /* data below tables */
 .forelley {

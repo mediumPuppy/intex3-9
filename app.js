@@ -67,6 +67,7 @@ knex.raw('SELECT * FROM users')
 
 app.get('/', (req,res) => {
   res.render("landing")
+  console.log(req.session.user_id)
 });
 
 app.get('/login', (req, res) => {
@@ -155,10 +156,14 @@ app.get('/deleteuser/:id', async (req, res) => {
 
 //admin route for seeing all the data
 app.get('/data', async (req, res) => {
+  if (req.session.user_id === 2 ) {
 
   let respondents = await knex('respondent');
   
   res.render('data', {data:respondents})
+} else {
+  res.status(403).render('access');
+}
 } 
 )
 
@@ -180,6 +185,7 @@ app.get('/data/:userid', async (req, res) => {
 });
 // admin route for creating users
 app.get('/admin', async (req, res) => {
+  if (req.session.user_id == 2) {
   const users = await knex('users')
   const survey = await knex('respondent')
 
@@ -204,6 +210,10 @@ app.get('/admin', async (req, res) => {
                         sevenSurvey: last7Days,
                         daySurvey: last24Hours
                       })
+} else {
+  res.status(403).render('access')
+}
+
 });
 
 // this route will redirect to the resources view

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+    <meta name="abstract" content="Provo City's Social Media Usage and Mental Health Committee website provides a way for Provo City Council to gather data on mental health in relation to social media usage in Provo City.">
+    <meta name="geo.placename" content="Brigham Young University">
+    <meta name="geo.region" content="'US-UT">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/admin.css">
+    <!--favicon not working-->
+    <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
+    <title>SMU & MH - Data</title>
+      <!-- ... other head elements ... -->
+    <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css">
+    <link  type="text/css" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css">
+    <style>
+      main {
+        overflow-y: auto;
+      }
+      .height {
+        height: 75vh;
+      }
+
+      .parallaxdata {
+          /* The image used */
+          background-image: url("https://testbucket-eb-intex.s3.us-east-1.amazonaws.com/data.jpg");
+        
+          /* Full height */
+          height: 50vh;
+        
+          /* Create the parallax scrolling effect */
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+      }
+
+      .parallaxdata h2 {
+          font-size: 15vh;
+          color: rgb(255, 255, 255); 
+          text-shadow: 0px 0px 30px rgb(0, 0, 0);
+          text-align: center;
+          margin: 0;
+          align-items: center;
+        }
+  </style>
+  </head>
+<body>
+    <%- include('components/navbar') %>
+    <div class="parallaxdata">
+      <h2>Data</h2>
+    </div>
+  <main>
+    <%- include('components/questionstable') %>
+    <div class="one-item-center-flex">
+      <a href="/data">
+        <div class="flex-wrapper-for-data">
+          <p>All Respondent Data</p>
+        </div>
+      </a>
+    </div>
+  </main>
+  <main class="height">
+    <!-- AG-Grid for the table -->
+    <div id="userDataGrid" class="ag-theme-alpine" style="height: 500px; width: 100%;"></div>
+  </main>
+  <%- include('components/footer') %>
+    </body>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script>// Specify the columns for the user data table
+    console.log(window.URLSearchParams)
+      var userDataColumnDefs = [
+        { headerName: "User_ID", 
+          field: "user_id",
+          filter: true 
+        },
+        { headerName: "Timestamp", 
+          field: "timestamp",
+          filter: true 
+        },
+        { headerName: "Age", 
+          field: "age",
+          filter: true 
+        },
+        { headerName: "Gender", 
+          field: "gender",
+          filter: true 
+        },
+        { headerName: "Relationship Status", 
+          field: "relationship_status",
+          filter: true 
+        },
+        { headerName: "Occupation Status", 
+          field: "occupation_status",
+          filter: true 
+        },
+        { headerName: "Social Media User", 
+          field: "social_media_user",
+          filter: true 
+        },
+        { headerName: "Region", 
+          field: "region",
+          filter: true 
+        },
+        { headerName: "Daily Time Spent", 
+          field: "daily_social_media_time",
+          filter: true 
+        },
+        { headerName: "Q9", 
+          field: "use_without_purpose",
+          filter: true 
+        },
+        { headerName: "Q10", 
+          field: "use_while_busy",
+          filter: true 
+        },
+        { headerName: "Q11", 
+          field: "restlessness_from_withdrawal",
+          filter: true 
+        },
+        { headerName: "Q12", 
+          field: "easily_distracted",
+          filter: true 
+        },
+        { headerName: "Q13", 
+          field: "bothered_by_worries",
+          filter: true 
+        },
+        { headerName: "Q14", 
+          field: "difficult_to_concentrate",
+          filter: true 
+        },
+        { headerName: "Q15", 
+          field: "compare_with_successful_people",
+          filter: true 
+        },
+        { headerName: "Q16", 
+          field: "feelings_toward_comparisons",
+          filter: true 
+        },
+        { headerName: "Q17", 
+          field: "seek_validation",
+          filter: true 
+        },
+        { headerName: "Q18", 
+          field: "feelings_of_depression",
+          filter: true 
+        },
+        { headerName: "Q19", 
+          field: "fluctuation_of_interest_in_activities",
+          filter: true 
+        },
+        { headerName: "Q20", 
+          field: "sleep_issue_frequency",
+          filter: true 
+        }
+      ];
+      
+      var defaultGridOptions = {
+      rowHeight: 35,
+      headerHeight: 40,
+      rowSelection: 'single',
+      enableSorting: true,
+      enableFilter: true,
+      suppressMenuHide: true,
+      
+      };
+
+      // pull in user data from the database
+      var userDataRowData = <%- JSON.stringify(data) %>;
+      
+      
+      var gridOptions = {
+      columnDefs: userDataColumnDefs,
+      rowData: userDataRowData,
+      defaultColDef: defaultGridOptions,
+      pagination: true,
+      paginationPageSize: 10,
+      domLayout: 'autoHeight',
+      suppressNoRowsOverlay: true,
+      suppressCellSelection: true,
+      suppressContextMenu: true,
+      animateRows: true,
+      onRowDoubleClicked: function(event) {
+        var userId = event.data.user_id; // Replace 'user_id' with the actual field name
+        window.location.href = '/data/' + userId;
+      },
+
+      };
+      let userGridDiv = document.getElementById('userDataGrid');
+      new agGrid.createGrid(userGridDiv, gridOptions);
+    </script>
+</body>
+</html>
