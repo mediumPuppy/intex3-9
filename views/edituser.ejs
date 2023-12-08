@@ -22,7 +22,7 @@
         padding: 20px;
       }
       .user-info {
-        background-color: #f2f2f2;
+        background-color: #F6EBDD;
         padding: 15px;
         border-radius: 5px;
         margin-top: 20px;
@@ -63,27 +63,26 @@
     <div class="container">
       <h1>Account Information</h1>
       <% if (data) { %>
-      <form id="accountForm" action="/edituser/<% data.id %>"  method="post">
+      <form id="accountForm" action="/edituser/<%= data.id %>"  method="POST">
         <div class="user-info">
           <h2>User Details</h2>
           <p>
             <strong>Email:</strong>
-            <input type="email" id="emailInput" name="email" value="<%= data.email %>" required disabled>
+            <input type="email" id="emailInput" name="email" value="<%= data.email %>" required >
           </p>
           <p>
             <strong>First Name:</strong>
-            <input type="text" id="firstnameInput" name="firstname" value="<%= data.firstname %>" required disabled>
+            <input type="text" id="firstnameInput" name="firstname" value="<%= data.firstname %>" required >
           </p>
           <p>
             <strong>Last Name:</strong>
-            <input type="text" id="lastnameInput" name="lastname" value="<%= data.lastname %>" required disabled>
+            <input type="text" id="lastnameInput" name="lastname" value="<%= data.lastname %>" required >
           </p>
           <p>
             <strong>Update Password</strong>
-            <input type="password" id="password" name="password" disabled >
+            <input type="password" id="password" name="password"  >
           </p>
-          <button type="button" id="editButton">Edit</button>
-          <button type="submit" id="saveButton" disabled>Save</button>
+          <button type="submit" id="saveButton" >Save</button>
         </div>
       </form>
     <% } else { %>
@@ -122,41 +121,27 @@
 
 </body>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Store original values
+ document.addEventListener('DOMContentLoaded', function() {
     var originalEmail = document.getElementById('emailInput').value;
     var originalFirstName = document.getElementById('firstnameInput').value;
     var originalLastName = document.getElementById('lastnameInput').value;
+    var originalUsername = document.getElementById('usernameInput').value;
 
-    document.getElementById('editButton').addEventListener('click', function() {
-        // Enable fields for editing
-        document.getElementById('emailInput').disabled = false;
-        document.getElementById('firstnameInput').disabled = false;
-        document.getElementById('lastnameInput').disabled = false;
-        document.getElementById('password').disabled = false;
-        document.getElementById('saveButton').disabled = false;
-    });
-    document.getElementById('saveButton').addEventListener('click', function() {
-      document.getElementById('emailInput').disabled = true;
-      document.getElementById('firstnameInput').disabled = true;
-      document.getElementById('lastnameInput').disabled = true;
-      document.getElementById('saveButton').disabled = true;
-      document.getElementById('password').disabled = true;
-    });
 
-    document.getElementById('saveButton').addEventListener('click', function(event) {
-        // Compare current values with original values
+    document.getElementById('accountForm').addEventListener('submit', function(event) {
         var currentEmail = document.getElementById('emailInput').value;
         var currentFirstName = document.getElementById('firstnameInput').value;
         var currentLastName = document.getElementById('lastnameInput').value;
-        var password = document.getElementById('password').value;
+        var currentUsername = document.getElementById('usernameInput').value;
+        var isPasswordUpdated = document.getElementById('password').value;
 
-        if (currentEmail === originalEmail && currentFirstName === originalFirstName && currentLastName === originalLastName) {
+        if (originalUsername === currentUsername && originalEmail && currentFirstName === originalFirstName && currentLastName === originalLastName && isPasswordUpdated === '') {
             // No changes made, prevent form submission
             event.preventDefault();
             alert('No changes detected.');
-        }
+        } 
     });
+
 });
 </script>
 </html>
