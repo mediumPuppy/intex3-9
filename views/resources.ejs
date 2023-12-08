@@ -170,6 +170,12 @@
         border-radius: 24px 24px 0 0;
       }
 
+      .blue {
+        width: 100%;
+        height: 60px;
+        background-color: #576D70;
+      }
+
       </style>
 <body>
   <h1>Resources - Social Media and Mental Health</h1>
@@ -190,7 +196,7 @@
         <li><a href="#onlinetherapists">Online Therapy</a></li>
       </ul>
      
-      <h3 id="activities">Provo Activities</h3>
+      <h3 id="activities">Get Out and Find What Makes Provo Amazing</h3>
       <p>
         A sure way to combat the tight grip Social Media has on us is to find exciting alternatives to scrolling. There are so many great things that make Provo amazing, and we encourage everyone to go out and experience it on their own. Let's ditch the scrolling and dive into the real deal. Join the fun, explore the treasures, and be part of what makes this community shine! 
       </p>
@@ -215,6 +221,8 @@
           </a>
         </div>
       </div>
+
+      <div class="blue"></div>
 
       <h3 id="localtherapists">Local Therapists</h3>
 
@@ -308,11 +316,16 @@
           </div>
       </div>
 
+      <div class="blue"></div>
+
+
+
       <div class="clinics">
-        <h2>Local Therapy And Counseling Clinics</h2>
-        <div class="localclinic">
+        <h3 id="clinics">Local Therapy And Counseling Clinics</h3>
+
+        <div class="therapist">
           <img src="images/couch.jpeg">
-            <div class="localclinic-words">
+            <div class="therapist-details therapist-section">
               <p>
                 <strong>Website:</strong> <a href="https://www.safespaceprovo.com" target="_blank">Safe Space Provo</a><br>
                 <strong>Description:</strong> 
@@ -323,37 +336,48 @@
             </div>
         </div>
 
-        <div class="localclinic">
+        <div class="therapist">
           <img src="images/clinic_scs.jpeg">
-          <p>
-            <strong>Website:</strong> <a href="https://summitcounselingsolutions.com" target="_blank">Summit Counseling Solutions</a><br>
-            <strong>Description:</strong> 
-            Summit Counseling Solutions is a specialized treatment center dedicated to providing evidence-based solutions for 
-            adolescents and families grappling with an array of mental health challenges, including suicidal ideation, 
-            anxiety, depression, trauma, ADHD, behavioral disorders, and more. 
-          </p>
+          <div class="therapist-details therapist-section">
+            <p>
+              <strong>Website:</strong> <a href="https://summitcounselingsolutions.com" target="_blank">Summit Counseling Solutions</a><br>
+              <strong>Description:</strong> 
+              Summit Counseling Solutions is a specialized treatment center dedicated to providing evidence-based solutions for 
+              adolescents and families grappling with an array of mental health challenges, including suicidal ideation, 
+              anxiety, depression, trauma, ADHD, behavioral disorders, and more. 
+            </p>
+          </div>
         </div>
 
-        <div class="localclinic">
+        <div class="therapist">
           <img src="images/clinic_provo.jpeg">
-          <p>
-            <strong>Website:</strong> <a href="https://www.wasatch.org/provo-family-clinic" target="_blank">Provo Family Clinic</a><br>
-            <strong>Description:</strong> 
-            Wasatch Behavioral Health's Provo Family Clinic focuses on providing mental health services primarily for children 
-            and families, also accommodating adults on occasion. Their tailored therapeutic services cater to trauma and mental 
-            illness, addressing conditions like depression, anxiety, ADHD, PTSD, and behavioral issues, utilizing evidence-based 
-            techniques. 
-          </p>
+          <div class="therapist-details therapist-section">
+            <p>
+              <strong>Website:</strong> <a href="https://www.wasatch.org/provo-family-clinic" target="_blank">Provo Family Clinic</a><br>
+              <strong>Description:</strong> 
+              Wasatch Behavioral Health's Provo Family Clinic focuses on providing mental health services primarily for children 
+              and families, also accommodating adults on occasion. Their tailored therapeutic services cater to trauma and mental 
+              illness, addressing conditions like depression, anxiety, ADHD, PTSD, and behavioral issues, utilizing evidence-based 
+              techniques. 
+            </p>
+          </div>
         </div>
       </div>
 
-      <h2>Online Therapy Service</h2>
-      <p>
+      <div class="blue"></div>
+
+
+      <h3 id="onlinetherapists">Online Therapy Services</h3>
+      <div class="therapist">
         <img src="images/help.jpeg">
-        <strong>Website:</strong> <a href="https://www.betterhelp.com" target="_blank">BetterHelp</a><br>
-        <strong>Description:</strong> BetterHelp offers convenient and accessible online therapy services for various mental 
-        health concerns, including those related to social media usage.
-      </p>
+          <div class="therapist-details therapist-section">
+            <p>
+              <strong>Website:</strong> <a href="https://www.betterhelp.com" target="_blank">BetterHelp</a><br>
+              <strong>Description:</strong> BetterHelp offers convenient and accessible online therapy services for various mental 
+              health concerns, including those related to social media usage.
+            </p>
+        </div>
+      </div>
     </main>
     <%- include('components/footer') %>
 </body>
