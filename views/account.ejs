@@ -30,67 +30,11 @@
   </head>
 
 <body>
-    <%- include('navbar') %>
+  <%- include('components/navbar') %>
   <main>
-  <div class="container">
-    <h1>Account Information</h1>
-
-    <% if (data) { %>
-      <form id="accountForm" action="/update-account" method="post">
-        <div class="user-info">
-          <h2>User Details</h2>
-          <p>
-            <strong>Email:</strong>
-            <input type="email" id="emailInput" name="email" value="<%= data.email %>" required disabled>
-          </p>
-          <p>
-            <strong>First Name:</strong>
-            <input type="text" id="firstnameInput" name="firstname" value="<%= data.firstname %>" required disabled>
-          </p>
-          <p>
-            <strong>Last Name:</strong>
-            <input type="text" id="lastnameInput" name="lastname" value="<%= data.lastname %>" required disabled>
-          </p>
-          <p>
-            <strong>Update Password</strong>
-            <input type="password" id="password" name="password" disabled >
-          </p>
-          <button type="button" id="editButton">Edit</button>
-          <button type="submit" id="saveButton" disabled>Save</button>
-        </div>
-      </form>
-    <% } else { %>
-      <p>User information not available.</p>
-    <% } %>
-  </div>
+  <%- include('components/userComponent') %>
   </main>
-  <footer>
-    <div class="footer-content">
-        <div class="footer-logo">
-            <img src="images/smumhnav.png" alt="Footer Logo">
-        </div>
-        <div class="footer-nav">
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/learn">Learn</a></li>
-                <li><a href="/resources">Resources</a></li>
-                <li><a href="/survey">Survey</a></li>
-              <% if (user_id) { %>
-                <li><a class="link" href="/account">Account</a></li>
-                <li><a class="link" href="/data">Data</a></li>
-              <% } else { %>
-                <li><a class="link" href="/login">Login</a></li>
-              <% } %>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-info">
-        <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
-        <p>&copy; 2023 Your Website. All rights reserved.</p>
-        <p>Designed by BYUIS3.9</p>
-    </div>
-</footer>
+  <%- include('components/footer') %>
 </body>
 <script>
   document.addEventListener('DOMContentLoaded', function() {

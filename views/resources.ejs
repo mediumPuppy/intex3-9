@@ -12,16 +12,219 @@
         <link rel="icon" href="/static/images/favicon.png" type="image/x-icon">
         <title>SMU & MH - Resources</title>
       </head>
-<body>
-  <%- include('navbar') %>
-    <main>
-      <h2>Resources - Social Media and Mental Health</h2>
 
-      <div class="idk-bro-name-this-what-you-want">
-        <p>We understand</p>
-      </div>
       
-      <h3>Local Therapists</h3>
+      <style>
+        main {
+          padding: 0;
+          margin: 0;
+          width: 100%;
+        }
+        .parallaxresources {
+          /* The image used */
+          background-image: url("images/resourcesheader.jpg");
+        
+          /* Full height */
+          height: 70vh;
+        
+          /* Create the parallax scrolling effect */
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+      }
+
+      .parallaxresources h2 {
+          font-size: 15vh;
+          color: rgb(255, 255, 255); 
+          text-shadow: 0px 0px 30px rgb(0, 0, 0);
+          text-align: center;
+          margin: 0;
+          align-items: center;
+        }
+
+        p {
+          padding: 0 20%;
+          line-height: 25px;
+        }
+
+      .resourceslist {
+        width: 100%;
+        justify-content: space-around;
+        background-color: #BFD9C2;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      .resourceslist li:first-child {
+        padding-left: 20%;
+      }
+
+      .resourceslist li:last-child {
+        padding-right: 20%;
+      }
+
+      .resourceslist li a {
+        text-transform: none;
+        letter-spacing: normal;
+      }
+
+      .resourceslist li a:hover {
+        color: #4D4D4D;
+        transform: translate(1px, 1px);
+      }
+
+      .therapist {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 10%;
+      }
+
+      .therapist img {
+        max-width: 40%;
+        margin-left: 20px;
+        border-radius: 24px;
+      }
+
+      .therapist-section {
+        flex-grow: 1;
+        max-width: 40%;
+      }
+
+      .therapist h4,
+      .therapist p {
+        text-align: left;
+        padding: 0 0 0 25px;
+      }
+
+      .therapist h4 {
+        font-size:30px;
+      }
+
+      .therapist-details strong {
+        display: block;
+      }
+
+      h3 {
+        font-size: 40px;
+        border: 1px solid black;
+        width: fit-content;
+        padding: 12px;
+        margin: 50px auto;
+      }
+
+      .cards-container {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 1rem;
+      }
+
+      .cards {
+        display: flex;
+        flex-direction: column;
+        margin: 0 1rem var(--gap);
+        gap: 2rem;
+        width: 400px;
+        justify-content: space-between;
+        margin: 0 auto;
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+
+      .card {
+        border-radius: 24px;
+        background-color: var(--cream);
+        text-decoration: none;
+        box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302),
+          0 4px 8px 3px rgba(60, 64, 67, 0.149);
+      }
+
+      .card img {
+        width: 100%;
+        height: 200px;
+      }
+
+      .card p {
+        text-align: center;
+        margin: 0;
+        padding: 1rem;
+      }
+
+      .text {
+        color: black;
+      }
+
+      .text:hover {
+        color: #4D4D4D;
+        transform: translate(1px, 1px);
+      }
+
+
+      .card img {
+        border-radius: 24px 24px 0 0;
+      }
+
+      .blue {
+        width: 100%;
+        height: 60px;
+        background-color: #576D70;
+      }
+
+      </style>
+<body>
+  <h1>Resources - Social Media and Mental Health</h1>
+  <%- include('components/navbar') %>
+    <main>
+
+      <div class="parallaxresources">
+        <h2>Resources</h2>
+      </div>
+
+      <p class="intro">
+        Navigating mental health can be tough on its own, and the increase of social media makes it so much tougher for someone already facing challenges. This page is dedicated to people who are looking for help but don’t know where to start. Here we have information to help combat society’s ever-increasing addiction to social media, and for those who need someone to talk to, we have resources for finding local therapists here in Provo.</p>
+
+      <ul class="resourceslist">
+        <li><a href="#activities">Provo Activities</a></li>
+        <li><a href="#localtherapists">Local Therapists</a></li>
+        <li><a href="#clinics">Clinics</a></li>
+        <li><a href="#onlinetherapists">Online Therapy</a></li>
+      </ul>
+     
+      <h3 id="activities">Get Out and Find What Makes Provo Amazing</h3>
+      <p>
+        A sure way to combat the tight grip Social Media has on us is to find exciting alternatives to scrolling. There are so many great things that make Provo amazing, and we encourage everyone to go out and experience it on their own. Let's ditch the scrolling and dive into the real deal. Join the fun, explore the treasures, and be part of what makes this community shine! 
+      </p>
+
+      <div class="cards-container">
+        <div class="cards">
+          <a href="https://www.provo.org/community/outdoor-activities" class="card">
+            <img src="images/provorec.jpeg" alt="Provo City">
+            <p class="text">Provo Outdoor Activities</p>
+          </a>
+        </div>
+        <div class="cards">
+          <a href="https://www.utahvalley.com/blog/post/170-things-to-do-in-provo/" class="card">
+            <img src="images/foodprovo.jpeg" alt="Utah Valley Magazine">
+            <p class="text">Utah Valley Activities</p>
+          </a>
+        </div>
+        <div class="cards">
+          <a href="https://www.provo.org/departments/parks/parks-details" class="card">
+            <img src="images/provopark.jpeg" alt="Provo City Parks">
+            <p class="text">City Parks</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="blue"></div>
+
+      <h3 id="localtherapists">Local Therapists</h3>
 
       <div class="therapist">
         <img src="images/therapist_jayde.jpeg">
@@ -113,11 +316,16 @@
           </div>
       </div>
 
+      <div class="blue"></div>
+
+
+
       <div class="clinics">
-        <h2>Local Therapy And Counseling Clinics</h2>
-        <div class="localclinic">
+        <h3 id="clinics">Local Therapy And Counseling Clinics</h3>
+
+        <div class="therapist">
           <img src="images/couch.jpeg">
-            <div class="localclinic-words">
+            <div class="therapist-details therapist-section">
               <p>
                 <strong>Website:</strong> <a href="https://www.safespaceprovo.com" target="_blank">Safe Space Provo</a><br>
                 <strong>Description:</strong> 
@@ -128,64 +336,49 @@
             </div>
         </div>
 
-        <div class="localclinic">
+        <div class="therapist">
           <img src="images/clinic_scs.jpeg">
-          <p>
-            <strong>Website:</strong> <a href="https://summitcounselingsolutions.com" target="_blank">Summit Counseling Solutions</a><br>
-            <strong>Description:</strong> 
-            Summit Counseling Solutions is a specialized treatment center dedicated to providing evidence-based solutions for 
-            adolescents and families grappling with an array of mental health challenges, including suicidal ideation, 
-            anxiety, depression, trauma, ADHD, behavioral disorders, and more. 
-          </p>
+          <div class="therapist-details therapist-section">
+            <p>
+              <strong>Website:</strong> <a href="https://summitcounselingsolutions.com" target="_blank">Summit Counseling Solutions</a><br>
+              <strong>Description:</strong> 
+              Summit Counseling Solutions is a specialized treatment center dedicated to providing evidence-based solutions for 
+              adolescents and families grappling with an array of mental health challenges, including suicidal ideation, 
+              anxiety, depression, trauma, ADHD, behavioral disorders, and more. 
+            </p>
+          </div>
         </div>
 
-        <div class="localclinic">
+        <div class="therapist">
           <img src="images/clinic_provo.jpeg">
-          <p>
-            <strong>Website:</strong> <a href="https://www.wasatch.org/provo-family-clinic" target="_blank">Provo Family Clinic</a><br>
-            <strong>Description:</strong> 
-            Wasatch Behavioral Health's Provo Family Clinic focuses on providing mental health services primarily for children 
-            and families, also accommodating adults on occasion. Their tailored therapeutic services cater to trauma and mental 
-            illness, addressing conditions like depression, anxiety, ADHD, PTSD, and behavioral issues, utilizing evidence-based 
-            techniques. 
-          </p>
+          <div class="therapist-details therapist-section">
+            <p>
+              <strong>Website:</strong> <a href="https://www.wasatch.org/provo-family-clinic" target="_blank">Provo Family Clinic</a><br>
+              <strong>Description:</strong> 
+              Wasatch Behavioral Health's Provo Family Clinic focuses on providing mental health services primarily for children 
+              and families, also accommodating adults on occasion. Their tailored therapeutic services cater to trauma and mental 
+              illness, addressing conditions like depression, anxiety, ADHD, PTSD, and behavioral issues, utilizing evidence-based 
+              techniques. 
+            </p>
+          </div>
         </div>
       </div>
 
-      <h2>Online Therapy Service</h2>
-      <p>
+      <div class="blue"></div>
+
+
+      <h3 id="onlinetherapists">Online Therapy Services</h3>
+      <div class="therapist">
         <img src="images/help.jpeg">
-        <strong>Website:</strong> <a href="https://www.betterhelp.com" target="_blank">BetterHelp</a><br>
-        <strong>Description:</strong> BetterHelp offers convenient and accessible online therapy services for various mental 
-        health concerns, including those related to social media usage.
-      </p>
+          <div class="therapist-details therapist-section">
+            <p>
+              <strong>Website:</strong> <a href="https://www.betterhelp.com" target="_blank">BetterHelp</a><br>
+              <strong>Description:</strong> BetterHelp offers convenient and accessible online therapy services for various mental 
+              health concerns, including those related to social media usage.
+            </p>
+        </div>
+      </div>
     </main>
-    <footer>
-      <div class="footer-content">
-          <div class="footer-logo">
-              <img src="images/smumhnav.png" alt="Footer Logo">
-          </div>
-          <div class="footer-nav">
-              <ul>
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/about">About</a></li>
-                  <li><a href="/learn">Learn</a></li>
-                  <li><a href="/resources">Resources</a></li>
-                  <li><a href="/survey">Survey</a></li>
-                <% if (user_id) { %>
-                  <li><a class="link" href="/account">Account</a></li>
-                  <li><a class="link" href="/data">Data</a></li>
-                <% } else { %>
-                  <li><a class="link" href="/login">Login</a></li>
-                <% } %>
-              </ul>
-          </div>
-      </div>
-      <div class="footer-info">
-          <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
-          <p>&copy; 2023 Your Website. All rights reserved.</p>
-          <p>Designed by BYUIS3.9</p>
-      </div>
-  </footer>
+    <%- include('components/footer') %>
 </body>
 </html>

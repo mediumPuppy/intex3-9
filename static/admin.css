@@ -1,0 +1,152 @@
+/* admin page  */
+:root {
+  --primarygreen: #A3C9A8;
+  --lightgreen: #BFD9C2;
+  --darkergreen: #526554;
+  --primaryblue: #AED9E0;
+  --darkblue: #576D70;
+  --darkgrey: #4D4D4D;
+  --cream: #FEFCFA;
+  --lightcream: #F6EBDD;
+  --primarycream: #F2E2CE;
+  --text: #000000;
+  --gap: 6rem;
+}
+
+@font-face {
+  font-family: 'Lobster-Regular';
+  src: url(/fonts/Lobster-Regular.ttf) format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+main {
+  overflow-y: hidden;
+}
+.admin-main-flex {
+  display: flex;
+  flex-direction: row;
+  min-height: 500px;
+  gap: 20px;
+}
+
+.admin-child-one {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* essentially a copy of above */
+.admin-child-two {
+  width: 66%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-user-form {
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  padding: 20px;
+  /* overflow: visible; */
+  border: 5px solid #F6EADC;
+  border-radius: 5px;
+  background-color: #F6EADC;
+  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.2);
+}
+/* Enhanced Styling for the Data View Section */
+.one-item-center-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* just bottom margin? haha. */
+  margin: 0px 0px 10px 0px;
+}
+
+.flex-wrapper-for-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 240px;
+  padding: 10px 20px;
+  background-color: var(--lightcream);
+  border-radius: 5px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.one-item-center-flex a {
+  font-family: 'Lobster-Regular';
+  text-decoration: none;
+  color: var(--text);
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.flex-wrapper-for-data:hover {
+  background-color: var(--primarycream);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+.one-item-center-flex:hover a{
+  color: var(--darkgrey);
+}
+
+/* data below tables */
+.forelley {
+  width: 70%;
+  margin: 0 auto;
+}
+.survey-data-flex {
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.number-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.number {
+  font-size: 120px;
+  font-family: 'Lobster-Regular';
+}
+.text {
+  font-size: 30px;
+}
+
+input, button {
+  margin-bottom: 10px;
+  display: block;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+button {
+  width: 100%;
+  padding: 1vh;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+button {
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #2980b9;
+}

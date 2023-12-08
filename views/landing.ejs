@@ -13,7 +13,7 @@
   <title>SMU & MH - Home</title>
 </head>
 <body>
-<%- include('navbar') %>
+<%- include('components/navbar') %>
   
 
   <header class="nav-menu">
@@ -26,7 +26,7 @@
     <h1>Social Media Usage & Mental Health Committee</h1>
     <div class="video-container">
       <video autoplay loop muted controls="false">
-        <source src="images/provo.mp4" type="video/mp4">
+        <source src="https://testbucket-eb-intex.s3.us-east-1.amazonaws.com/provo.mp4" type="video/mp4">
       </video>
       <div class="overlay"></div>
       <img src="images/webbanner.png" alt="Banner Image" class="overlay-image">
@@ -58,52 +58,20 @@
     <a href="/learn">Learn More</a>
   </div>
   
-  <div class="instagram-div">
-    <div class="instagram-posts">
+  <div class="instagram-div-home">
+    <div class="content">
       <!-- Your content before the Instagram blockquote -->
-      <h2>Follow our Instagram Page as a Reminder to Prioritize your Happiness and Health!</h2>
-      <p>We recognize that it may seem counterintuitive to follow an Instagram account to help break free of social media...</p>
+      <h2>Follow us on Instagram!</h2>
       
+    </div>
       <!-- Instagram blockquote -->
+      <div class="instagram-posts-home">
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/smu_mh/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px); margin: 0 auto;">
         <!-- Instagram content -->
       </blockquote>
       <script async src="//www.instagram.com/embed.js"></script>
     </div>
   </div>
-  
-
-
-  <footer>
-    <div class="footer-content">
-        <div class="footer-logo">
-            <img src="images/smumhnav.png" alt="Footer Logo">
-        </div>
-        <div class="footer-nav">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/learn">Learn</a></li>
-                <li><a href="/resources">Resources</a></li>
-                <li><a href="/survey">Survey</a></li>
-              <% if (user_id) { %>
-                <li><a class="link" href="/account">Account</a></li>
-                <li><a class="link" href="/data">Data</a></li>
-              <% } else { %>
-                <li><a class="link" href="/login">Login</a></li>
-              <% } %>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-info">
-        <p><a href="https://www.instagram.com/smu_mh/">@smu_mh</a></p>
-        <p>&copy; 2023 Your Website. All rights reserved.</p>
-        <p>Designed by BYUIS3.9</p>
-    </div>
-</footer>
-
+<%- include('components/footer') %>
 </body>
-<script>
-  console.log(<%= user_id %>)
-</script>
 </html>
