@@ -101,13 +101,41 @@ app.get('/edituser/:id', async (req, res) => {
 
 // actually post the changed data from the user id
 app.post('/edituser/:id', async (req, res) => {
-  const userId = req.params.id;
-  const updatedData = req.body; // Assuming the body contains the updated user data
+  const { email, username, firstname, lastname } = req.body;
+  const userId = req.params.id; 
+  if (!userId) {
+    return res.redirect('/login'); // Redirect to login if not authenticated
+  }
+
   try {
-    await knex('users').where('id', userId).update(updatedData);
-    res.redirect('/admin'); // Redirect to a confirmation page or user list
+
+    const updateFields = {
+      email: email,
+      username: username,
+      firstname: firstname,
+      lastname: lastname,
+    }
+    // Hash the password before saving it to the database
+    // unused here but helpful for future
+    // if (password) {
+      // Hash the new password
+    //   const saltRounds = 10;
+    //   const hashedPassword = await bcrypt.hash(password, saltRounds);
+      // Update the password field
+    //   updateFields.passwordhash = hashedPassword;
+    // }
+
+    // Update the user in the database
+    await knex('users')
+      .where({ id: userId })
+      .update(updateFields);
+
+    // Redirect or send a success response
+    res.redirect(`/edituser/${userId}`);
   } catch (error) {
-    res.status(500).send('Server error');
+    // Handle errors (e.g., database errors)
+    console.error(error);
+    res.status(500).send('Unable to update account information');
   }
 });
 
@@ -305,9 +333,8 @@ app.post('/create',
 });
 
 app.post('/update-account', async (req, res) => {
-  const { email, firstname, lastname, password } = req.body;
+  const { email, username, firstname, lastname, password } = req.body;
   const userId = req.session.user_id; // Assuming you store user id in session after login
-
   if (!userId) {
     return res.redirect('/login'); // Redirect to login if not authenticated
   }
@@ -315,9 +342,11 @@ app.post('/update-account', async (req, res) => {
   try {
 
     const updateFields = {
+      id: userId,
       email: email,
+      username: username,
       firstname: firstname,
-      lastname: lastname, // Save the hashed password
+      lastname: lastname,
     }
     // Hash the password before saving it to the database
     if (password) {
@@ -329,7 +358,7 @@ app.post('/update-account', async (req, res) => {
     }
 
     // Update the user in the database
-    await knex('users')
+    let blah = await knex('users')
       .where({ id: userId })
       .update(updateFields);
 

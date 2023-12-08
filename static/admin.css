@@ -25,7 +25,7 @@ main {
 .admin-main-flex {
   display: flex;
   flex-direction: row;
-  min-height: 500px;
+  min-height: 300px;
   gap: 20px;
 }
 
@@ -34,7 +34,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 /* essentially a copy of above */
 .admin-child-two {
@@ -51,9 +51,9 @@ main {
   width: 300px;
   padding: 20px;
   /* overflow: visible; */
-  border: 5px solid #F6EADC;
+  border: 5px solid #F8F8F8;
+  background-color: #F8F8F8;
   border-radius: 5px;
-  background-color: #F6EADC;
   box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.2);
 }
 /* Enhanced Styling for the Data View Section */
@@ -72,7 +72,7 @@ main {
   height: 50px;
   width: 240px;
   padding: 10px 20px;
-  background-color: var(--lightcream);
+  background-color: #4D4D4D;
   border-radius: 5px;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
@@ -81,17 +81,17 @@ main {
 .one-item-center-flex a {
   font-family: 'Lobster-Regular';
   text-decoration: none;
-  color: var(--text);
+  color: white;
   font-weight: bold;
   font-size: 25px;
 }
 
 .flex-wrapper-for-data:hover {
-  background-color: var(--primarycream);
+  background-color: #000000;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 .one-item-center-flex:hover a{
-  color: var(--darkgrey);
+  /* color: var(--darkgrey); */
 }
 
 /* data below tables */
@@ -140,13 +140,16 @@ button {
   padding: 1vh;
   border-radius: 3px;
   border: 1px solid #ccc;
+  font-size:medium;
 }
 button {
-  background-color: #3498db;
+  background-color: #4D4D4D;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  height: 40px;
+  margin-bottom: 100px;
 }
 button:hover {
-  background-color: #2980b9;
+  background-color: #000000;
 }
